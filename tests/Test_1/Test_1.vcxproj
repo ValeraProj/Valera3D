@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F0DB35B4-3606-4BE2-917A-6ABCB88E7C99}</ProjectGuid>
+    <ProjectGuid>{5ED88F82-44F1-4123-9CA6-6BD3F632E77D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ValeraEngine</RootNamespace>
+    <RootNamespace>Test_1</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="ValeraEngine.cpp" />
+    <ClCompile Include="Test_1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
