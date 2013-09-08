@@ -9,8 +9,8 @@ namespace v3d
 namespace core
 {
 
-	const f32 k_roundingError32 = 0.00005f;
-	const f64 k_roundingError64 = 0.000005;
+	const f32 k_tolerance32 = 0.00005f;
+	const f64 k_tolerance64 = 0.000005;
 
 	const f32 k_pi		 = 3.14159265359f;
 	const f32 k_rcpPi	 = 1.0f/k_pi;
@@ -77,7 +77,7 @@ namespace core
 		return min ( max( value, low ), high );
 	}
 
-	bool isEquals( f32 a, f32 b, f32 tolerance = k_roundingError32 )
+	bool isEquals( f32 a, f32 b, f32 tolerance = k_tolerance32 )
 	{
 		return ( a + tolerance >= b ) && ( a - tolerance <= b );
 	}
@@ -92,12 +92,12 @@ namespace core
 		return ( a + tolerance >= b ) && ( a - tolerance <= b );
 	}
 
-	bool isZero( f64 a, f64 tolerance = k_roundingError64 )
+	bool isZero( f64 a, f64 tolerance = k_tolerance64 )
 	{
 		return fabs ( a ) <= tolerance;
 	}
 
-	bool isZero( f32 a, f32 tolerance = k_roundingError32 )
+	bool isZero( f32 a, f32 tolerance = k_tolerance32 )
 	{
 		return fabsf ( a ) <= tolerance;
 	}
@@ -154,8 +154,6 @@ namespace core
 
  	void setbit_cond ( u32 &state, s32 condition, u32 mask )
  	{
- 		// 0, or any postive to mask
- 		//s32 conmask = -condition >> 31;
  		state ^= ( ( -condition >> 31 ) ^ state ) & mask;
  	}
 
@@ -185,4 +183,3 @@ namespace core
 }
 
 #endif
-

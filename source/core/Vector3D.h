@@ -50,7 +50,7 @@ namespace core
 		TVector3D<T>&	set( const T nx, const T ny, const T nz );
 		TVector3D<T>&	set( const TVector3D<T>& p ); 
 
-		bool			isEquals( const TVector3D<T>& other, const T tolerance = (T)k_roundingError32 ) const;
+		bool			isEquals( const TVector3D<T>& other, const T tolerance = (T)k_tolerance32 ) const;
 		bool			isInLine( const TVector3D<T>& begin, const TVector3D<T>& end ) const;
 
 		T				length()													   const;
@@ -332,7 +332,7 @@ namespace core
 
 
 	template<class T>
-	bool TVector3D<T>::isEquals( const TVector3D<T>& other, const T tolerance = (T)k_roundingError32 ) const
+	bool TVector3D<T>::isEquals( const TVector3D<T>& other, const T tolerance = (T)k_tolerance32 ) const
 	{
 		const bool isEquels = core::isEquals( x, other.x, tolerance ) &&
 							  core::isEquals( y, other.y, tolerance ) &&

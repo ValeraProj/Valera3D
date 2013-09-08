@@ -47,7 +47,7 @@ namespace core
 		TVector4D<T>&	set( const TVector4D<T>& point ); 
 		TVector4D<T>&	set( const TVector3D<T>& point, const T nw = 0 ); 
 
-		bool			isEquals( const TVector4D<T>& other,  const T tolerance = (T)k_roundingError32 ) const;
+		bool			isEquals( const TVector4D<T>& other,  const T tolerance = (T)k_tolerance32 ) const;
 		bool			isInLine( const TVector4D<T>& begin, const TVector4D<T>& end )					 const;
 
 		T				length()											const; 
@@ -67,7 +67,6 @@ namespace core
 		T w;
 	};
 	
-	//template<class T>
 	typedef TVector4D<f32> Vector4D;
 
 	template<class T>
@@ -312,7 +311,7 @@ namespace core
 	}
 
 	template<class T>
-	bool TVector4D<T>::isEquals( const TVector4D<T>& other, const T tolerance = (T)k_roundingError32 ) const
+	bool TVector4D<T>::isEquals( const TVector4D<T>& other, const T tolerance = (T)k_tolerance32 ) const
 	{
 		const bool isEquals = core::isEquals( x, other.x, tolerance ) &&
 							  core::isEquals( y, other.y, tolerance ) &&

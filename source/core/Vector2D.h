@@ -44,7 +44,7 @@ namespace core
 		TVector2D<T>&	set( const T nx, const T ny ); 
 		TVector2D<T>&	set( const TVector2D<T>& other );
 
-		bool			isEquals( const TVector2D<T>& other, const T tolerance = (T)k_roundingError32 ) const;
+		bool			isEquals( const TVector2D<T>& other, const T tolerance = (T)k_tolerance32 ) const;
 		bool			isInLine( const TVector2D<T>& begin, const TVector2D<T>& end )					const;
 
 		T				length()										const;
@@ -318,7 +318,7 @@ namespace core
 	}
 
 	template<class T>
-	bool TVector2D<T>::isEquals( const TVector2D<T>& other, const T tolerance = (T)k_roundingError32 ) const
+	bool TVector2D<T>::isEquals( const TVector2D<T>& other, const T tolerance = (T)k_tolerance32 ) const
 	{
 		const bool isEquels = core::isEquals( x, other.x, tolerance ) &&
 							  core::isEquals( y, other.y, tolerance );

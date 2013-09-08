@@ -27,9 +27,6 @@ namespace v3d
 #include "core/Matrix4D.h"
 
 
-
-
-
 using namespace v3d;
 
 #endif

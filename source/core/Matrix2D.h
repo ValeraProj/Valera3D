@@ -20,9 +20,9 @@ namespace core
 		TMatrix2D( T m0, T m1, T m2, T m3 );
 
 		T&				operator () ( u32 row, u32 col );
-		const T&		operator () ( u32 row, u32 col )			const; 
+		const T&		operator () ( u32 row, u32 col )			const;
 		T&				operator [] ( u32 index ); 					
-		const T&		operator [] ( u32 index )					const; 				
+		const T&		operator [] ( u32 index )					const;
 		TMatrix2D<T>&	operator =  ( const T& scalar );				
 		bool			operator == ( const TMatrix2D<T> &other )	const;
 		bool			operator != ( const TMatrix2D<T> &other )	const;
@@ -38,7 +38,7 @@ namespace core
 		TMatrix2D<T>&	set( const T* data );
 
 		T*				getPtr(); 
-		const T*		getPtr()									const; 							   
+		const T*		getPtr()									const;
 																	
 		void			makeIdentity();								
 		bool			isIdentity()								const;

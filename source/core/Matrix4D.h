@@ -1,7 +1,6 @@
 #ifndef _V3D_MATRIX_4D_H_
 #define _V3D_MATRIX_4D_H_
 
-
 #include "Vector3D.h"
 #include "Vector4D.h"
 
@@ -551,7 +550,7 @@ namespace core
 
 		f64 rotx, roty, X, Z;
 
-		if ( abs(C) > k_roundingError64 )
+		if ( abs(C) > k_tolerance64 )
 		{
 			const f64 invC = (f64)( 1.0 / C );
 			rotx = mat( 2, 2 ) * invC;
