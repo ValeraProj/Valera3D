@@ -76,6 +76,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\core\Math.h" />
+    <ClInclude Include="..\..\source\core\Matrix2D.h" />
+    <ClInclude Include="..\..\source\core\Matrix3D.h" />
+    <ClInclude Include="..\..\source\core\Matrix4D.h" />
+    <ClInclude Include="..\..\source\core\Vector2D.h" />
+    <ClInclude Include="..\..\source\core\Vector3D.h" />
+    <ClInclude Include="..\..\source\core\Vector4D.h" />
+    <ClInclude Include="..\..\source\Math\Math.h" />
+    <ClInclude Include="..\..\source\Valera3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
