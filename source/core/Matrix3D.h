@@ -449,65 +449,43 @@ namespace core
 	template <class T>
 	bool TMatrix3D<T>::getInverse( TMatrix3D<T>& outMatrix ) const
 	{
-		return false; //wrong algorithm
-		f64 t0 = m_matrix[10] * m_matrix[15] - m_matrix[11] * m_matrix[14];
-		f64 t1 = m_matrix[6] * m_matrix[15] - m_matrix[7] * m_matrix[14];
-		f64 t2 = m_matrix[6] * m_matrix[11] - m_matrix[7] * m_matrix[10];
-		f64 t3 = m_matrix[2] * m_matrix[15] - m_matrix[3] * m_matrix[14];
-		f64 t4 = m_matrix[2] * m_matrix[11] - m_matrix[3] * m_matrix[10];
-		f64 t5 = m_matrix[2] * m_matrix[7] - m_matrix[3] * m_matrix[6];
-
-		f64 t6 = m_matrix[8] * m_matrix[13] - m_matrix[9] * m_matrix[12];
-		f64 t7 = m_matrix[4] * m_matrix[13] - m_matrix[5] * m_matrix[12];
-		f64 t8 = m_matrix[4] * m_matrix[9] - m_matrix[5] * m_matrix[8];
-		f64 t9 = m_matrix[0] * m_matrix[13] - m_matrix[1] * m_matrix[12];
-		f64 t10 = m_matrix[0] * m_matrix[9] - m_matrix[1] * m_matrix[8];
-		f64 t11 = m_matrix[0] * m_matrix[5] - m_matrix[1] * m_matrix[4];
-
-		f64 det = t0 * t11 - t1 * t10 + t2 * t9 + t3 * t8 - t4 * t7 + t5 * t6;
+		outMatrix.m_matrix[0] = m_matrix[4] * m_matrix[8] - m_matrix[5] * m_matrix[7];
+		outMatrix.m_matrix[1] = m_matrix[2] * m_matrix[7] - m_matrix[1] * m_matrix[8];
+		outMatrix.m_matrix[2] = m_matrix[1] * m_matrix[5] - m_matrix[2] * m_matrix[4];
+		
+		outMatrix.m_matrix[3] = m_matrix[5] * m_matrix[6] - m_matrix[3] * m_matrix[8];
+		outMatrix.m_matrix[4] = m_matrix[0] * m_matrix[8] - m_matrix[2] * m_matrix[6];
+		outMatrix.m_matrix[5] = m_matrix[2] * m_matrix[3] - m_matrix[0] * m_matrix[5];
+		
+		outMatrix.m_matrix[6] = m_matrix[3] * m_matrix[7] - m_matrix[4] * m_matrix[6];
+		outMatrix.m_matrix[7] = m_matrix[1] * m_matrix[6] - m_matrix[0] * m_matrix[7];
+		outMatrix.m_matrix[8] = m_matrix[0] * m_matrix[4] - m_matrix[1] * m_matrix[3];
+		
+		T det = m_matrix[0] * outMatrix.m_matrix[0] +
+				m_matrix[1] * outMatrix.m_matrix[3] +
+				m_matrix[2] * outMatrix.m_matrix[6];
 		
 		if ( isZero( det ) )
 		{
 			return false;
 		}
+		
+		det = (T)1.0 / det;
 
-		det = 1.0 / det;
-		T ft0 = (T)(t0 * det);
-		T ft1 = (T)(t1 * det);
-		T ft2 = (T)(t2 * det);
-		T ft3 = (T)(t3 * det);
-		T ft4 = (T)(t4 * det);
-		T ft5 = (T)(t5 * det);
-		T ft6 = (T)(t6 * det);
-		T ft7 = (T)(t7 * det);
-		T ft8 = (T)(t8 * det);
-		T ft9 = (T)(t9 * det);
-		T ft10 = (T)(t10 * det);
-		T ft11 = (T)(t11 * det);
-
-		outMatrix.m_matrix[0] = m_matrix[5] * ft0 - m_matrix[9] * ft1 + m_matrix[13] * ft2;
-		outMatrix.m_matrix[1] = m_matrix[9] * ft3 - m_matrix[1] * ft0 - m_matrix[13] * ft4;
-		outMatrix.m_matrix[2] = m_matrix[1] * ft1 - m_matrix[5] * ft3 + m_matrix[13] * ft5;
-		outMatrix.m_matrix[3] = m_matrix[5] * ft4 - m_matrix[1] * ft2 - m_matrix[9] * ft5;
-
-		outMatrix.m_matrix[4] = m_matrix[8] * ft1 - m_matrix[4] * ft0 - m_matrix[12] * ft2;
-		outMatrix.m_matrix[5] = m_matrix[0] * ft0 - m_matrix[8] * ft3 + m_matrix[12] * ft4;
-		outMatrix.m_matrix[6] = m_matrix[4] * ft3 - m_matrix[0] * ft1 - m_matrix[12] * ft5;
-		outMatrix.m_matrix[7] = m_matrix[0] * ft2 - m_matrix[4] * ft4 + m_matrix[8] * ft5;
-
-		outMatrix.m_matrix[8] = m_matrix[7] * ft6 - m_matrix[11] * ft7 + m_matrix[15] * ft8;
-		outMatrix.m_matrix[9] = m_matrix[11] * ft9 - m_matrix[3] * ft6 - m_matrix[15] * ft10;
-		outMatrix.m_matrix[10] = m_matrix[3] * ft7 - m_matrix[7] * ft9 + m_matrix[15] * ft11;
-		outMatrix.m_matrix[11] = m_matrix[7] * ft10 - m_matrix[3] * ft8 - m_matrix[11] * ft11;
-
-		outMatrix.m_matrix[12] = m_matrix[10] * ft7 - m_matrix[6] * ft6 - m_matrix[14] * ft8;
-		outMatrix.m_matrix[13] = m_matrix[2] * ft6 - m_matrix[10] * ft9 + m_matrix[14] * ft10;
-		outMatrix.m_matrix[14] = m_matrix[6] * ft9 - m_matrix[2] * ft7 - m_matrix[14] * ft11;
-		outMatrix.m_matrix[15] = m_matrix[2] * ft8 - m_matrix[6] * ft10 + m_matrix[10] * ft11;
-
+		outMatrix.m_matrix[0] *=  det;
+		outMatrix.m_matrix[1] *= -det;
+		outMatrix.m_matrix[2] *=  det;
+		
+		outMatrix.m_matrix[3] *= -det;
+		outMatrix.m_matrix[4] *=  det;
+		outMatrix.m_matrix[5] *= -det;
+		
+		outMatrix.m_matrix[6] *=  det;
+		outMatrix.m_matrix[7] *= -det;
+		outMatrix.m_matrix[8] *=  det;
+		
 		return true;
 	}
-
 
 	template <class T>
 	void TMatrix3D<T>::makeTransposed()

@@ -62,7 +62,7 @@ namespace core
 		TVector3D<T>	getScale()									const;
 		
 		bool			makeInverse();
-		TMatrix4D<T>	getInverse()								const;
+		bool			getInverse( TMatrix4D<T>& outMatrix )		const;
 		
 	private:
 
@@ -612,75 +612,78 @@ namespace core
 	}
 
 	template <class T>
-	TMatrix4D<T> TMatrix4D<T>::getInverse() const
+	bool TMatrix4D<T>::getInverse(  TMatrix4D<T>& outMatrix ) const
 	{
-		TMatrix4D<T> out;
+		const T t0 = m_matrix[10] * m_matrix[15] - m_matrix[11] * m_matrix[14];
+		const T t1 = m_matrix[6]  * m_matrix[15] - m_matrix[7]  * m_matrix[14];
+		const T t2 = m_matrix[6]  * m_matrix[11] - m_matrix[7]  * m_matrix[10];
 		
-		const f64 t0 = m_matrix[10] * m_matrix[15] - m_matrix[11] * m_matrix[14];
-		const f64 t1 = m_matrix[6]  * m_matrix[15] - m_matrix[7]  * m_matrix[14];
-		const f64 t2 = m_matrix[6]  * m_matrix[11] - m_matrix[7]  * m_matrix[10];
-		const f64 t3 = m_matrix[2]  * m_matrix[15] - m_matrix[3]  * m_matrix[14];
-		const f64 t4 = m_matrix[2]  * m_matrix[11] - m_matrix[3]  * m_matrix[10];
-		const f64 t5 = m_matrix[2]  * m_matrix[7]  - m_matrix[3]  * m_matrix[6];
+		const T t3 = m_matrix[2]  * m_matrix[15] - m_matrix[3]  * m_matrix[14];
+		const T t4 = m_matrix[2]  * m_matrix[11] - m_matrix[3]  * m_matrix[10];
+		const T t5 = m_matrix[2]  * m_matrix[7]  - m_matrix[3]  * m_matrix[6];
+		
+		const T t6 = m_matrix[8]  * m_matrix[13] - m_matrix[9] * m_matrix[12];
+		const T t7 = m_matrix[4]  * m_matrix[13] - m_matrix[5] * m_matrix[12];
+		const T t8 = m_matrix[4]  * m_matrix[9]  - m_matrix[5] * m_matrix[8];
+		
+		const T t9 = m_matrix[0]  * m_matrix[13] - m_matrix[1] * m_matrix[12];
+		const T t10 = m_matrix[0] * m_matrix[9]  - m_matrix[1] * m_matrix[8];
+		const T t11 = m_matrix[0] * m_matrix[5]  - m_matrix[1] * m_matrix[4];
 
-		const f64 t6 = m_matrix[8]  * m_matrix[13] - m_matrix[9] * m_matrix[12];
-		const f64 t7 = m_matrix[4]  * m_matrix[13] - m_matrix[5] * m_matrix[12];
-		const f64 t8 = m_matrix[4]  * m_matrix[9]  - m_matrix[5] * m_matrix[8];
-		const f64 t9 = m_matrix[0]  * m_matrix[13] - m_matrix[1] * m_matrix[12];
-		const f64 t10 = m_matrix[0] * m_matrix[9]  - m_matrix[1] * m_matrix[8];
-		const f64 t11 = m_matrix[0] * m_matrix[5]  - m_matrix[1] * m_matrix[4];
-
-		f64 det = t0 * t11 - t1 * t10 + t2 * t9 + t3 * t8 - t4 * t7 + t5 * t6;
+		T det = t0 * t11 - t1 * t10 + t2 * t9 + t3 * t8 - t4 * t7 + t5 * t6;
 
 		if ( isZero( det ) )
 		{
-			return TMatrix4D<T>();
+			return false;
 		}
 
-		det = 1.0 / det;
+		det = (T)1.0 / det;
 
 		const T ft0 = (T)(t0 * det);
 		const T ft1 = (T)(t1 * det);
 		const T ft2 = (T)(t2 * det);
+		
 		const T ft3 = (T)(t3 * det);
 		const T ft4 = (T)(t4 * det);
 		const T ft5 = (T)(t5 * det);
+		
 		const T ft6 = (T)(t6 * det);
 		const T ft7 = (T)(t7 * det);
 		const T ft8 = (T)(t8 * det);
+		
 		const T ft9 = (T)(t9 * det);
 		const T ft10 = (T)(t10 * det);
 		const T ft11 = (T)(t11 * det);
 
-		out.m_matrix[0] = m_matrix[5] * ft0 - m_matrix[9] * ft1 + m_matrix[13] * ft2;
-		out.m_matrix[1] = m_matrix[9] * ft3 - m_matrix[1] * ft0 - m_matrix[13] * ft4;
-		out.m_matrix[2] = m_matrix[1] * ft1 - m_matrix[5] * ft3 + m_matrix[13] * ft5;
-		out.m_matrix[3] = m_matrix[5] * ft4 - m_matrix[1] * ft2 - m_matrix[9]  * ft5;
+		outMatrix.m_matrix[0] = m_matrix[5] * ft0 - m_matrix[9] * ft1 + m_matrix[13] * ft2;
+		outMatrix.m_matrix[1] = m_matrix[9] * ft3 - m_matrix[1] * ft0 - m_matrix[13] * ft4;
+		outMatrix.m_matrix[2] = m_matrix[1] * ft1 - m_matrix[5] * ft3 + m_matrix[13] * ft5;
+		outMatrix.m_matrix[3] = m_matrix[5] * ft4 - m_matrix[1] * ft2 - m_matrix[9]  * ft5;
 
-		out.m_matrix[4] = m_matrix[8] * ft1 - m_matrix[4] * ft0 - m_matrix[12] * ft2;
-		out.m_matrix[5] = m_matrix[0] * ft0 - m_matrix[8] * ft3 + m_matrix[12] * ft4;
-		out.m_matrix[6] = m_matrix[4] * ft3 - m_matrix[0] * ft1 - m_matrix[12] * ft5;
-		out.m_matrix[7] = m_matrix[0] * ft2 - m_matrix[4] * ft4 + m_matrix[8] * ft5;
+		outMatrix.m_matrix[4] = m_matrix[8] * ft1 - m_matrix[4] * ft0 - m_matrix[12] * ft2;
+		outMatrix.m_matrix[5] = m_matrix[0] * ft0 - m_matrix[8] * ft3 + m_matrix[12] * ft4;
+		outMatrix.m_matrix[6] = m_matrix[4] * ft3 - m_matrix[0] * ft1 - m_matrix[12] * ft5;
+		outMatrix.m_matrix[7] = m_matrix[0] * ft2 - m_matrix[4] * ft4 + m_matrix[8] * ft5;
 
-		out.m_matrix[8] = m_matrix[7]  * ft6 - m_matrix[11] * ft7 + m_matrix[15] * ft8;
-		out.m_matrix[9] = m_matrix[11] * ft9 - m_matrix[3]  * ft6 - m_matrix[15] * ft10;
-		out.m_matrix[10] = m_matrix[3] * ft7 - m_matrix[7]  * ft9 + m_matrix[15] * ft11;
-		out.m_matrix[11] = m_matrix[7] * ft10 - m_matrix[3] * ft8 - m_matrix[11] * ft11;
+		outMatrix.m_matrix[8] = m_matrix[7]  * ft6 - m_matrix[11] * ft7 + m_matrix[15] * ft8;
+		outMatrix.m_matrix[9] = m_matrix[11] * ft9 - m_matrix[3]  * ft6 - m_matrix[15] * ft10;
+		outMatrix.m_matrix[10] = m_matrix[3] * ft7 - m_matrix[7]  * ft9 + m_matrix[15] * ft11;
+		outMatrix.m_matrix[11] = m_matrix[7] * ft10 - m_matrix[3] * ft8 - m_matrix[11] * ft11;
 
-		out.m_matrix[12] = m_matrix[10] * ft7 - m_matrix[6]  * ft6  - m_matrix[14] * ft8;
-		out.m_matrix[13] = m_matrix[2]  * ft6 - m_matrix[10] * ft9  + m_matrix[14] * ft10;
-		out.m_matrix[14] = m_matrix[6]  * ft9 - m_matrix[2]  * ft7  - m_matrix[14] * ft11;
-		out.m_matrix[15] = m_matrix[2]  * ft8 - m_matrix[6]  * ft10 + m_matrix[10] * ft11;
+		outMatrix.m_matrix[12] = m_matrix[10] * ft7 - m_matrix[6]  * ft6  - m_matrix[14] * ft8;
+		outMatrix.m_matrix[13] = m_matrix[2]  * ft6 - m_matrix[10] * ft9  + m_matrix[14] * ft10;
+		outMatrix.m_matrix[14] = m_matrix[6]  * ft9 - m_matrix[2]  * ft7  - m_matrix[14] * ft11;
+		outMatrix.m_matrix[15] = m_matrix[2]  * ft8 - m_matrix[6]  * ft10 + m_matrix[10] * ft11;
 
-		return out;
+		return true;
 	}
 
 	template <class T>
 	bool TMatrix4D<T>::makeInverse()
 	{
-		TMatrix4D<T> temp = getInverse();
+		TMatrix4D<T> temp;
 
-		if ( !temp.isIdentity() )
+		if ( getInverse( temp ) )
 		{
 			*this = temp;
 			return true;

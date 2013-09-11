@@ -46,7 +46,6 @@ namespace core
 		void			setRotation( T angle );						
 		T				getRotation()								const;
 
-		
 		void			preScale( const TVector2D<T>& scale );
 		void			postScale( const TVector2D<T>& scale );
 		void			setScale( const TVector2D<T>& scale );	
