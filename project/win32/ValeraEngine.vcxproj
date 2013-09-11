@@ -17,7 +17,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -41,6 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>.\libs\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -76,6 +77,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\common.h" />
     <ClInclude Include="..\..\source\core\Math.h" />
     <ClInclude Include="..\..\source\core\Matrix2D.h" />
     <ClInclude Include="..\..\source\core\Matrix3D.h" />
@@ -83,8 +85,11 @@
     <ClInclude Include="..\..\source\core\Vector2D.h" />
     <ClInclude Include="..\..\source\core\Vector3D.h" />
     <ClInclude Include="..\..\source\core\Vector4D.h" />
-    <ClInclude Include="..\..\source\Math\Math.h" />
+    <ClInclude Include="..\..\source\Object.h" />
     <ClInclude Include="..\..\source\Valera3D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\Object.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

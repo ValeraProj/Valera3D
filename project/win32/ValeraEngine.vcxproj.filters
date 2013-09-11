@@ -13,37 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\core">
+    <Filter Include="Header Files\core">
       <UniqueIdentifier>{79101d6c-101e-4fc7-a91a-d493fec32ef4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\source\Valera3D.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Math\Math.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\core\Math.h">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\core\Matrix2D.h">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\core\Matrix3D.h">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\core\Matrix4D.h">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\core\Vector2D.h">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\core\Vector3D.h">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\core</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\core\Vector4D.h">
-      <Filter>Source Files\core</Filter>
+      <Filter>Header Files\core</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\Valera3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
