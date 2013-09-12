@@ -4,5 +4,6 @@
 #define _V3D_VALERA_3D_H_
 
 #include "common.h"
+#include "Object.h"
 
 #endif

@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "Object.h"
 #include "Valera3D.h"
 
 int _tmain(int argc, _TCHAR* argv[])

@@ -1,5 +1,5 @@
-#ifndef _COBJECT_H_
-#define _COBJECT_H_
+#ifndef _V3D_OBJECT_H_
+#define _V3D_OBJECT_H_
 
 #include "common.h"
 
