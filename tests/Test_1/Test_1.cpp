@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "Object.h"
-
+#include "Valera3D.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -13,7 +13,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	int b = 0;
 
 	CObject* obj1(obj);
-	//TODO: code
+	
 	return 0;
+	
 }
 

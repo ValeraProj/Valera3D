@@ -3,12 +3,11 @@
 namespace v3d
 {
 	CObject::CObject()
-		: m_name("")
-		, m_id(-1)
-		, m_type(OBJECT_TYPE::OT_UNKNOWN)
+		: m_name( "" )
+		, m_id( -1 )
+		, m_type( EObjectType::eTypeUnknown )
 		{
 		}
-
 
 	CObject::~CObject()
 	{
@@ -24,7 +23,7 @@ namespace v3d
 		m_name = name;
 	}
 
-	const OBJECT_TYPE CObject::getObjectType() const
+	const EObjectType CObject::getObjectType() const
 	{
 		return m_type;
 	}

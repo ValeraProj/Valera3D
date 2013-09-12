@@ -72,7 +72,7 @@ namespace core
 	
 	typedef TMatrix4D<f32> Matrix4D;
 
-	Matrix4D buildProjectionMatrixPerspective( f32 fieldOfViewRadians, f32 aspectRatio, f32 zNear, f32 zFar )
+	inline Matrix4D buildProjectionMatrixPerspective( f32 fieldOfViewRadians, f32 aspectRatio, f32 zNear, f32 zFar )
 	{
 		Matrix4D outMatrix;
 		
@@ -104,7 +104,7 @@ namespace core
 		return outMatrix;
 	}
 
-	Matrix4D buildProjectionMatrixOrtho( f32 left, f32 right, f32 bottom, f32 top, f32 zNear, f32 zFar )
+	inline Matrix4D buildProjectionMatrixOrtho( f32 left, f32 right, f32 bottom, f32 top, f32 zNear, f32 zFar )
 	{
 		Matrix4D outMatrix;
 		
@@ -133,7 +133,7 @@ namespace core
 		return outMatrix;
 	}
 
-	Matrix4D buildLookAtMatrix( const Vector3D& position, const Vector3D& target, const Vector3D& upVector )
+	inline Matrix4D buildLookAtMatrix( const Vector3D& position, const Vector3D& target, const Vector3D& upVector )
 	{
 		Matrix4D outMatrix;
 		

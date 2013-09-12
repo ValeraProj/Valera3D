@@ -77,47 +77,47 @@ namespace core
 		return min ( max( value, low ), high );
 	}
 
-	bool isEquals( f32 a, f32 b, f32 tolerance = k_tolerance32 )
+	inline bool isEquals( f32 a, f32 b, f32 tolerance = k_tolerance32 )
 	{
 		return ( a + tolerance >= b ) && ( a - tolerance <= b );
 	}
 
-	bool isEquals( s32 a, s32 b, s32 tolerance = 0 )
+	inline bool isEquals( s32 a, s32 b, s32 tolerance = 0 )
 	{
 		return ( a + tolerance >= b ) && (a - tolerance <= b );
 	}
 
-	bool isEquals( u32 a, u32 b, u32 tolerance = 0 )
+	inline bool isEquals( u32 a, u32 b, u32 tolerance = 0 )
 	{
 		return ( a + tolerance >= b ) && ( a - tolerance <= b );
 	}
 
-	bool isZero( f64 a, f64 tolerance = k_tolerance64 )
+	inline bool isZero( f64 a, f64 tolerance = k_tolerance64 )
 	{
 		return fabs ( a ) <= tolerance;
 	}
 
-	bool isZero( f32 a, f32 tolerance = k_tolerance32 )
+	inline bool isZero( f32 a, f32 tolerance = k_tolerance32 )
 	{
 		return fabsf ( a ) <= tolerance;
 	}
 
-	bool isZero( s32 a, s32 tolerance = 0 )
+	inline bool isZero( s32 a, s32 tolerance = 0 )
 	{
 		return ( a & 0x7ffffff ) <= tolerance;
 	}
 
-	bool isZero( u32 a, u32 tolerance = 0 )
+	inline bool isZero( u32 a, u32 tolerance = 0 )
 	{
 		return a <= tolerance;
 	}
 
-	bool isPowerOf2( u32 a )
+	inline bool isPowerOf2( u32 a )
 	{
 		return !( a & ( a - 1 ) ) && a;
 	}
 
-	u32 getSmallestPowerOf2( u32 val )
+	inline u32 getSmallestPowerOf2( u32 val )
 	{
 		u32 result = 1;
 		while ( result < val )
@@ -127,7 +127,7 @@ namespace core
 		return result;
 	}
 
-	int getShift( u32 val )
+	inline int getShift( u32 val )
 	{
 		int shift = -1;
 		while (val)
@@ -138,7 +138,7 @@ namespace core
 		return shift;
 	}
 
-	u32 getBitCount(u32 val)
+	inline u32 getBitCount(u32 val)
 	{
 		u32 count = 0;
 		while ( val )
@@ -152,16 +152,16 @@ namespace core
 		return count;
 	}
 
- 	void setbit_cond ( u32 &state, s32 condition, u32 mask )
+ 	inline void setbit_cond ( u32 &state, s32 condition, u32 mask )
  	{
  		state ^= ( ( -condition >> 31 ) ^ state ) & mask;
  	}
 
-	f32 round( f32 x )
+	inline f32 round( f32 x )
 	{
 		return floorf( x + 0.5f );
 	}
-	f64 round( f64 x )
+	inline f64 round( f64 x )
 	{
 		return floor( x + 0.5 );
 	}
