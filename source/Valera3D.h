@@ -5,5 +5,7 @@
 
 #include "common.h"
 #include "Object.h"
+#include "Singleton.h"
+#include "scene/Node.h"
 
 #endif
