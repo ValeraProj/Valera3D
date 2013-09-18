@@ -21,7 +21,7 @@ namespace scene
 		void				move				( const core::Vector3D& deltaPosition );
 		void				rotate				( const core::Vector3D& deltaRotation );
 	
-		void				setParrentNode		( CNode* parrentNode );
+		void				setParentNode		( CNode* parentNode );
 		void				attachChildNode		( CNode* childNode );
 		void				dettachChildNode	( CNode* childNode );
 	
@@ -31,14 +31,15 @@ namespace scene
 		core::Matrix4D		getTransform		()							const;
 		core::Matrix4D		getAbsTransform		()							const;
 	
-		CNode*				getParrentNode		()							const;
+		CNode*				getParentNode		()							const;
 		CNode*				getChildNodeByID	( u32 childNodeID )			const;
 		CNode*				getChildNodeByName  ( const std::string& name ) const;
 
 	protected:
 
-		CNode*				m_parrentNode;
+		CNode*				m_parentNode;
 		std::vector<CNode*>	m_childNodes;
+
 		core::Matrix4D		m_transform;
 	};
 }

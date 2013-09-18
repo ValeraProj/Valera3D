@@ -8,8 +8,8 @@ namespace v3d
 	{
 	public:
 
-		static T*	GetInstance();
-		static void FreeInstance();
+		static T*	getInstance();
+		static void freeInstance();
 	
 	protected:
 					Singleton();
@@ -36,7 +36,7 @@ Singleton<T>::~Singleton()
 }
 
 template <class T>
-T *Singleton<T>::GetInstance()
+T *Singleton<T>::getInstance()
 {
 	if( s_pInstance == nullptr )
 	{
@@ -47,7 +47,7 @@ T *Singleton<T>::GetInstance()
 }
 
 template <class T>
-void Singleton<T>::FreeInstance()
+void Singleton<T>::freeInstance()
 {
 	if( s_pInstance )	
 	{
