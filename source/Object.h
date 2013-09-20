@@ -16,6 +16,7 @@ namespace v3d
 		eTypeMesh,
 		eTypeShader,
 		eTypeShaderProgram,
+		eTypeShaderUniform,
 		eTypesCount
 	};
 

@@ -17,7 +17,9 @@ namespace v3d
 
 #include <string>
 #include <vector>
+#include <map>
 #include <algorithm>
+#include <memory>
 
 #include "core/Math.h"
 #include "core/Vector2D.h"

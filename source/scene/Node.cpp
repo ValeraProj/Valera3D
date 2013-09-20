@@ -4,9 +4,10 @@ namespace v3d
 {
 namespace scene
 {
-	CNode::CNode() : m_parentNode( nullptr )
+	CNode::CNode()
+		: m_parentNode( nullptr )
 	{
-
+		m_type = EObjectType::eTypeNode;
 	}
 
 	CNode::~CNode()
