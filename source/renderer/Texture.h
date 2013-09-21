@@ -93,9 +93,10 @@ namespace renderer
 						CTexture();
 		virtual			~CTexture();
 
-		virtual void	bind( s32 textureLayer )			= 0;
-		virtual void	create( const std::string& file )	= 0;
-		virtual void	destroy()							= 0;
+		virtual void	bind( s32 textureLayer )				= 0;
+		virtual void	create( const std::string& file )		= 0;
+		virtual void	create( const std::string* files[6] )	= 0;
+		virtual void	destroy()								= 0;
 
 		u32				getTextureID()	const;
 		ETextureTarget	getTarget()		const;
