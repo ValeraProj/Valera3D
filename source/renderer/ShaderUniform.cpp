@@ -35,49 +35,49 @@ namespace renderer
 		{
 		case eUniformInt:
 			{
-				uniformValue = (int*)malloc(sizeof(int));
+				uniformValue = new int();
 				memcpy(uniformValue, value, sizeof(int));
 
 				return uniformValue;
 			}
 		case eUniformFloat:
 			{
-				uniformValue = (float*)malloc(sizeof(float));
+				uniformValue = new float();
 				memcpy(uniformValue, value, sizeof(float));
 
 				return uniformValue;
 			}
 		case eUniformVector2:
 			{
-				uniformValue = (core::Vector2D*)malloc(sizeof(core::Vector2D));
+				uniformValue = new core::Vector2D();
 				memcpy(uniformValue, value, sizeof(core::Vector2D));
 
 				return uniformValue;
 			}
 		case eUniformVector3:
 			{
-				uniformValue = (core::Vector3D*)malloc(sizeof(core::Vector3D));
+				uniformValue = new core::Vector3D();
 				memcpy(uniformValue, value, sizeof(core::Vector3D));
 
 				return uniformValue;
 			}
 		case eUniformVector4:
 			{
-				uniformValue = (core::Vector4D*)malloc(sizeof(core::Vector4D));
+				uniformValue = new core::Vector4D();
 				memcpy(uniformValue, value, sizeof(core::Vector4D));
 
 				return uniformValue;
 			}
 		case eUniformMatrix3:
 			{
-				uniformValue = (core::Matrix3D*)malloc(sizeof(core::Matrix3D));
+				uniformValue = new core::Matrix3D();
 				memcpy(uniformValue, value, sizeof(core::Matrix3D));
 
 				return uniformValue;
 			}
 		case eUniformMatrix4:
 			{
-				uniformValue = (core::Matrix4D*)malloc(sizeof(core::Matrix4D));
+				uniformValue = new core::Matrix4D();
 				memcpy(uniformValue, value, sizeof(core::Matrix4D));
 
 				return uniformValue;
