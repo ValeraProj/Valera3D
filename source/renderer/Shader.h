@@ -28,13 +28,11 @@ namespace renderer
 		virtual void	create( const std::string& file )	= 0;
 		virtual void	destroy()							= 0;
 
-		u32				getShadeID()		const;
+		u32				getShaderID()		const;
 		EShaderType		getShaderType()		const;
 		bool			getCompileStatus()	const;
 
 	protected:
-
-		void			clearData();
 
 		u32				m_shaderID;
 

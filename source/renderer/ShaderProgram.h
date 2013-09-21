@@ -10,6 +10,7 @@ namespace v3d
 namespace renderer
 {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	typedef std::shared_ptr<CShader>				ShaderPtr;
 	typedef std::vector<ShaderPtr>					ShaderList;
 	typedef std::shared_ptr<CShaderUniform>			UniformPtr;

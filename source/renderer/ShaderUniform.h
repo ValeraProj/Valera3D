@@ -38,7 +38,7 @@ namespace renderer
 		void*				m_uniformValue;
 		std::string			m_attribute;
 
-		void*				allocMemory( EShaderUniformType type, void* value);
+		void*				allocMemory( EShaderUniformType type, void* value );
 		void				deallocMemory();
 		
 	};

@@ -9,17 +9,21 @@ namespace renderer
 		, m_shaderID( -1 )
 		, m_shaderType( EShaderType::eTypeUnknown )
 		, m_compileStatus( false )
-		, m_data( NULL )
+		, m_data( nullptr )
 	{
 		m_type = EObjectType::eTypeShader;
 	}
 
 	CShader::~CShader()
 	{
-		clearData();
+		if (m_data != nullptr)
+		{
+			delete m_data;
+			m_data = nullptr;
+		}
 	}
 
-	u32 CShader::getShadeID() const
+	u32 CShader::getShaderID() const
 	{
 		return m_shaderID;
 	}
@@ -32,15 +36,6 @@ namespace renderer
 	bool CShader::getCompileStatus() const
 	{
 		return m_compileStatus;
-	}
-
-	void CShader::clearData()
-	{
-		if (m_data != NULL)
-		{
-			delete m_data;
-			m_data = NULL;
-		}
 	}
 }
 }

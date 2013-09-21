@@ -7,7 +7,7 @@ namespace renderer
 	CShaderUniform::CShaderUniform()
 		: CObject()
 		, m_uniformType( EShaderUniformType::eUniformInvalid )
-		, m_uniformValue ( NULL )
+		, m_uniformValue ( nullptr )
 		, m_attribute ( "" )
 	{
 		m_type = EObjectType::eTypeShaderUniform;
@@ -29,7 +29,7 @@ namespace renderer
 	{
 		deallocMemory();
 		
-		void* uniformValue = NULL;
+		void* uniformValue = nullptr;
 
 		switch(type)
 		{
@@ -84,15 +84,15 @@ namespace renderer
 			}
 		}
 
-		return NULL;
+		return nullptr;
 	}
 	
 	void CShaderUniform::deallocMemory()
 	{
-		if (m_uniformValue != NULL)
+		if (m_uniformValue != nullptr)
 		{
 			delete m_uniformValue;
-			m_uniformValue = NULL;
+			m_uniformValue = nullptr;
 		}
 	}
 }
