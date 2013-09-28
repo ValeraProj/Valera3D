@@ -4,15 +4,17 @@
 #include "stdafx.h"
 #include "Valera3D.h"
 
+using namespace v3d;
+using namespace platform;
+
+
+
 int _tmain(int argc, _TCHAR* argv[])
 {
-	CObject* obj = new CObject();
-	obj->setName("aaa");
-	std::string a = obj->getName();
-	int b = 0;
 
-	CObject* obj1(obj);
-	
+	CPlatform* plt = CPlatformMgr::createWindow(Dimension2D(800,600),false);
+	plt->mainLoop();
+
 	return 0;
 	
 }

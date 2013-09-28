@@ -3,6 +3,8 @@
 
 namespace v3d
 {
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	template <class T>
 	class Singleton
 	{
@@ -19,42 +21,45 @@ namespace v3d
 
 		static T*	s_pInstance;
 	};
-}
 
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-template <class T>
-T* Singleton<T>::s_pInstance = nullptr;
+	template <class T>
+	T* Singleton<T>::s_pInstance = nullptr;
 
-template <class T>
-Singleton<T>::Singleton()
-{
-}
-
-template <class T>
-Singleton<T>::~Singleton()
-{
-}
-
-template <class T>
-T *Singleton<T>::getInstance()
-{
-	if( s_pInstance == nullptr )
+	template <class T>
+	Singleton<T>::Singleton()
 	{
-		s_pInstance = new T;
 	}
 
-	return s_pInstance;
-}
-
-template <class T>
-void Singleton<T>::freeInstance()
-{
-	if( s_pInstance )	
+	template <class T>
+	Singleton<T>::~Singleton()
 	{
-		delete s_pInstance;
 	}
 
-	s_pInstance = nullptr;
-}
+	template <class T>
+	T *Singleton<T>::getInstance()
+	{
+		if( s_pInstance == nullptr )
+		{
+			s_pInstance = new T;
+		}
 
+		return s_pInstance;
+	}
+
+	template <class T>
+	void Singleton<T>::freeInstance()
+	{
+		if( s_pInstance )	
+		{
+			delete s_pInstance;
+		}
+
+		s_pInstance = nullptr;
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+}
 #endif

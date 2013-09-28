@@ -8,6 +8,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test_1", "..\..\tests\Test_
 		{71F9FBD5-61CB-4B6E-B460-5080D034F865} = {71F9FBD5-61CB-4B6E-B460-5080D034F865}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CreateWindow", "..\..\tests\CreateWindow\CreateWindow.vcxproj", "{E0283200-EB9F-4043-ABBA-BD053EC78FA5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{71F9FBD5-61CB-4B6E-B460-5080D034F865} = {71F9FBD5-61CB-4B6E-B460-5080D034F865}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A683FA76-B82B-4465-A37E-B8548E433714}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -22,8 +29,16 @@ Global
 		{5ED88F82-44F1-4123-9CA6-6BD3F632E77D}.Debug|Win32.Build.0 = Debug|Win32
 		{5ED88F82-44F1-4123-9CA6-6BD3F632E77D}.Release|Win32.ActiveCfg = Release|Win32
 		{5ED88F82-44F1-4123-9CA6-6BD3F632E77D}.Release|Win32.Build.0 = Release|Win32
+		{E0283200-EB9F-4043-ABBA-BD053EC78FA5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E0283200-EB9F-4043-ABBA-BD053EC78FA5}.Debug|Win32.Build.0 = Debug|Win32
+		{E0283200-EB9F-4043-ABBA-BD053EC78FA5}.Release|Win32.ActiveCfg = Release|Win32
+		{E0283200-EB9F-4043-ABBA-BD053EC78FA5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E0283200-EB9F-4043-ABBA-BD053EC78FA5} = {A683FA76-B82B-4465-A37E-B8548E433714}
+		{5ED88F82-44F1-4123-9CA6-6BD3F632E77D} = {A683FA76-B82B-4465-A37E-B8548E433714}
 	EndGlobalSection
 EndGlobal

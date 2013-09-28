@@ -4,8 +4,11 @@
 #define _V3D_VALERA_3D_H_
 
 #include "common.h"
-#include "Object.h"
 #include "Singleton.h"
-#include "scene/Node.h"
+#include "Object.h"
+#include "scene\Node.h"
+#include "platform\PlatformMgr.h"
+
+#include "ValeraEngine.h"
 
 #endif

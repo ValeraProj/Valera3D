@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ValeraConfig.h"
+
 namespace v3d
 {
 	typedef unsigned char       u8;
@@ -29,4 +31,4 @@ namespace v3d
 #include "core/Matrix3D.h"
 #include "core/Matrix4D.h"
 
-using namespace v3d;
+typedef v3d::core::TVector2D<v3d::u32> Dimension2D;

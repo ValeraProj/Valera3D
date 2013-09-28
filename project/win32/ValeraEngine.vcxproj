@@ -86,7 +86,20 @@
     <ClInclude Include="..\..\source\core\Vector2D.h" />
     <ClInclude Include="..\..\source\core\Vector3D.h" />
     <ClInclude Include="..\..\source\core\Vector4D.h" />
+    <ClInclude Include="..\..\source\driver\Driver.h" />
+    <ClInclude Include="..\..\source\driver\DriverD3D.h" />
+    <ClInclude Include="..\..\source\driver\DriverGL.h" />
+    <ClInclude Include="..\..\source\KeyCodes.h" />
     <ClInclude Include="..\..\source\Object.h" />
+    <ClInclude Include="..\..\source\platform\PlatformMgr.h" />
+    <ClInclude Include="..\..\source\utils\Logger.h" />
+    <ClInclude Include="..\..\source\platform\Platform.h" />
+    <ClInclude Include="..\..\source\platform\PlatformLinux.h" />
+    <ClInclude Include="..\..\source\platform\PlatformMacOSX.h" />
+    <ClInclude Include="..\..\source\platform\PlatformWin32.h" />
+    <ClInclude Include="..\..\source\utils\Timer.h" />
+    <ClInclude Include="..\..\source\Valera3D.h" />
+    <ClInclude Include="..\..\source\ValeraEngine.h" />
     <ClInclude Include="..\..\source\renderer\Geometry.h" />
     <ClInclude Include="..\..\source\renderer\Material.h" />
     <ClInclude Include="..\..\source\renderer\Mesh.h" />
@@ -116,10 +129,21 @@
     <ClInclude Include="..\..\source\stream\MemoryStream.h" />
     <ClInclude Include="..\..\source\stream\NetStream.h" />
     <ClInclude Include="..\..\source\stream\StreamMgr.h" />
-    <ClInclude Include="..\..\source\Valera3D.h" />
+    <ClInclude Include="..\..\source\ValeraConfig.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\source\driver\Driver.cpp" />
+    <ClCompile Include="..\..\source\driver\DriverD3D.cpp" />
+    <ClCompile Include="..\..\source\driver\DriverGL.cpp" />
     <ClCompile Include="..\..\source\Object.cpp" />
+    <ClCompile Include="..\..\source\platform\Platform.cpp" />
+    <ClCompile Include="..\..\source\platform\PlatformLinux.cpp" />
+    <ClCompile Include="..\..\source\platform\PlatformMacOSX.mm" />
+    <ClCompile Include="..\..\source\platform\PlatformMgr.cpp" />
+    <ClCompile Include="..\..\source\platform\PlatformWin32.cpp" />
+    <ClCompile Include="..\..\source\utils\Logger.cpp" />
+    <ClCompile Include="..\..\source\utils\Timer.cpp" />
+    <ClCompile Include="..\..\source\ValeraEngine.cpp" />
     <ClCompile Include="..\..\source\renderer\Geometry.cpp" />
     <ClCompile Include="..\..\source\renderer\Material.cpp" />
     <ClCompile Include="..\..\source\renderer\Mesh.cpp" />
