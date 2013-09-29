@@ -1,5 +1,5 @@
-#ifndef _PLATFORM_WIN32_H_
-#define _PLATFORM_WIN32_H_
+#ifndef _V3D_PLATFORM_WIN32_H_
+#define _V3D_PLATFORM_WIN32_H_
 
 #include "Platform.h"
 #include <windows.h>
@@ -21,13 +21,15 @@ namespace platform
 		virtual void	restoreWindow();
 		virtual void	setFullScreen( bool value = false );
 		virtual void	setResizeble( bool value = true );
-		virtual void	setWindowCaption( const wchar_t* text );
-		virtual void	setWindowCaption( const char* text );
+		virtual void	setWindowCaption( const std::string& text );
+		virtual void	setWindowCaption( const std::wstring& text );
 
 		virtual bool	isWindowMaximized() const;
 		virtual bool	isWindowMinimized() const;
 		virtual bool	isWindowActive()    const;
 		virtual bool	isWindowFocused()   const;
+		virtual bool	isFullscreen()      const;
+		virtual bool	isResizeble()       const;
 
 	protected:
 
@@ -36,6 +38,8 @@ namespace platform
 		virtual void	createWindows();
 		virtual void	closeWindow();
 
+		PlatformParam	m_param;
+		HWND			m_windowID;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

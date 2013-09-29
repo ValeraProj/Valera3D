@@ -1,5 +1,5 @@
-#ifndef _KEY_CODES_H_
-#define _KEY_CODES_H_
+#ifndef _V3D_KEY_CODES_H_
+#define _V3D_KEY_CODES_H_
 
 namespace v3d
 {

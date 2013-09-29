@@ -7,8 +7,9 @@ using namespace platform;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-CPlatformWin32::CPlatformWin32(const PlatformParam& param)
-	: CPlatform(param)
+CPlatformWin32::CPlatformWin32( const PlatformParam& param )
+	: m_windowID(nullptr)
+	, m_param(param)
 {
 	CPlatformWin32::createWindows();
 
@@ -24,27 +25,27 @@ void CPlatformWin32::minimizeWindow()
 {
 	WINDOWPLACEMENT wndpl;
 	wndpl.length = sizeof(WINDOWPLACEMENT);
-	GetWindowPlacement((HWND)m_windowID, &wndpl);
+	GetWindowPlacement(m_windowID, &wndpl);
 	wndpl.showCmd = SW_SHOWMINNOACTIVE;
-	SetWindowPlacement((HWND)m_windowID, &wndpl);
+	SetWindowPlacement(m_windowID, &wndpl);
 }
 
 void CPlatformWin32::maximizeWindow()
 {
 	WINDOWPLACEMENT wndpl;
 	wndpl.length = sizeof(WINDOWPLACEMENT);
-	GetWindowPlacement((HWND)m_windowID, &wndpl);
+	GetWindowPlacement(m_windowID, &wndpl);
 	wndpl.showCmd = SW_SHOWMAXIMIZED;
-	SetWindowPlacement((HWND)m_windowID, &wndpl);
+	SetWindowPlacement(m_windowID, &wndpl);
 }
 
 void CPlatformWin32::restoreWindow()
 {
 	WINDOWPLACEMENT wndpl;
 	wndpl.length = sizeof(WINDOWPLACEMENT);
-	GetWindowPlacement((HWND)m_windowID, &wndpl);
+	GetWindowPlacement(m_windowID, &wndpl);
 	wndpl.showCmd = SW_SHOWNORMAL;
-	SetWindowPlacement((HWND)m_windowID, &wndpl);
+	SetWindowPlacement(m_windowID, &wndpl);
 }
 
 void CPlatformWin32::setResizeble( bool value )
@@ -63,7 +64,7 @@ void CPlatformWin32::setResizeble( bool value )
 	{
 		style = WS_SYSMENU | WS_BORDER | WS_CAPTION | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
 	}
-	SetWindowLongPtr((HWND)m_windowID, GWL_STYLE, style);
+	SetWindowLongPtr(m_windowID, GWL_STYLE, style);
 
 	RECT clientSize;
 	clientSize.top    = 0;
@@ -79,7 +80,7 @@ void CPlatformWin32::setResizeble( bool value )
 	const s32 windowLeft = (GetSystemMetrics(SM_CXSCREEN) - realWidth) / 2;
 	const s32 windowTop  = (GetSystemMetrics(SM_CYSCREEN) - realHeight) / 2;
 
-	SetWindowPos((HWND)m_windowID, HWND_TOP, windowLeft, windowTop, realWidth, realHeight,
+	SetWindowPos(m_windowID, HWND_TOP, windowLeft, windowTop, realWidth, realHeight,
 		SWP_FRAMECHANGED | SWP_NOMOVE | SWP_SHOWWINDOW);
 
 	m_param.isResizeble = value;
@@ -93,7 +94,7 @@ void CPlatformWin32::setFullScreen( bool value )
 	{
 		style = WS_SYSMENU | WS_BORDER | WS_CAPTION | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
 	}
-	SetWindowLongPtr((HWND)m_windowID, GWL_STYLE, style);
+	SetWindowLongPtr(m_windowID, GWL_STYLE, style);
 
 	RECT clientSize;
 	clientSize.top    = 0;
@@ -111,7 +112,7 @@ void CPlatformWin32::setFullScreen( bool value )
 
 	if (value)
 	{
-		SetWindowPos((HWND)m_windowID, HWND_TOP, 0, 0, realWidth, realHeight, SWP_SHOWWINDOW);
+		SetWindowPos(m_windowID, HWND_TOP, 0, 0, realWidth, realHeight, SWP_SHOWWINDOW);
 
 		DEVMODE dmScreenSettings;
 		EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &dmScreenSettings);
@@ -134,7 +135,7 @@ void CPlatformWin32::setFullScreen( bool value )
 	{
 		LONG res = ChangeDisplaySettings(NULL, 0);
 		
-		SetWindowPos((HWND)m_windowID, HWND_TOP, windowLeft, windowTop, realWidth, realHeight,
+		SetWindowPos(m_windowID, HWND_TOP, windowLeft, windowTop, realWidth, realHeight,
 			SWP_FRAMECHANGED | SWP_NOMOVE | SWP_SHOWWINDOW);
 	}
 
@@ -147,7 +148,7 @@ bool CPlatformWin32::isWindowMaximized() const
 	plc.length = sizeof(WINDOWPLACEMENT);
 	
 	bool ret = false;
-	if (GetWindowPlacement((HWND)m_windowID, &plc))
+	if (GetWindowPlacement(m_windowID, &plc))
 	{
 		ret = (plc.showCmd & SW_SHOWMAXIMIZED) != 0;
 	}
@@ -161,7 +162,7 @@ bool CPlatformWin32::isWindowMinimized() const
 	plc.length = sizeof(WINDOWPLACEMENT);
 	
 	bool ret = false;
-	if (GetWindowPlacement((HWND)m_windowID, &plc))
+	if (GetWindowPlacement(m_windowID, &plc))
 	{
 		ret = (plc.showCmd & SW_SHOWMINIMIZED) != 0;
 	}
@@ -171,24 +172,34 @@ bool CPlatformWin32::isWindowMinimized() const
 
 bool CPlatformWin32::isWindowActive() const
 {
-	bool ret = (GetActiveWindow() == (HWND)m_windowID);
+	bool ret = (GetActiveWindow() == m_windowID);
 	return ret;
 }
 
 bool CPlatformWin32::isWindowFocused() const
 {
-	bool ret = (GetFocus() == (HWND)m_windowID);
+	bool ret = (GetFocus() == m_windowID);
 	return ret;
 }
 
-void CPlatformWin32::setWindowCaption(const char* text)
+bool CPlatformWin32::isFullscreen() const
 {
-	SetWindowTextA((HWND)m_windowID, text);
+	return m_param.isFullscreen;
 }
 
-void CPlatformWin32::setWindowCaption(const wchar_t* text)
+bool CPlatformWin32::isResizeble() const
 {
-	SetWindowText((HWND)m_windowID, text);
+	return m_param.isResizeble;
+}
+
+void CPlatformWin32::setWindowCaption( const std::string& text )
+{
+	SetWindowTextA(m_windowID, text.c_str());
+}
+
+void CPlatformWin32::setWindowCaption( const std::wstring& text )
+{
+	SetWindowText(m_windowID, text.c_str());
 }
 
 void CPlatformWin32::mainLoop()
@@ -274,8 +285,8 @@ void CPlatformWin32::createWindows()
 	}
 
 	// create window
-	HWND HWnd = CreateWindowEx( dwExStyle, className, __TEXT(""), dwStyle, windowLeft, windowTop, 
-					realWidth, realHeight, NULL, NULL, hInstance, NULL );
+	HWND HWnd = CreateWindowEx(dwExStyle, className, __TEXT(""), dwStyle, windowLeft, windowTop, 
+					realWidth, realHeight, NULL, NULL, hInstance, NULL);
 	m_windowID = HWnd;
 
 	ShowWindow(HWnd, SW_SHOWNORMAL);
@@ -292,7 +303,7 @@ void CPlatformWin32::closeWindow()
 	PostQuitMessage(0);
 	PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE);
 	
-	DestroyWindow((HWND)m_windowID);
+	DestroyWindow(m_windowID);
 	HINSTANCE hInstance = GetModuleHandle(0);
 	UnregisterClass(__TEXT("ValeraWin32"), hInstance);
 }

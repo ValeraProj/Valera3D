@@ -1,5 +1,5 @@
-#ifndef _PLATFORM_MAC_OSX_H_
-#define _PLATFORM_MAC_OSX_H_
+#ifndef _V3D_PLATFORM_MAC_OSX_H_
+#define _V3D_PLATFORM_MAC_OSX_H_
 
 #include "Platform.h"
 

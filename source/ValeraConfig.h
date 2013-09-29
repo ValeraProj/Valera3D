@@ -1,7 +1,7 @@
 // Valera3D Engine (c) 2013 Bogdan Klochko / Fedor Nekrasov
 
-#ifndef _VALERA_CONFIG_H_
-#define _VALERA_CONFIG_H_
+#ifndef _V3D_VALERA_CONFIG_H_
+#define _V3D_VALERA_CONFIG_H_
 
 //Version 1.0.0
 #define VALERA_VERSION_MAJOR	1

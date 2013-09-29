@@ -1,5 +1,5 @@
-#ifndef _VALERA_ENGINE_H_
-#define _VALERA_ENGINE_H_
+#ifndef _V3D_VALERA_ENGINE_H_
+#define _V3D_VALERA_ENGINE_H_
 
 #include "ValeraConfig.h"
 #include "Singleton.h"
