@@ -12,7 +12,7 @@ using namespace platform;
 int _tmain(int argc, _TCHAR* argv[])
 {
 
-	CPlatform* plt = CPlatformMgr::createWindow(Dimension2D(800,600),false);
+	CPlatform* plt = CPlatformMgr::createWindow(WindowSize(800,600),false);
 	plt->mainLoop();
 
 	return 0;

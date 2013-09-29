@@ -30,5 +30,3 @@ namespace v3d
 #include "core/Matrix2D.h"
 #include "core/Matrix3D.h"
 #include "core/Matrix4D.h"
-
-typedef v3d::core::TVector2D<v3d::u32> Dimension2D;

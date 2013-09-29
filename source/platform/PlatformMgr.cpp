@@ -25,7 +25,7 @@ CPlatformMgr::~CPlatformMgr()
 {
 }
 
-CPlatform* CPlatformMgr::createWindow(const Dimension2D& size, bool isFullscreen, bool isResizeble)
+CPlatform* CPlatformMgr::createWindow(const WindowSize& size, bool isFullscreen, bool isResizeble)
 {
 	CPlatform* platform = nullptr;
 

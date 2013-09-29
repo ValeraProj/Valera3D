@@ -19,12 +19,26 @@ namespace platform
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	struct WindowSize
+	{
+		u32 width;
+		u32 height;
+
+		WindowSize( u32 w, u32 h )
+			: width(w)
+			, height(h)
+		{
+		}
+	};
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	struct PlatformParam
 	{
-		EPlatformType	platformType;
-		Dimension2D		windowSize;
-		bool			isFullscreen;
-		bool			isResizeble;
+		EPlatformType   platformType;
+		WindowSize      windowSize;
+		bool            isFullscreen;
+		bool            isResizeble;
 
 		PlatformParam()
 			: platformType(EPlatformType::ePlatformNull)
@@ -56,8 +70,8 @@ namespace platform
 		virtual bool	isWindowMinimized() const               = 0;
 		virtual bool	isWindowActive()    const               = 0;
 		virtual bool	isWindowFocused()   const               = 0;
-		virtual bool	isFullscreen()      const final;
-		virtual bool	isResizeble()       const final;
+		bool			isFullscreen()      const;
+		bool			isResizeble()       const;
 		
 		virtual void	mainLoop()                              = 0;
 

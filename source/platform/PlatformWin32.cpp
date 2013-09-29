@@ -68,8 +68,8 @@ void CPlatformWin32::setResizeble( bool value )
 	RECT clientSize;
 	clientSize.top    = 0;
 	clientSize.left   = 0;
-	clientSize.right  = m_param.windowSize.x;
-	clientSize.bottom = m_param.windowSize.y;
+	clientSize.right  = m_param.windowSize.width;
+	clientSize.bottom = m_param.windowSize.height;
 
 	AdjustWindowRect(&clientSize, style, FALSE);
 
@@ -98,8 +98,8 @@ void CPlatformWin32::setFullScreen( bool value )
 	RECT clientSize;
 	clientSize.top    = 0;
 	clientSize.left   = 0;
-	clientSize.right  = m_param.windowSize.x;
-	clientSize.bottom = m_param.windowSize.y;
+	clientSize.right  = m_param.windowSize.width;
+	clientSize.bottom = m_param.windowSize.height;
 
 	AdjustWindowRect(&clientSize, style, FALSE);
 
@@ -117,8 +117,8 @@ void CPlatformWin32::setFullScreen( bool value )
 		EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &dmScreenSettings);
 		memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
 		dmScreenSettings.dmSize = sizeof(dmScreenSettings);
-		dmScreenSettings.dmPelsWidth  = m_param.windowSize.x;
-		dmScreenSettings.dmPelsHeight = m_param.windowSize.y;
+		dmScreenSettings.dmPelsWidth  = m_param.windowSize.width;
+		dmScreenSettings.dmPelsHeight = m_param.windowSize.height;
 		dmScreenSettings.dmBitsPerPel = 32;
 		dmScreenSettings.dmFields= DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT | DM_DISPLAYFREQUENCY;
 	
@@ -239,8 +239,8 @@ void CPlatformWin32::createWindows()
 	RECT clientSize;
 	clientSize.top    = 0;
 	clientSize.left   = 0;
-	clientSize.right  = m_param.windowSize.x;
-	clientSize.bottom = m_param.windowSize.y;
+	clientSize.right  = m_param.windowSize.width;
+	clientSize.bottom = m_param.windowSize.height;
 
 	DWORD dwStyle   = WS_POPUP;
 	DWORD dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
