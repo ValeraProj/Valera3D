@@ -172,6 +172,9 @@
     <ClInclude Include="..\..\source\platform\PlatformMgr.h">
       <Filter>platform</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\core\Dimension2D.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\stream\FileStream.cpp">

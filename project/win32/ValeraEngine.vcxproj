@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\common.h" />
+    <ClInclude Include="..\..\source\core\Dimension2D.h" />
     <ClInclude Include="..\..\source\core\Math.h" />
     <ClInclude Include="..\..\source\core\Matrix2D.h" />
     <ClInclude Include="..\..\source\core\Matrix3D.h" />
