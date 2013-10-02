@@ -8,8 +8,8 @@ using namespace platform;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 CPlatformWin32::CPlatformWin32( const PlatformParam& param )
-	: m_windowID(nullptr)
-	, m_param(param)
+	: CPlatform(param)
+	, m_windowID(nullptr)
 {
 	CPlatformWin32::createWindows();
 
@@ -180,16 +180,6 @@ bool CPlatformWin32::isWindowFocused() const
 {
 	bool ret = (GetFocus() == m_windowID);
 	return ret;
-}
-
-bool CPlatformWin32::isFullscreen() const
-{
-	return m_param.isFullscreen;
-}
-
-bool CPlatformWin32::isResizeble() const
-{
-	return m_param.isResizeble;
 }
 
 void CPlatformWin32::setWindowCaption( const std::string& text )

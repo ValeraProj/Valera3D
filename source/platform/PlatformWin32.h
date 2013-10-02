@@ -28,8 +28,6 @@ namespace platform
 		virtual bool	isWindowMinimized() const;
 		virtual bool	isWindowActive()    const;
 		virtual bool	isWindowFocused()   const;
-		virtual bool	isFullscreen()      const;
-		virtual bool	isResizeble()       const;
 
 	protected:
 
@@ -38,7 +36,6 @@ namespace platform
 		virtual void	createWindows();
 		virtual void	closeWindow();
 
-		PlatformParam	m_param;
 		HWND			m_windowID;
 	};
 
