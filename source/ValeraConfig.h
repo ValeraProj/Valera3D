@@ -45,7 +45,7 @@
 #	define _DIRECT3D_DRIVER_
 #endif
 
-#if defined (_PLATFORM_MACOSX_)
+#if defined (_PLATFORM_LINUX_)
 #	define _OPENGL_DRIVER_
 #endif
 

@@ -20,7 +20,7 @@ namespace platform
 		virtual void	maximizeWindow();
 		virtual void	restoreWindow();
 		virtual void	setFullScreen( bool value = false );
-		virtual void	setResizeble( bool value = true );
+		virtual void	setResizeble ( bool value = true );
 		virtual void	setWindowCaption( const std::string& text );
 		virtual void	setWindowCaption( const std::wstring& text );
 
@@ -28,17 +28,16 @@ namespace platform
 		virtual bool	isWindowMinimized() const;
 		virtual bool	isWindowActive()    const;
 		virtual bool	isWindowFocused()   const;
-		virtual bool	isFullscreen()      const;
-		virtual bool	isResizeble()       const;
-
-	protected:
 
 		virtual void	mainLoop();
+
+		const HWND		getHWND() const;
+
+	protected:
 
 		virtual void	createWindows();
 		virtual void	closeWindow();
 
-		PlatformParam	m_param;
 		HWND			m_windowID;
 	};
 

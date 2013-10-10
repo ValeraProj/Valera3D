@@ -6,7 +6,7 @@ using namespace platform;
 
 CValeraEngine::CValeraEngine()
 {
-	CPlatform* plt = CPlatformMgr::createWindow(WindowSize(800,600), false);
+	CPlatform* plt = CPlatformMgr::createWindow(core::Dimension2D(800,600), false);
 }
 
 CValeraEngine::~CValeraEngine()

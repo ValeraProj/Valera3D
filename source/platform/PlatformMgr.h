@@ -16,9 +16,9 @@ namespace platform
 		~CPlatformMgr();
 
 		static CPlatform* createWindow(
-			const WindowSize& size = WindowSize(800U, 600),
-			bool isFullscreen      = false,
-			bool isResizeble       = false
+			const core::Dimension2D& size = core::Dimension2D(800U, 600),
+			bool isFullscreen             = false,
+			bool isResizeble              = false
 			);
 		
 		

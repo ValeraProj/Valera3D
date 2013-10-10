@@ -53,9 +53,9 @@ namespace core
 	}
 	
 	template <class T>
-	TDimension2D<T>::TDimension2D( const T& nWidth, const T& nHeight )
-		: width( nWidth ), 
-		  height( nWidth )
+	TDimension2D<T>::TDimension2D( const T& width, const T& height )
+		: width( width ), 
+		  height( height )
 	{
 	}
 	
@@ -76,8 +76,8 @@ namespace core
 	template <class T>
 	TDimension2D<T>& TDimension2D<T>::operator = ( const TDimension2D<T>& other )
 	{ 
-		width = other.Width;
-		height = other.Height;
+		width = other.width;
+		height = other.height;
 		return *this;
 	}
 

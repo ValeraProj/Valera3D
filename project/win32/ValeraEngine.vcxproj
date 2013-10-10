@@ -53,12 +53,18 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\source;..\..\libs\glew\include\GL</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>glew32s.lib;OpenGL32.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>..\..\libs\glew\lib\Debug\Win32;F:\Projects\Valera\Valera3D\libs\glew\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -87,9 +93,9 @@
     <ClInclude Include="..\..\source\core\Vector2D.h" />
     <ClInclude Include="..\..\source\core\Vector3D.h" />
     <ClInclude Include="..\..\source\core\Vector4D.h" />
-    <ClInclude Include="..\..\source\driver\Driver.h" />
-    <ClInclude Include="..\..\source\driver\DriverD3D.h" />
-    <ClInclude Include="..\..\source\driver\DriverGL.h" />
+    <ClInclude Include="..\..\source\driver\DriverContext.h" />
+    <ClInclude Include="..\..\source\driver\DriverContextD3D.h" />
+    <ClInclude Include="..\..\source\driver\DriverContextGL.h" />
     <ClInclude Include="..\..\source\KeyCodes.h" />
     <ClInclude Include="..\..\source\Object.h" />
     <ClInclude Include="..\..\source\platform\PlatformMgr.h" />
@@ -133,9 +139,9 @@
     <ClInclude Include="..\..\source\ValeraConfig.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\driver\Driver.cpp" />
-    <ClCompile Include="..\..\source\driver\DriverD3D.cpp" />
-    <ClCompile Include="..\..\source\driver\DriverGL.cpp" />
+    <ClCompile Include="..\..\source\driver\DriverContext.cpp" />
+    <ClCompile Include="..\..\source\driver\DriverContextD3D.cpp" />
+    <ClCompile Include="..\..\source\driver\DriverContextGL.cpp" />
     <ClCompile Include="..\..\source\Object.cpp" />
     <ClCompile Include="..\..\source\platform\Platform.cpp" />
     <ClCompile Include="..\..\source\platform\PlatformLinux.cpp" />

@@ -4,9 +4,6 @@
     <Filter Include="core">
       <UniqueIdentifier>{79101d6c-101e-4fc7-a91a-d493fec32ef4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="driver">
-      <UniqueIdentifier>{2be4ad9a-99ea-44e5-94a8-06418a83d09c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="platform">
       <UniqueIdentifier>{e051c708-3f5c-47f0-a733-c59a11dd336c}</UniqueIdentifier>
     </Filter>
@@ -27,6 +24,9 @@
     </Filter>
     <Filter Include="utils">
       <UniqueIdentifier>{982f3589-17a6-4764-830a-472033f12968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer\context">
+      <UniqueIdentifier>{6c5dfa2a-fd9b-4d6c-9f7e-181506defc5c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -153,15 +153,6 @@
     <ClInclude Include="..\..\source\utils\Timer.h">
       <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\driver\Driver.h">
-      <Filter>driver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\driver\DriverGL.h">
-      <Filter>driver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\driver\DriverD3D.h">
-      <Filter>driver</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\common.h" />
     <ClInclude Include="..\..\source\KeyCodes.h" />
     <ClInclude Include="..\..\source\Object.h" />
@@ -174,6 +165,15 @@
     </ClInclude>
     <ClInclude Include="..\..\source\core\Dimension2D.h">
       <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\driver\DriverContext.h">
+      <Filter>renderer\context</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\driver\DriverContextGL.h">
+      <Filter>renderer\context</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\driver\DriverContextD3D.h">
+      <Filter>renderer\context</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -273,15 +273,6 @@
     <ClCompile Include="..\..\source\utils\Timer.cpp">
       <Filter>utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\driver\Driver.cpp">
-      <Filter>driver</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\driver\DriverGL.cpp">
-      <Filter>driver</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\driver\DriverD3D.cpp">
-      <Filter>driver</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\Object.cpp" />
     <ClCompile Include="..\..\source\ValeraEngine.cpp" />
     <ClCompile Include="..\..\source\platform\PlatformMacOSX.mm">
@@ -289,6 +280,15 @@
     </ClCompile>
     <ClCompile Include="..\..\source\platform\PlatformMgr.cpp">
       <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\driver\DriverContext.cpp">
+      <Filter>renderer\context</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\driver\DriverContextGL.cpp">
+      <Filter>renderer\context</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\driver\DriverContextD3D.cpp">
+      <Filter>renderer\context</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
