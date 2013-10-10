@@ -1,3 +1,0 @@
-[submodule "libs/_extern/glew"]
-	path = libs/_extern/glew
-	url = https://github.com/nigels-com/glew.git
