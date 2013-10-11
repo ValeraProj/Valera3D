@@ -6,13 +6,23 @@
 
 namespace v3d
 {
+namespace renderer
+{
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	class	CDriverContextGL;
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+}
 namespace platform
 {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	
 	class CPlatformWin32 : public CPlatform
 	{
 	public:
+
 						CPlatformWin32( const PlatformParam& param );
 		virtual			~CPlatformWin32();
 
@@ -29,16 +39,18 @@ namespace platform
 		virtual bool	isWindowActive()    const;
 		virtual bool	isWindowFocused()   const;
 
-		virtual void	mainLoop();
-
-		const HWND		getHWND() const;
+		virtual bool	begin();
+		virtual bool	end();
 
 	protected:
+
+		friend			renderer::CDriverContextGL;
 
 		virtual void	createWindows();
 		virtual void	closeWindow();
 
-		HWND			m_windowID;
+		HWND			m_window;
+		HDC				m_context;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

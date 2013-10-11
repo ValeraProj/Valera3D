@@ -16,6 +16,7 @@ namespace v3d
 		~CValeraEngine();
 		
 		platform::CPlatform*	getPlatform() const;
+		void					setPlatform( platform::CPlatform* platform ); //Temporary
 
 	private:
 

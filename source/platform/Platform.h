@@ -60,7 +60,8 @@ namespace platform
 		bool						isResizeble()       const;
 		const core::Dimension2D&	getWindowsSize()    const;
 
-		virtual void				mainLoop()                                   = 0;
+		virtual bool				begin()                                      = 0;
+		virtual bool				end()                                        = 0;
 
 	protected:
 

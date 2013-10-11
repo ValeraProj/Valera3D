@@ -15,7 +15,7 @@ public:
 	int exec();
 
 protected:
-	//CValeraEngine* m_engine;
+	v3d::CValeraEngine* m_engine;
 };
 
 #endif

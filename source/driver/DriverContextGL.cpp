@@ -16,10 +16,12 @@
 using namespace v3d;
 using namespace renderer;
 
-CDriverContextGL::CDriverContextGL( const platform::CPlatform* platform )
+CDriverContextGL::CDriverContextGL( platform::CPlatform* platform )
 	: CDriverContext( platform )
 {
-	createContext();
+	CDriverContextGL::createContext();
+
+	CDriverContextGL::driverInfo();
 }
 
 CDriverContextGL::~CDriverContextGL()
@@ -211,8 +213,8 @@ void CDriverContextGL::createWin32Context()
 	UnregisterClass(className, hInstance);
 
 	
-	// get hdc
-	HWND window = static_cast<const platform::CPlatformWin32*>(m_platform)->getHWND();
+	// Get HWND
+	HWND window = static_cast<platform::CPlatformWin32*>(m_platform)->m_window;
 	
 	hDC = GetDC( window );
 	if (!hDC)
@@ -250,6 +252,9 @@ void CDriverContextGL::createWin32Context()
 
 	int pf = GetPixelFormat(hDC);
 	DescribePixelFormat(hDC, pf, sizeof(PIXELFORMATDESCRIPTOR), &pfd);
+
+	platform::CPlatformWin32* platform = static_cast<platform::CPlatformWin32*>(m_platform);
+	platform->m_context = hDC;
 }
 
 #elif (_PLATFORM_LINUX_)

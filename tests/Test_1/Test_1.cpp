@@ -12,8 +12,8 @@ using namespace platform;
 int _tmain(int argc, _TCHAR* argv[])
 {
 
-	CPlatform* plt = CPlatformMgr::createWindow(core::Dimension2D(800,600),false);
-	plt->mainLoop();
+	/*CPlatform* plt = CPlatformMgr::createWindow(core::Dimension2D(800,600),false);
+	plt->run();*/
 
 	return 0;
 	

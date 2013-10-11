@@ -23,7 +23,7 @@ namespace renderer
 	{
 	public:
 
-									CDriverContext( const platform::CPlatform* platform );
+									CDriverContext( platform::CPlatform* platform );
 		virtual						~CDriverContext();
 
 		virtual void				driverInfo()                               = 0;
@@ -33,7 +33,7 @@ namespace renderer
 
 		virtual void				createContext()                            = 0;
 
-		const platform::CPlatform*	m_platform;
+		platform::CPlatform*		m_platform;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
