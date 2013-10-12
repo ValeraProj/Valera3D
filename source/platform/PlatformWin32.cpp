@@ -14,6 +14,8 @@ CPlatformWin32::CPlatformWin32( const PlatformParam& param )
 	, m_window( nullptr )
 	, m_context( nullptr )
 {
+	m_platformType = EPlatformType::ePlatformWindows;
+
 	CPlatformWin32::createWindows();
 
 	CPlatformWin32::setResizeble(m_param.isResizeble);
@@ -22,6 +24,11 @@ CPlatformWin32::CPlatformWin32( const PlatformParam& param )
 
 CPlatformWin32::~CPlatformWin32()
 {
+}
+
+HWND CPlatformWin32::getHandleWindow() const
+{
+	return m_window;
 }
 
 void CPlatformWin32::minimizeWindow()
@@ -285,14 +292,48 @@ void CPlatformWin32::createWindows()
 	// create window
 	HWND HWnd = CreateWindowEx(dwExStyle, className, __TEXT(""), dwStyle, windowLeft, windowTop, 
 					realWidth, realHeight, NULL, NULL, hInstance, NULL);
-	m_window = HWnd;
-
+	
 	ShowWindow(HWnd, SW_SHOWNORMAL);
 	UpdateWindow(HWnd);
 	
+	m_window = HWnd;
 	
-	renderer::CDriverContext* driver = new renderer::CDriverContextGL(this);
-	//createDriver();
+	renderer::CDriverContext* driver = nullptr;
+	switch (m_param.driverType)
+	{
+	case EDriverType::eDriverOpenGL:
+		{
+			driver = new renderer::CDriverContextGL(this);
+		}
+		break;
+
+	case EDriverType::eDriverDirect3D:
+		{
+			//driver = new renderer::CDriverContextD3D(this);
+		}
+		break;
+
+	default:
+		{
+			//Wrong Driver Context
+			CPlatformWin32::closeWindow();
+			system("pause");
+			return;
+		}
+		break;
+	}
+
+	if (!driver->createContext())
+	{
+		//Error crete context
+		CPlatformWin32::closeWindow();
+		system("pause");
+		return;
+	}
+
+	HDC hDc = GetDC( m_window );
+	m_context = hDc;
+
 }
 
 void CPlatformWin32::closeWindow()

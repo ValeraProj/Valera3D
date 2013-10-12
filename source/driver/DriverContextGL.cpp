@@ -16,32 +16,29 @@
 using namespace v3d;
 using namespace renderer;
 
-CDriverContextGL::CDriverContextGL( platform::CPlatform* platform )
+CDriverContextGL::CDriverContextGL( const platform::CPlatform* platform )
 	: CDriverContext( platform )
 {
-	CDriverContextGL::createContext();
-
-	CDriverContextGL::driverInfo();
 }
 
 CDriverContextGL::~CDriverContextGL()
 {
 }
 
-void CDriverContextGL::createContext()
+bool CDriverContextGL::createContext()
 {
 #if defined(_PLATFORM_WIN_)
-	createWin32Context();
+	return createWin32Context();
 
 #elif (_PLATFORM_LINUX_)
-	createLinuxContext();
+	return createLinuxContext();
 
 #endif
 }
 
 #if defined(_PLATFORM_WIN_)
 
-void CDriverContextGL::createWin32Context()
+bool CDriverContextGL::createWin32Context()
 {
 	// Create a window to test antialiasing support
 	HINSTANCE hInstance = GetModuleHandle(NULL);
@@ -92,7 +89,7 @@ void CDriverContextGL::createWin32Context()
 		//Cannot create a temp window;
 		UnregisterClass(className, hInstance);
 		
-		return;
+		return false;
 	}
 
 	HDC hDC = GetDC( tempWindow );
@@ -131,7 +128,7 @@ void CDriverContextGL::createWin32Context()
 		DestroyWindow(tempWindow);
 		UnregisterClass(className, hInstance);
 		
-		return;
+		return false;
 	}
 
 	if (!wglMakeCurrent(hDC, hRc))
@@ -142,7 +139,7 @@ void CDriverContextGL::createWin32Context()
 		DestroyWindow(tempWindow);
 		UnregisterClass(className, hInstance);
 		
-		return;
+		return false;
 	}
 
 	GLenum error = glewInit();
@@ -151,7 +148,7 @@ void CDriverContextGL::createWin32Context()
 		const GLubyte* errorStr = glewGetErrorString(error);
 		//"Couldn't initialize GLEW! error errorStr
 
-		return;
+		return false;
 	}
 
 	if( !wglewIsSupported("WGL_ARB_create_context") ||
@@ -160,7 +157,7 @@ void CDriverContextGL::createWin32Context()
 	{
 		//"Error Supported GLEW Lib;
 		
-		return;	
+		return false;	
 	}
 
 	int antiAlias = 32;
@@ -194,7 +191,7 @@ void CDriverContextGL::createWin32Context()
 		{
 			//Can't Find A Suitable ExPixelFormat.;
 		
-			return;
+			return false;
 		}
 
 		--iAttributes[21]; //WGL_SAMPLES_ARB, antiAlias
@@ -214,13 +211,13 @@ void CDriverContextGL::createWin32Context()
 
 	
 	// Get HWND
-	HWND window = static_cast<platform::CPlatformWin32*>(m_platform)->m_window;
+	HWND window = static_cast<const platform::CPlatformWin32*>(m_platform)->getHandleWindow();
 	
 	hDC = GetDC( window );
 	if (!hDC)
 	{
 		//Cannot create a GL device context.
-		return;
+		return false;
 	}
 
 	if ( newPixelFormat == 0 || !SetPixelFormat(hDC, newPixelFormat, &pfd) )
@@ -247,14 +244,13 @@ void CDriverContextGL::createWin32Context()
 	if ( !hRc || !wglMakeCurrent(hDC, hRc) )
 	{
 		//Can't Create GL Rendering Context
-		return;
+		return false;
 	}
 
 	int pf = GetPixelFormat(hDC);
 	DescribePixelFormat(hDC, pf, sizeof(PIXELFORMATDESCRIPTOR), &pfd);
 
-	platform::CPlatformWin32* platform = static_cast<platform::CPlatformWin32*>(m_platform);
-	platform->m_context = hDC;
+	return true;
 }
 
 #elif (_PLATFORM_LINUX_)

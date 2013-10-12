@@ -3,7 +3,7 @@
 using namespace v3d;
 using namespace renderer;
 
-CDriverContext::CDriverContext( platform::CPlatform* platform )
+CDriverContext::CDriverContext( const platform::CPlatform* platform )
 	: m_platform( platform )
 {
 }

@@ -25,7 +25,7 @@ CPlatformMgr::~CPlatformMgr()
 {
 }
 
-CPlatform* CPlatformMgr::createWindow(const core::Dimension2D& size, bool isFullscreen, bool isResizeble)
+CPlatform* CPlatformMgr::createWindow(const core::Dimension2D& size, bool isFullscreen, bool isResizeble, EDriverType driverType )
 {
 	CPlatform* platform = nullptr;
 
@@ -33,19 +33,17 @@ CPlatform* CPlatformMgr::createWindow(const core::Dimension2D& size, bool isFull
 	param.windowSize   = size;
 	param.isFullscreen = isFullscreen;
 	param.isResizeble  = isFullscreen ? false : isResizeble;
+	param.driverType   = driverType;
 
 #ifdef _PLATFORM_WIN_
-	param.platformType = EPlatformType::ePlatformWindows;
 	platform = new CPlatformWin32(param);
 #endif
 
 #ifdef _PLATFORM_MACOSX_
-	param.platformType = EPlatformType::ePlatformMacOSX;
 	platform = new CPlatformMacOSX(param);
 #endif
 
 #ifdef _PLATFORM_LINUX_
-	param.platformType = EPlatformType::ePlatformLinux;
 	platform = new CPlatformLinux(param);
 #endif
 

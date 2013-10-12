@@ -18,7 +18,8 @@ namespace platform
 		static CPlatform* createWindow(
 			const core::Dimension2D& size = core::Dimension2D(800U, 600),
 			bool isFullscreen             = false,
-			bool isResizeble              = false
+			bool isResizeble              = false,
+			EDriverType driverType        = EDriverType::eDriverOpenGL
 			);
 		
 		

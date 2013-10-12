@@ -14,21 +14,19 @@ namespace renderer
 	{
 	public:
 
-						CDriverContextGL( platform::CPlatform* platform );
+						CDriverContextGL( const platform::CPlatform* platform );
 		virtual			~CDriverContextGL();
 
-		void			driverInfo();
-		void			checkForErrors( const std::string& error );
-
+		virtual void	driverInfo();
+		virtual void	checkForErrors( const std::string& error );
+		virtual bool	createContext();
 
 	protected:
 
-		virtual void	createContext();
-
 #if defined(_PLATFORM_WIN_)
-		void			createWin32Context();
+		bool			createWin32Context();
 #elif (_PLATFORM_LINUX_)
-		void			createLinuxContext();
+		bool			createLinuxContext();
 #endif
 	};
 

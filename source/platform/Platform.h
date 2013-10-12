@@ -9,6 +9,15 @@ namespace platform
 {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	enum class EDriverType
+	{
+		eDriverNull = -1,
+		eDriverOpenGL,
+		eDriverDirect3D,
+	};
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	enum class EPlatformType
 	{
 		ePlatformNull = -1,
@@ -21,13 +30,13 @@ namespace platform
 
 	struct PlatformParam
 	{
-		EPlatformType     platformType;
+		EDriverType       driverType;
 		core::Dimension2D windowSize;
 		bool              isFullscreen;
 		bool              isResizeble;
-
+		
 		PlatformParam()
-			: platformType(EPlatformType::ePlatformNull)
+			: driverType(EDriverType::eDriverNull)
 			, windowSize(core::Dimension2D(800U, 600U))
 			, isFullscreen(false)
 			, isResizeble(false)
@@ -59,6 +68,7 @@ namespace platform
 		bool						isFullscreen()      const;
 		bool						isResizeble()       const;
 		const core::Dimension2D&	getWindowsSize()    const;
+		EPlatformType				getPlatformType()   const;
 
 		virtual bool				begin()                                      = 0;
 		virtual bool				end()                                        = 0;
@@ -69,7 +79,7 @@ namespace platform
 		virtual void				closeWindow()                                = 0;
 
 		PlatformParam				m_param;
-
+		EPlatformType				m_platformType;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

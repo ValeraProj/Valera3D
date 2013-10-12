@@ -10,30 +10,20 @@ namespace renderer
 {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	enum class EDriverType
-	{
-		eDriverNull = -1,
-		eDriverOpenGL,
-		eDriverDirect3D,
-	};
-
-	/////////////////////////////////////////////////////////////////////////////////////////////////////
-
 	class CDriverContext
 	{
 	public:
 
-									CDriverContext( platform::CPlatform* platform );
+									CDriverContext( const platform::CPlatform* platform );
 		virtual						~CDriverContext();
 
 		virtual void				driverInfo()                               = 0;
 		virtual void				checkForErrors( const std::string& error ) = 0;
+		virtual bool				createContext()                            = 0;
 
 	protected:
 
-		virtual void				createContext()                            = 0;
-
-		platform::CPlatform*		m_platform;
+		const platform::CPlatform*		m_platform;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
