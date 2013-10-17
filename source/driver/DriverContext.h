@@ -23,7 +23,7 @@ namespace renderer
 
 	protected:
 
-		const platform::CPlatform*		m_platform;
+		const platform::CPlatform*	m_platform;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

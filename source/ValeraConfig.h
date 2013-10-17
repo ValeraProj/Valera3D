@@ -12,11 +12,11 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #if defined(_MSC_VER) && (_MSC_VER < 1700)
-#  error "Only Microsoft Visual Studio 11.0 and later are supported."
+#	error "Only Microsoft Visual Studio 11.0 and later are supported."
 #endif
 
 #if defined(__GNUC__) && (__GNUC__ < 4) && (__GNUC_MINOR__ < 3 )
-# error "Only GCC 4.3 and later are supported."
+#	error "Only GCC 4.3 and later are supported."
 #endif
 
 

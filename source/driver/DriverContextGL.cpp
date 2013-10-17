@@ -187,7 +187,7 @@ bool CDriverContextGL::createWin32Context()
 	
 	while(numFormats == 0)
 	{
-		if ( !wglChoosePixelFormatARB( hDC, iAttributes, fAttributes, 1, &newPixelFormat, &numFormats) )
+		if ( !wglChoosePixelFormatARB(hDC, iAttributes, fAttributes, 1, &newPixelFormat, &numFormats) )
 		{
 			//Can't Find A Suitable ExPixelFormat.;
 		
