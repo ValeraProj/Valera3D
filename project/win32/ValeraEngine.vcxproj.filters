@@ -166,13 +166,13 @@
     <ClInclude Include="..\..\source\core\Dimension2D.h">
       <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\driver\DriverContext.h">
+    <ClInclude Include="..\..\source\context\DriverContext.h">
       <Filter>renderer\context</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\driver\DriverContextGL.h">
+    <ClInclude Include="..\..\source\context\DriverContextD3D.h">
       <Filter>renderer\context</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\driver\DriverContextD3D.h">
+    <ClInclude Include="..\..\source\context\DriverContextGL.h">
       <Filter>renderer\context</Filter>
     </ClInclude>
   </ItemGroup>
@@ -281,13 +281,13 @@
     <ClCompile Include="..\..\source\platform\PlatformMgr.cpp">
       <Filter>platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\driver\DriverContext.cpp">
+    <ClCompile Include="..\..\source\context\DriverContext.cpp">
       <Filter>renderer\context</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\driver\DriverContextGL.cpp">
+    <ClCompile Include="..\..\source\context\DriverContextD3D.cpp">
       <Filter>renderer\context</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\driver\DriverContextD3D.cpp">
+    <ClCompile Include="..\..\source\context\DriverContextGL.cpp">
       <Filter>renderer\context</Filter>
     </ClCompile>
   </ItemGroup>
