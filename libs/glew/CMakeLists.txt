@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
 
-set(GLEW_PLOJECT glew_static)
 project(${GLEW_PLOJECT})
 
 if(MINGW OR UNIX)

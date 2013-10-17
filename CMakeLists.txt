@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 
 set(SOLUTION_NAME Valera3D)
 set(ENGINE_NAME ValeraEngine)
+set(GLEW_PLOJECT glew_static)
+set(TEST_PROJECT CreateWindow)
 
 if(PLATFORM_WIN32)
 	message("-- Configuring Win32")
@@ -97,23 +99,12 @@ source_group(scene            FILES ${STREAM_HEADERS}   ${STREAM_SOURCES})
 source_group(utils            FILES ${UTILS_HEADERS}    ${UTILS_SOURCES})
 source_group(""               FILES ${MAIN_HEADERS}     ${MAIN_SOURCES})
 
+set (ENGINE_PROJECT_DIR ${PROJECT_SOURCE_DIR})
+
 include_directories(
 		${SOURCE_DIR}
 		libs/glew/include/GL
 	)
-	
-#if (PLATFORM_WIN32)
-#	set(EXTERNAL_LIBS
-#		glew32s.lib
-#	)
-#
-#target_link_libraries(
-#		${ENGINE_NAME}
-#		${EXTERNAL_LIBS} ${GLEW_PLOJECT}
-#	)
-#endif()
-#link_directories(${PROJECT_SOURCE_DIR}/lib/Win32)
-#set_target_properties(${SOLUTION_NAME} PROPERTIES LINKER_LANGUAGE C)
 
 add_library(
 	${ENGINE_NAME}
@@ -129,8 +120,9 @@ add_library(
 
 #Additional Libs
 add_subdirectory(libs/glew)
-add_subdirectory(tests/msvc/CreateWindow)
+add_subdirectory(tests/msvc/${TEST_PROJECT})
 
-#add_dependencies(${ENGINE_NAME} )
+add_dependencies(${ENGINE_NAME} ${GLEW_PLOJECT})
+
 
 

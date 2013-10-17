@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
 
-set(TEST_PROJECT CreateWindow)
-
 project(${TEST_PROJECT})
 
 if (PLATFORM_WIN32)
@@ -18,11 +16,13 @@ set(MAIN_FILE CreateWindow.cpp)
 source_group(include FILES ${TEST_HEADERS})
 source_group(source  FILES ${TEST_SOURCES})
 
-
 include_directories(source)
 
-link_directories( project/win32 )
-
+if (PLATFORM_WIN32)
+	link_directories(
+		${ENGINE_PROJECT_DIR}/project/win32/
+		)
+endif()
 
 add_executable( 
 		${TEST_PROJECT}
@@ -32,16 +32,22 @@ add_executable(
 		)
 
 if (PLATFORM_WIN32)
-set(EXTERNAL_LIBS 
-	#debug
-	debug ValeraEngine_d.lib
-	#release
-	optimized ValeraEngine.lib
-)
+	set(EXTERNAL_LIBS 
+		OpenGL32.lib
+		#debug
+		#debug ${ENGINE_NAME}_d.lib
+		#debug ${GLEW_PLOJECT}_d.lib
+		#release
+		#optimized ${ENGINE_NAME}.lib
+		#optimized ${GLEW_PLOJECT}.lib
+	)
+endif()
 
 target_link_libraries(
-		${TEST_PROJECT}
-		${EXTERNAL_LIBS}
+	${TEST_PROJECT}
+	${EXTERNAL_LIBS}
+	${GLEW_PLOJECT}
+	${ENGINE_NAME}
 	)
 
-endif()
+add_dependencies(${TEST_PROJECT} ${ENGINE_NAME})
