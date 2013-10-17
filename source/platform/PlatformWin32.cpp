@@ -1,6 +1,6 @@
 #include "PlatformWin32.h"
 
-#include "driver\DriverContextGL.h"
+#include "context\DriverContextGL.h"
 
 #include <winuser.h>
 
