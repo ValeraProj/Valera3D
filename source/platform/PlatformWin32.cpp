@@ -224,7 +224,7 @@ bool CPlatformWin32::begin()
 bool CPlatformWin32::end()
 {
 	//Driver()->run();
-	return SwapBuffers( m_context ) == TRUE;
+	return SwapBuffers( m_context ) != FALSE;
 }
 
 void CPlatformWin32::createWindows()
