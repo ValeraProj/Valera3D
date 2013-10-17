@@ -1,6 +1,6 @@
 #include "PlatformWin32.h"
 
-#include "driver\DriverContextGL.h"
+#include "context\DriverContextGL.h"
 
 #include <winuser.h>
 
@@ -263,8 +263,10 @@ void CPlatformWin32::createWindows()
 
 	if ( !m_param.isFullscreen )
 	{
-		dwStyle   = WS_SYSMENU | WS_BORDER | WS_CAPTION | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
-		dwExStyle = WS_EX_APPWINDOW;
+		//dwStyle   = WS_SYSMENU | WS_BORDER | WS_CAPTION | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
+		dwStyle   = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU;;
+		//dwExStyle = WS_EX_APPWINDOW;
+		dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
 	}
 
 	AdjustWindowRectEx(&clientSize, dwStyle, FALSE, dwExStyle);
