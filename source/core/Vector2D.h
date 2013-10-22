@@ -318,7 +318,7 @@ namespace core
 	}
 
 	template<class T>
-	bool TVector2D<T>::isEquals( const TVector2D<T>& other, const T tolerance = (T)k_tolerance32 ) const
+	bool TVector2D<T>::isEquals( const TVector2D<T>& other, const T tolerance ) const
 	{
 		const bool isEquels = core::isEquals( x, other.x, tolerance ) &&
 							  core::isEquals( y, other.y, tolerance );

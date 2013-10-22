@@ -117,14 +117,14 @@ namespace core
 
 	template<class T>
 	TVector3D<T>::TVector3D( const TVector3D<T>& other ) 
-		: x( other.x ), 
-		  y( other.y ), 
+		: x( other.x ),
+		  y( other.y ),
 		  z( other.z ) {}
 
 	template<class T>
-	TVector3D<T>::TVector3D( const TVector2D<T>& other, T nz = 0 ) 
-		: x( other.x ), 
-		  y( other.y ), 
+	TVector3D<T>::TVector3D( const TVector2D<T>& other, T nz )
+		: x( other.x ),
+		  y( other.y ),
 		  z( nz ) {}
 
 	template<class T>

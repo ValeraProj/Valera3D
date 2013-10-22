@@ -108,7 +108,7 @@ namespace core
 		  w( 0 ) {}
 
 	template<class T>
-	TVector4D<T>::TVector4D( T nx, T ny, T nz, T nw = 0 ) 
+	TVector4D<T>::TVector4D( T nx, T ny, T nz, T nw ) 
 		: x( nx ),
 		  y( ny ),
 		  z( nz ), 
@@ -122,7 +122,7 @@ namespace core
 		  w( other.w ) {}
 
 	template<class T>
-	TVector4D<T>::TVector4D( const TVector3D<T>& other, T nw = 0 ) 
+	TVector4D<T>::TVector4D( const TVector3D<T>& other, T nw )
 		: x( other.x ),
 		  y( other.y ),
 		  z( other.z ), 
@@ -311,7 +311,7 @@ namespace core
 	}
 
 	template<class T>
-	bool TVector4D<T>::isEquals( const TVector4D<T>& other, const T tolerance = (T)k_tolerance32 ) const
+	bool TVector4D<T>::isEquals( const TVector4D<T>& other, const T tolerance ) const
 	{
 		const bool isEquals = core::isEquals( x, other.x, tolerance ) &&
 							  core::isEquals( y, other.y, tolerance ) &&
@@ -321,7 +321,7 @@ namespace core
 	}
 
 	template<class T>
-	TVector4D<T>& TVector4D<T>::set( const T nx, const T ny, const T nz, const T nw = 0 )
+	TVector4D<T>& TVector4D<T>::set( const T nx, const T ny, const T nz, const T nw )
 	{
 		x = nx; 
 		y = ny;
@@ -341,7 +341,7 @@ namespace core
 	}
 
 	template<class T>
-	TVector4D<T>& TVector4D<T>::set( const TVector3D<T>& point, const T nw = 0 ) 
+	TVector4D<T>& TVector4D<T>::set( const TVector3D<T>& point, const T )
 	{
 		x = point.x;
 		y = point.y;
