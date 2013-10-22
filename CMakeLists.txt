@@ -11,8 +11,11 @@ if(PLATFORM_WIN32)
 elseif(PLATFORM_LINUX)
 	message("-- Configuring Linux")
 	add_definitions(-D_LINUX -D_DEBUG)
+elseif(PLATFORM_MACOSX)
+	message("-- Configuring MacOSX")
+	add_definitions(-DMACOSX -D_DEBUG)
 else()
-	message(FATAL_ERROR "Unknown platform. Only PLATFORM_WIN32|PLATFORM_LINUX supported")
+	message(FATAL_ERROR "Unknown platform. Only PLATFORM_WIN32|PLATFORM_LINUX|PLATFORM_MACOSX supported")
 endif()
 
 project(${SOLUTION_NAME})
@@ -60,6 +63,19 @@ elseif(PLATFORM_LINUX)
 		${SOURCE_DIR}/platform/Platform.cpp
 		${SOURCE_DIR}/platform/PlatformMgr.cpp
 		${SOURCE_DIR}/platform/PlatformLinux.cpp
+	)
+
+elseif(PLATFORM_MACOSX)
+	set(PLATFORM_HEADERS
+		${SOURCE_DIR}/platform/Platform.h
+		${SOURCE_DIR}/platform/PlatformMgr.h
+		${SOURCE_DIR}/platform/PlatformMacOSX.h
+	)
+	
+	set(PLATFORM_SOURCES
+		${SOURCE_DIR}/platform/Platform.cpp
+		${SOURCE_DIR}/platform/PlatformMgr.cpp
+		${SOURCE_DIR}/platform/PlatformMacOSX.mm
 	)
 endif()
 
@@ -120,7 +136,7 @@ add_library(
 
 #Additional Libs
 add_subdirectory(libs/glew)
-add_subdirectory(tests/msvc/${TEST_PROJECT})
+add_subdirectory(tests/${TEST_PROJECT})
 
 add_dependencies(${ENGINE_NAME} ${GLEW_PLOJECT})
 
