@@ -37,10 +37,10 @@ namespace utils
 							CLogger();
 		virtual				~CLogger();
 
-		void				createLogFile ( const std::string& fileName );
+		void				createLogFile ( const std::string& filename );
 		
 		void				log( const std::string& message, ELoggerType type = ELoggerType::eLoggerInfo, ELogOut out = ELogOut::eConsoleLog );
-		void				log( const std::string& format, ELoggerType type, ELogOut out, ... );
+		void				log( ELoggerType type, ELogOut out, const char* format, ... );
 
 		void				destroyLogFile();
 		
@@ -49,7 +49,8 @@ namespace utils
 		void				logToConsole( const std::string& message, ELoggerType type );
 		void				logToFile( const std::string& message, ELoggerType type );
 
-		std::string			m_logFile;
+		std::string			m_logFilename;
+		std::ofstream		m_file;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -22,6 +22,7 @@ namespace v3d
 #include <map>
 #include <algorithm>
 #include <memory>
+#include <fstream>
 
 #include "core/Math.h"
 #include "core/Vector2D.h"
