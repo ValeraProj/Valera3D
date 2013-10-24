@@ -3,10 +3,16 @@ cmake_minimum_required(VERSION 2.8)
 project(${TEST_PROJECT})
 
 if (PLATFORM_WIN32)
-	add_definitions(-DWIN32 -D_DEBUG -D_CONSOLE -DUNICODE -D_UNICODE)
+	add_definitions(-DWIN32 -D_CONSOLE -DUNICODE -D_UNICODE)
 elseif (PLATFORM_LINUX)
 	add_definitions(-DLINUX)
+elseif(PLATFORM_MACOSX)
+	add_definitions(-DMACOSX)
 endif()
+
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
+set(CMAKE_DEBUG_POSTFIX "_d")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
 
 file(GLOB TEST_HEADERS *.h)
 file(GLOB TEST_SOURCES *.cpp)
