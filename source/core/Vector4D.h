@@ -341,7 +341,7 @@ namespace core
 	}
 
 	template<class T>
-	TVector4D<T>& TVector4D<T>::set( const TVector3D<T>& point, const T )
+	TVector4D<T>& TVector4D<T>::set( const TVector3D<T>& point, const T nw )
 	{
 		x = point.x;
 		y = point.y;
