@@ -2,6 +2,7 @@
 #define _V3D_TEXTURE_H_
 
 #include "Object.h"
+#include "stream/Resource.h"
 
 namespace v3d
 {
@@ -87,7 +88,7 @@ namespace renderer
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	class CTexture : public CObject
+	class CTexture : public stream::CResource
 	{
 	public:
 						CTexture();
@@ -97,6 +98,8 @@ namespace renderer
 		virtual void	create( const std::string& file )		= 0;
 		virtual void	create( const std::string* files[6] )	= 0;
 		virtual void	destroy()								= 0;
+
+		void			init( stream::IStream* stream ) override {};
 
 		u32				getTextureID()	const;
 		ETextureTarget	getTarget()		const;

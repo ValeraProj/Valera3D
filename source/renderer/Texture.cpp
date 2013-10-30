@@ -5,7 +5,7 @@ namespace v3d
 namespace renderer
 {
 	CTexture::CTexture()
-		: CObject()
+		: CResource()
 		, m_textureID( -1 )
 		, m_target( ETextureTarget::eTargetUnknown )
 		, m_minFilter( ETextureFilter::eFilterLinear )

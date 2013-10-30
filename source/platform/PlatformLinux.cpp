@@ -42,32 +42,40 @@ void CPlatformLinux::setWindowCaption( const std::wstring& text )
 
 bool CPlatformLinux::isWindowMaximized() const
 {
+	return false;
 }
 
 bool CPlatformLinux::isWindowMinimized() const
 {
+	return false;
 }
 
 bool CPlatformLinux::isWindowActive() const
 {
+	return false;
 }
 
 bool CPlatformLinux::isWindowFocused() const
 {
+	return false;
 }
 
 void CPlatformLinux::createWindows()
 {
+
 }
 
 void CPlatformLinux::closeWindow()
 {
+
 }
 
 bool CPlatformLinux::begin()
 {
+	return false;
 }
 
 bool CPlatformLinux::end()
 {
+	return false;
 }

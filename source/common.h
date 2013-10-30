@@ -15,6 +15,7 @@ namespace v3d
 	typedef signed long long    s64;
 	typedef float               f32;
 	typedef double              f64;
+	typedef long double         f80;
 }
 
 #include <string>
