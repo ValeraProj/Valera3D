@@ -2,7 +2,7 @@
 #define _V3D_DRIVER_CONTEXT_H_
 
 #include "common.h"
-#include "platform\Platform.h"
+#include "platform/Platform.h"
 
 namespace v3d
 {

@@ -3,14 +3,18 @@ cmake_minimum_required(VERSION 2.8.9)
 project(${GLEW_PLOJECT})
 
 if(MINGW OR UNIX)
-  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-attributes")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-attributes")
 endif()
 
 include_directories( include )
 
 add_definitions("-DGLEW_STATIC")
 
-file(GLOB GLEW_HEADERS include/GL/*.h)
+if(UNIX)
+	file(GLOB GLEW_HEADERS include/GL/glew.h include/GL/glxew.h)
+else()
+	file(GLOB GLEW_HEADERS include/GL/*.h)
+endif()
 file(GLOB GLEW_SOURCES src/glew.c)
 
 source_group(include/GL FILES ${GLEW_HEADERS})

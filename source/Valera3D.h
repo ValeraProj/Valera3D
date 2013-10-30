@@ -6,8 +6,8 @@
 #include "common.h"
 #include "Singleton.h"
 #include "Object.h"
-#include "scene\Node.h"
-#include "platform\PlatformMgr.h"
+#include "scene/Node.h"
+#include "platform/PlatformMgr.h"
 
 #include "ValeraEngine.h"
 

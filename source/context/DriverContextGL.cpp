@@ -1,16 +1,15 @@
 #include "DriverContextGL.h"
 
-#include <windows.h>
-#include <winuser.h>
-
 #define GLEW_STATIC
 #include "glew.h"
-#include "wglew.h"
 
 #if defined(_PLATFORM_WIN_)
-#	include "platform\PlatformWin32.h"
-#elif (_PLATFORM_LINUX_)
-#	include "platform\PlatformLinux.h"
+#	include <windows.h>
+#	include <winuser.h>
+#	include "wglew.h"
+#	include "platform/PlatformWin32.h"
+#elif defined(_PLATFORM_LINUX_)
+#	include "platform/PlatformLinux.h"
 #endif
 
 using namespace v3d;
@@ -30,7 +29,7 @@ bool CDriverContextGL::createContext()
 #if defined(_PLATFORM_WIN_)
 	return createWin32Context();
 
-#elif (_PLATFORM_LINUX_)
+#elif defined(_PLATFORM_LINUX_)
 	return createLinuxContext();
 
 #endif
@@ -253,7 +252,7 @@ bool CDriverContextGL::createWin32Context()
 	return true;
 }
 
-#elif (_PLATFORM_LINUX_)
+#elif defined(_PLATFORM_LINUX_)
 
 void CDriverContextGL::createLinuxContext()
 {

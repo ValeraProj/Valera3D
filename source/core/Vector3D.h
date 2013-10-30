@@ -332,7 +332,7 @@ namespace core
 
 
 	template<class T>
-	bool TVector3D<T>::isEquals( const TVector3D<T>& other, const T ) const
+	bool TVector3D<T>::isEquals( const TVector3D<T>& other, const T tolerance ) const
 	{
 		const bool isEquels = core::isEquals( x, other.x, tolerance ) &&
 							  core::isEquals( y, other.y, tolerance ) &&

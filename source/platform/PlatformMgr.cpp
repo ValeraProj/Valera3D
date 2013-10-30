@@ -3,15 +3,15 @@
 
 
 #ifdef _PLATFORM_WIN_
-#	include "platform\PlatformWin32.h"
+#	include "platform/PlatformWin32.h"
 #endif
 
 #ifdef _PLATFORM_MACOSX_
-#	include "platform\PlatformMacOSX.h"
+#	include "platform/PlatformMacOSX.h"
 #endif
 
 #ifdef _PLATFORM_LINUX_
-#	include "platform\PlatformLinux.h"
+#	include "platform/PlatformLinux.h"
 #endif
 
 using namespace v3d;

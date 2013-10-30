@@ -3,7 +3,7 @@
 
 #include "ValeraConfig.h"
 #include "Singleton.h"
-#include "platform\Platform.h"
+#include "platform/Platform.h"
 
 namespace v3d
 {

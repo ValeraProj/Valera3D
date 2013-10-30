@@ -28,7 +28,8 @@ namespace platform
 		virtual bool	isWindowActive()    const;
 		virtual bool	isWindowFocused()   const;
 
-		virtual void	mainLoop();
+		virtual bool	begin();
+		virtual bool	end();
 
 	protected:
 

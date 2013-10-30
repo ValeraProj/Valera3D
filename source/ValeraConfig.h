@@ -15,8 +15,8 @@
 #	error "Only Microsoft Visual Studio 11.0 and later are supported."
 #endif
 
-#if defined(__GNUC__) && (__GNUC__ < 4) && (__GNUC_MINOR__ < 3 )
-#	error "Only GCC 4.3 and later are supported."
+#if defined(__GNUC__) && (__GNUC__ <= 4) && (__GNUC_MINOR__< 7)
+#	error "Only GCC 4.7 and later are supported."
 #endif
 
 

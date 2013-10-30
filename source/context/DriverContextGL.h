@@ -25,7 +25,7 @@ namespace renderer
 
 #if defined(_PLATFORM_WIN_)
 		bool			createWin32Context();
-#elif (_PLATFORM_LINUX_)
+#elif defined(_PLATFORM_LINUX_)
 		bool			createLinuxContext();
 #endif
 	};
