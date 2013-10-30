@@ -6,7 +6,7 @@
 class BaseApplication
 {
 public:
-	BaseApplication(int& argc, wchar_t** argv);
+	BaseApplication(int& argc, char** argv);
 	virtual ~BaseApplication();
 
 	virtual void init() = 0;

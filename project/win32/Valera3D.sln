@@ -11,8 +11,14 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glew_static", "..\..\libs\glew\build\vc12\glew_static.vcxproj", "{664E6F0D-6784-4760-9565-D54F8EB1EDF4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test_1", "..\..\tests\Test_1\msvc\Test_1.vcxproj", "{5ED88F82-44F1-4123-9CA6-6BD3F632E77D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{71F9FBD5-61CB-4B6E-B460-5080D034F865} = {71F9FBD5-61CB-4B6E-B460-5080D034F865}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CreateWindow", "..\..\tests\CreateWindow\msvc\CreateWindow.vcxproj", "{E0283200-EB9F-4043-ABBA-BD053EC78FA5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{71F9FBD5-61CB-4B6E-B460-5080D034F865} = {71F9FBD5-61CB-4B6E-B460-5080D034F865}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

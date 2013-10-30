@@ -141,12 +141,6 @@
     <ClInclude Include="..\..\source\platform\PlatformWin32.h">
       <Filter>platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\platform\PlatformLinux.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\platform\PlatformMacOSX.h">
-      <Filter>platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\utils\Logger.h">
       <Filter>utils</Filter>
     </ClInclude>
@@ -264,9 +258,6 @@
     <ClCompile Include="..\..\source\platform\PlatformWin32.cpp">
       <Filter>platform</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\platform\PlatformLinux.cpp">
-      <Filter>platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\utils\Logger.cpp">
       <Filter>utils</Filter>
     </ClCompile>
@@ -275,9 +266,6 @@
     </ClCompile>
     <ClCompile Include="..\..\source\Object.cpp" />
     <ClCompile Include="..\..\source\ValeraEngine.cpp" />
-    <ClCompile Include="..\..\source\platform\PlatformMacOSX.mm">
-      <Filter>platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\platform\PlatformMgr.cpp">
       <Filter>platform</Filter>
     </ClCompile>

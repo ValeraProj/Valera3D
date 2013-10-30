@@ -3,7 +3,7 @@
 #include "..\libs\glew\include\GL\glew.h"
 #include <windows.h>
 
-MyApplication::MyApplication(int& argc, wchar_t** argv)
+MyApplication::MyApplication(int& argc, char** argv)
 	: BaseApplication(argc, argv)
 {
 }

@@ -101,8 +101,6 @@
     <ClInclude Include="..\..\source\platform\PlatformMgr.h" />
     <ClInclude Include="..\..\source\utils\Logger.h" />
     <ClInclude Include="..\..\source\platform\Platform.h" />
-    <ClInclude Include="..\..\source\platform\PlatformLinux.h" />
-    <ClInclude Include="..\..\source\platform\PlatformMacOSX.h" />
     <ClInclude Include="..\..\source\platform\PlatformWin32.h" />
     <ClInclude Include="..\..\source\utils\Timer.h" />
     <ClInclude Include="..\..\source\Valera3D.h" />
@@ -144,8 +142,6 @@
     <ClCompile Include="..\..\source\context\DriverContextGL.cpp" />
     <ClCompile Include="..\..\source\Object.cpp" />
     <ClCompile Include="..\..\source\platform\Platform.cpp" />
-    <ClCompile Include="..\..\source\platform\PlatformLinux.cpp" />
-    <ClCompile Include="..\..\source\platform\PlatformMacOSX.mm" />
     <ClCompile Include="..\..\source\platform\PlatformMgr.cpp" />
     <ClCompile Include="..\..\source\platform\PlatformWin32.cpp" />
     <ClCompile Include="..\..\source\utils\Logger.cpp" />
