@@ -99,6 +99,8 @@
     <ClInclude Include="..\..\source\KeyCodes.h" />
     <ClInclude Include="..\..\source\Object.h" />
     <ClInclude Include="..\..\source\platform\PlatformMgr.h" />
+    <ClInclude Include="..\..\source\scene\TextureManager.h" />
+    <ClInclude Include="..\..\source\stream\Resource.h" />
     <ClInclude Include="..\..\source\utils\Logger.h" />
     <ClInclude Include="..\..\source\platform\Platform.h" />
     <ClInclude Include="..\..\source\platform\PlatformWin32.h" />
@@ -127,7 +129,6 @@
     <ClInclude Include="..\..\source\scene\ScaneMgr.h" />
     <ClInclude Include="..\..\source\scene\ShaderMgr.h" />
     <ClInclude Include="..\..\source\scene\Shape.h" />
-    <ClInclude Include="..\..\source\scene\TextureMgr.h" />
     <ClInclude Include="..\..\source\Singleton.h" />
     <ClInclude Include="..\..\source\stream\FileStream.h" />
     <ClInclude Include="..\..\source\stream\IStream.h" />
@@ -144,6 +145,8 @@
     <ClCompile Include="..\..\source\platform\Platform.cpp" />
     <ClCompile Include="..\..\source\platform\PlatformMgr.cpp" />
     <ClCompile Include="..\..\source\platform\PlatformWin32.cpp" />
+    <ClCompile Include="..\..\source\scene\TextureManager.cpp" />
+    <ClCompile Include="..\..\source\stream\Resource.cpp" />
     <ClCompile Include="..\..\source\utils\Logger.cpp" />
     <ClCompile Include="..\..\source\utils\Timer.cpp" />
     <ClCompile Include="..\..\source\ValeraEngine.cpp" />
@@ -169,7 +172,6 @@
     <ClCompile Include="..\..\source\scene\ScaneMgr.cpp" />
     <ClCompile Include="..\..\source\scene\ShaderMgr.cpp" />
     <ClCompile Include="..\..\source\scene\Shape.cpp" />
-    <ClCompile Include="..\..\source\scene\TextureMgr.cpp" />
     <ClCompile Include="..\..\source\stream\FileStream.cpp" />
     <ClCompile Include="..\..\source\stream\MemoryStream.cpp" />
     <ClCompile Include="..\..\source\stream\NetStream.cpp" />

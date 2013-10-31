@@ -99,7 +99,7 @@ namespace renderer
 		virtual void	create( const std::string* files[6] )	= 0;
 		virtual void	destroy()								= 0;
 
-		void			init( stream::IStream* stream ) override {};
+		bool			init( stream::IStream* stream ) override { return false;};
 
 		u32				getTextureID()	const;
 		ETextureTarget	getTarget()		const;

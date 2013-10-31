@@ -303,6 +303,11 @@ void FileStream::unmap()
 {
 
 }
+std::string FileStream::getName() const
+{
+	return m_fileName;
+}
+
 
 bool FileStream::isFileExist( const std::string& fileName )
 {

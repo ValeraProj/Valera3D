@@ -24,7 +24,6 @@ namespace scene
 			TexturePtr get( const std::string& name ); 
 			
 			TexturePtr load( const std::string& name ); 
-			TexturePtr load( const stream::IStream& stream ); 
 
 			void	   unload( const std::string& name );
 			void	   unload( TexturePtr texture );
