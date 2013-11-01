@@ -113,7 +113,8 @@ source_group(platform         FILES ${PLATFORM_HEADERS} ${PLATFORM_SOURCES})
 source_group(core             FILES ${CORE_HEADERS}     ${CORE_SOURCES})
 source_group(renderer         FILES ${RENDERER_HEADERS} ${RENDERER_SOURCES})
 source_group(context          FILES ${CONTEXT_HEADERS}  ${CONTEXT_SOURCES})
-source_group(scene            FILES ${STREAM_HEADERS}   ${STREAM_SOURCES})
+source_group(stream           FILES ${STREAM_HEADERS}   ${STREAM_SOURCES})
+source_group(scene            FILES ${SCENE_HEADERS}    ${SCENE_SOURCES})
 source_group(utils            FILES ${UTILS_HEADERS}    ${UTILS_SOURCES})
 source_group(""               FILES ${MAIN_HEADERS}     ${MAIN_SOURCES})
 
@@ -132,6 +133,7 @@ add_library(
 	${RENDERER_HEADERS} ${RENDERER_SOURCES}
 	${CONTEXT_HEADERS}  ${CONTEXT_SOURCES}
 	${STREAM_HEADERS}   ${STREAM_SOURCES}
+	${SCENE_HEADERS}    ${SCENE_SOURCES}
 	${UTILS_HEADERS}    ${UTILS_SOURCES}
 	${MAIN_HEADERS}     ${MAIN_SOURCES}
 	) 
