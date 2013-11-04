@@ -1,4 +1,4 @@
-#include "PlatformMgr.h"
+#include "PlatformManager.h"
 
 
 
@@ -46,6 +46,9 @@ CPlatform* CPlatformMgr::createWindow(const core::Dimension2D& size, bool isFull
 #ifdef _PLATFORM_LINUX_
 	platform = new CPlatformLinux(param);
 #endif
+
+	platform->setResizeble(param.isResizeble);
+	platform->setFullScreen(param.isFullscreen);
 
 	return platform;
 }

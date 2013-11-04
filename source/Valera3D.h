@@ -7,7 +7,7 @@
 #include "Singleton.h"
 #include "Object.h"
 #include "scene/Node.h"
-#include "platform/PlatformMgr.h"
+#include "platform/PlatformManager.h"
 
 #include "ValeraEngine.h"
 

@@ -1,5 +1,5 @@
 #include "ValeraEngine.h"
-#include "platform/PlatformMgr.h"
+#include "platform/PlatformManager.h"
 
 using namespace v3d;
 using namespace platform;

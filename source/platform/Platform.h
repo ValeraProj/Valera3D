@@ -75,9 +75,6 @@ namespace platform
 
 	protected:
 
-		virtual void				createWindows()                              = 0;
-		virtual void				closeWindow()                                = 0;
-
 		PlatformParam				m_param;
 		EPlatformType				m_platformType;
 	};

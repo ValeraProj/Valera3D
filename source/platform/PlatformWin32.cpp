@@ -17,9 +17,6 @@ CPlatformWin32::CPlatformWin32( const PlatformParam& param )
 	m_platformType = EPlatformType::ePlatformWindows;
 
 	CPlatformWin32::createWindows();
-
-	CPlatformWin32::setResizeble(m_param.isResizeble);
-	CPlatformWin32::setFullScreen(m_param.isFullscreen);
 }
 
 CPlatformWin32::~CPlatformWin32()

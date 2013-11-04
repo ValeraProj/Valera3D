@@ -98,7 +98,7 @@
     <ClInclude Include="..\..\source\context\DriverContextGL.h" />
     <ClInclude Include="..\..\source\KeyCodes.h" />
     <ClInclude Include="..\..\source\Object.h" />
-    <ClInclude Include="..\..\source\platform\PlatformMgr.h" />
+    <ClInclude Include="..\..\source\platform\PlatformManager.h" />
     <ClInclude Include="..\..\source\scene\TextureManager.h" />
     <ClInclude Include="..\..\source\stream\Resource.h" />
     <ClInclude Include="..\..\source\utils\Logger.h" />
@@ -143,7 +143,7 @@
     <ClCompile Include="..\..\source\context\DriverContextGL.cpp" />
     <ClCompile Include="..\..\source\Object.cpp" />
     <ClCompile Include="..\..\source\platform\Platform.cpp" />
-    <ClCompile Include="..\..\source\platform\PlatformMgr.cpp" />
+    <ClCompile Include="..\..\source\platform\PlatformManager.cpp" />
     <ClCompile Include="..\..\source\platform\PlatformWin32.cpp" />
     <ClCompile Include="..\..\source\scene\TextureManager.cpp" />
     <ClCompile Include="..\..\source\stream\Resource.cpp" />

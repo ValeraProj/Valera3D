@@ -38,8 +38,8 @@ namespace platform
 
 	protected:
 
-		virtual void	createWindows();
-		virtual void	closeWindow();
+		void			createWindows();
+		void			closeWindow();
 
 		HWND			m_window;
 		HDC				m_context;

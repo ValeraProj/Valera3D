@@ -1,5 +1,5 @@
-#ifndef _V3D_PLATFORM_MGR_H_
-#define _V3D_PLATFORM_MGR_H_
+#ifndef _V3D_PLATFORM_MANAGER_H_
+#define _V3D_PLATFORM_MANAGER_H_
 
 #include "Platform.h"
 

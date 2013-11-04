@@ -151,9 +151,6 @@
     <ClInclude Include="..\..\source\ValeraConfig.h" />
     <ClInclude Include="..\..\source\ValeraEngine.h" />
     <ClInclude Include="..\..\source\Valera3D.h" />
-    <ClInclude Include="..\..\source\platform\PlatformMgr.h">
-      <Filter>platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\source\core\Dimension2D.h">
       <Filter>core</Filter>
     </ClInclude>
@@ -171,6 +168,9 @@
     </ClInclude>
     <ClInclude Include="..\..\source\scene\TextureManager.h">
       <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\platform\PlatformManager.h">
+      <Filter>platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -266,9 +266,6 @@
     </ClCompile>
     <ClCompile Include="..\..\source\Object.cpp" />
     <ClCompile Include="..\..\source\ValeraEngine.cpp" />
-    <ClCompile Include="..\..\source\platform\PlatformMgr.cpp">
-      <Filter>platform</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\context\DriverContext.cpp">
       <Filter>renderer\context</Filter>
     </ClCompile>
@@ -283,6 +280,9 @@
     </ClCompile>
     <ClCompile Include="..\..\source\scene\TextureManager.cpp">
       <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\platform\PlatformManager.cpp">
+      <Filter>platform</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
