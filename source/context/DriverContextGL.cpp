@@ -1,16 +1,21 @@
 #include "DriverContextGL.h"
 
 #define GLEW_STATIC
-#include "glew.h"
+#include "GL/glew.h"
 
 #if defined(_PLATFORM_WIN_)
 #	include <windows.h>
 #	include <winuser.h>
-#	include "wglew.h"
+#	include "GL/wglew.h"
 #	include "platform/PlatformWin32.h"
 #elif defined(_PLATFORM_LINUX_)
+#	include "GL/glxew.h"
+#	include <GL/glx.h>
 #	include "platform/PlatformLinux.h"
 #endif
+
+#include <iostream>
+#include <cstring>
 
 using namespace v3d;
 using namespace renderer;
@@ -254,9 +259,68 @@ bool CDriverContextGL::createWin32Context()
 
 #elif defined(_PLATFORM_LINUX_)
 
-void CDriverContextGL::createLinuxContext()
-{
+typedef GLXContext (*glXCreateContextAttribsARBProc)(Display*, GLXFBConfig, GLXContext, Bool, const int*);
 
+bool CDriverContextGL::createLinuxContext()
+{
+	// Get the default screen's GLX extension list
+	Display* display = static_cast< const platform::CPlatformLinux*>(m_platform)->getDisplay();
+	const char *glxExtensions = glXQueryExtensionsString( display, DefaultScreen( display ) );
+	std::cout << glxExtensions << std::endl;
+
+	if (!gluCheckExtension((const GLubyte*)"GLX_ARB_create_context" , (const GLubyte*)glxExtensions))
+	{
+		// "glXCreateContextAttribsARB() not found".
+		return false;
+	}
+
+	int attribs[] =
+	{
+		GLX_CONTEXT_MAJOR_VERSION_ARB, 3,
+		GLX_CONTEXT_MINOR_VERSION_ARB, 3,
+		//GLX_CONTEXT_FLAGS_ARB,       GLX_CONTEXT_FORWARD_COMPATIBLE_BIT_ARB,
+		None
+	};
+
+	glXCreateContextAttribsARBProc glXCreateContextAttribsARB = 0;
+	glXCreateContextAttribsARB = (glXCreateContextAttribsARBProc)glXGetProcAddressARB((const GLubyte*)"glXCreateContextAttribsARB");
+
+	GLXContext context = nullptr;
+	GLXFBConfig fbConfigs = static_cast< const platform::CPlatformLinux*>(m_platform)->getFBConfig();
+	//XVisualInfo* visualInfo = static_cast< const platform::CPlatformLinux*>(m_platform)->getVisualInfo();
+	//context = glXCreateContext(display, visualInfo, NULL, GL_TRUE);
+	context = glXCreateContextAttribsARB( display, fbConfigs, 0, True, attribs );
+	if (!context)
+	{
+		//Error to create exContext OpenGL 3.3
+		return false;
+	}
+
+	Window window = static_cast< const platform::CPlatformLinux*>(m_platform)->getWidow();
+	if (!glXMakeCurrent( display, window, context ))
+	{
+		//Can not set current context;
+		return false;
+	}
+
+	//XSync( display, False );
+
+	GLenum error = glewInit();
+	if (error !=  GLEW_OK )
+	{
+		const GLubyte* errorStr = glewGetErrorString(error);
+		std::cout << errorStr << std::endl;
+		//"Couldn't initialize GLEW! error errorStr
+
+		glXMakeCurrent( display, 0, 0 );
+		glXDestroyContext( display, context );
+
+		return false;
+	}
+
+	driverInfo();
+
+	return true;
 }
 
 #endif
@@ -272,6 +336,11 @@ void CDriverContextGL::driverInfo()
 	GLint maxTextureUnits;
 	glGetIntegerv( GL_MAX_TEXTURE_UNITS, &maxTextureUnits );
 	//TODO: driver info
+	std::cout << renderer << std::endl;
+	std::cout << vendor << std::endl;
+	std::cout << GLSL << std::endl;
+	std::cout << version << std::endl;
+	std::cout << maxTextureUnits << std::endl;
 
 	/*glewIsSupported("GL_ARB_multitexture");
 	glewIsSupported("GL_ARB_vertex_buffer_object");

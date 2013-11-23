@@ -13,7 +13,7 @@ namespace platform
 	{
 		eDriverNull = -1,
 		eDriverOpenGL,
-		eDriverDirect3D,
+		eDriverDirect3D
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +23,7 @@ namespace platform
 		ePlatformNull = -1,
 		ePlatformWindows,
 		ePlatformLinux,
-		ePlatformMacOSX,
+		ePlatformMacOSX
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,6 @@ namespace platform
 		virtual void				setResizeble    ( bool value = true )        = 0;
 		virtual void				setWindowCaption( const std::string& text )  = 0;
 		virtual void				setWindowCaption( const std::wstring& text ) = 0;
-		
 
 		virtual bool				isWindowMaximized() const                    = 0;
 		virtual bool				isWindowMinimized() const                    = 0;

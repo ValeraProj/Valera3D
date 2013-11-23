@@ -1,6 +1,7 @@
 #include "Logger.h"
 
 #include <iostream>
+#include <stdio.h>
 #include <stdarg.h>
 
 using namespace v3d;
@@ -43,7 +44,7 @@ void CLogger::log( ELoggerType type, ELogOut out, const char* format, ... )
 	
 	va_list args;
 	va_start(args, format);
-	vsnprintf_s(buffer, sizeof(buffer), format, args);
+	vsnprintf(buffer, sizeof(buffer), format, args);
 	va_end(args);
 
 	std::string message;

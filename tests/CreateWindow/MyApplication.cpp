@@ -1,7 +1,10 @@
 #include "MyApplication.h"
+#include <iostream>
 
-#include "..\libs\glew\include\GL\glew.h"
-#include <windows.h>
+#include "GL/glew.h"
+#if defined (_PLATFORM_WIN_)
+#	include <windows.h>
+#endif
 
 MyApplication::MyApplication(int& argc, char** argv)
 	: BaseApplication(argc, argv)
@@ -21,10 +24,9 @@ void MyApplication::init()
 void MyApplication::run()
 {
 	//Temporary
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.5f, 0.0f, 0.0f, 1.0f);
 
 	int a = 0;
-
 	glFlush();
 }

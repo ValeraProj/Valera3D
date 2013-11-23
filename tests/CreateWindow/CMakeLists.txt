@@ -12,20 +12,20 @@ source_group(source  FILES ${TEST_SOURCES})
 
 include_directories(source)
 
-if (PLATFORM_WIN32)
-	link_directories(
-		${ENGINE_PROJECT_DIR}/project/win32/
-		)
+if(PLATFORM_WIN32)
+	link_directories(${ENGINE_PROJECT_DIR}/project/win32/)
+elseif(PLATFORM_LINUX)
+	link_directories(${ENGINE_PROJECT_DIR}/project/linux-qt/)
 endif()
 
-add_executable( 
-		${TEST_PROJECT}
-		${MAIN_FILE}
-		${TEST_HEADERS}
-		${TEST_SOURCES}
-		)
+add_executable(
+	${TEST_PROJECT}
+	${MAIN_FILE}
+	${TEST_HEADERS}
+	${TEST_SOURCES}
+	)
 
-if (PLATFORM_WIN32)
+if(PLATFORM_WIN32)
 	set(EXTERNAL_LIBS 
 		OpenGL32.lib
 		#debug
@@ -35,12 +35,19 @@ if (PLATFORM_WIN32)
 		#optimized ${ENGINE_NAME}.lib
 		#optimized ${GLEW_PLOJECT}.lib
 	)
+elseif(PLATFORM_LINUX)
+	find_package(X11)
+	set(EXTERNAL_LIBS
+		libX11.so
+		libGL.so
+		libGLU.so
+	)
+	#find_library(X11 NAMES X11 x11 PATHS /usr/X11/include/X11/ /usr/X11/lib)
 endif()
 
 target_link_libraries(
 	${TEST_PROJECT}
 	${EXTERNAL_LIBS}
-	${GLEW_PLOJECT}
 	${ENGINE_NAME}
 	)
 

@@ -3,6 +3,9 @@
 
 #include "Platform.h"
 
+#include <X11/Xlib.h>
+#include <GL/glx.h>
+
 namespace v3d
 {
 namespace platform
@@ -21,7 +24,6 @@ namespace platform
 		virtual void	setFullScreen( bool value = false );
 		virtual void	setResizeble ( bool value = true );
 		virtual void	setWindowCaption( const std::string& text );
-		virtual void	setWindowCaption( const std::wstring& text );
 
 		virtual bool	isWindowMaximized() const;
 		virtual bool	isWindowMinimized() const;
@@ -31,10 +33,24 @@ namespace platform
 		virtual bool	begin();
 		virtual bool	end();
 
+		Window			getWidow()         const;
+		Display*		getDisplay()       const;
+		GLXFBConfig		getFBConfig()      const;
+		XVisualInfo*	getVisualInfo()    const;
+
 	protected:
 
-		virtual void	createWindows();
-		virtual void	closeWindow();
+		void			createWindows();
+		void			closeWindow();
+
+		Display*		m_display;
+		Window			m_window;
+		int				m_screen;
+
+		GLXFBConfig		m_glxFBConfigs;
+		GLXWindow		m_glxWindow;
+		GLXContext		m_glxContext;
+		XVisualInfo*	m_visualInfo;
 
 	};
 

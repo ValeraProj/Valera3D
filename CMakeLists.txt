@@ -27,7 +27,8 @@ if(PLATFORM_WIN32)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc /MP")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /ZI")
 elseif(PLATFORM_LINUX OR PLATFORM_MACOSX)
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11" )
+	#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -lX11 -lGL" )
 endif()
 
 #Source Dir
@@ -44,39 +45,39 @@ set(MAIN_FILE
 if(PLATFORM_WIN32) 
 	set(PLATFORM_HEADERS
 		${SOURCE_DIR}/platform/Platform.h
-		${SOURCE_DIR}/platform/PlatformMgr.h
+		${SOURCE_DIR}/platform/PlatformManager.h
 		${SOURCE_DIR}/platform/PlatformWin32.h
 	)
 	
 	set(PLATFORM_SOURCES
 		${SOURCE_DIR}/platform/Platform.cpp
-		${SOURCE_DIR}/platform/PlatformMgr.cpp
+		${SOURCE_DIR}/platform/PlatformManager.cpp
 		${SOURCE_DIR}/platform/PlatformWin32.cpp
 	)
 
 elseif(PLATFORM_LINUX)
 	set(PLATFORM_HEADERS
 		${SOURCE_DIR}/platform/Platform.h
-		${SOURCE_DIR}/platform/PlatformMgr.h
+		${SOURCE_DIR}/platform/PlatformManager.h
 		${SOURCE_DIR}/platform/PlatformLinux.h
 	)
 	
 	set(PLATFORM_SOURCES
 		${SOURCE_DIR}/platform/Platform.cpp
-		${SOURCE_DIR}/platform/PlatformMgr.cpp
+		${SOURCE_DIR}/platform/PlatformManager.cpp
 		${SOURCE_DIR}/platform/PlatformLinux.cpp
 	)
 
 elseif(PLATFORM_MACOSX)
 	set(PLATFORM_HEADERS
 		${SOURCE_DIR}/platform/Platform.h
-		${SOURCE_DIR}/platform/PlatformMgr.h
+		${SOURCE_DIR}/platform/PlatformManager.h
 		${SOURCE_DIR}/platform/PlatformMacOSX.h
 	)
 	
 	set(PLATFORM_SOURCES
 		${SOURCE_DIR}/platform/Platform.cpp
-		${SOURCE_DIR}/platform/PlatformMgr.cpp
+		${SOURCE_DIR}/platform/PlatformManager.cpp
 		${SOURCE_DIR}/platform/PlatformMacOSX.mm
 	)
 endif()
@@ -121,8 +122,8 @@ source_group(""               FILES ${MAIN_HEADERS}     ${MAIN_SOURCES})
 set (ENGINE_PROJECT_DIR ${PROJECT_SOURCE_DIR})
 
 include_directories(
-		${SOURCE_DIR}
-		libs/glew/include/GL
+	${SOURCE_DIR}
+	libs/glew/include
 	)
 
 add_library(
@@ -138,11 +139,14 @@ add_library(
 	${MAIN_HEADERS}     ${MAIN_SOURCES}
 	) 
 
+target_link_libraries(${ENGINE_NAME} ${GLEW_PLOJECT})
+
 #Additional Libs
 add_subdirectory(libs/glew)
 add_subdirectory(tests/${TEST_PROJECT})
 
 add_dependencies(${ENGINE_NAME} ${GLEW_PLOJECT})
+
 
 
 

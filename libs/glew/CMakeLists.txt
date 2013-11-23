@@ -4,6 +4,7 @@ project(${GLEW_PLOJECT})
 
 if(MINGW OR UNIX)
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-attributes")
+	#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} GL ")
 endif()
 
 include_directories( include )
@@ -21,7 +22,7 @@ source_group(include/GL FILES ${GLEW_HEADERS})
 source_group(src FILES ${GLEW_SOURCES})
 
 add_library(
-		${GLEW_PLOJECT}
-		STATIC
-		${GLEW_SOURCES} ${GLEW_HEADERS}
-		)
+	${GLEW_PLOJECT}
+	STATIC
+	${GLEW_SOURCES} ${GLEW_HEADERS}
+	)
