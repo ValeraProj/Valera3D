@@ -58,7 +58,6 @@ namespace platform
 		virtual void				setFullScreen   ( bool value = true )        = 0;
 		virtual void				setResizeble    ( bool value = true )        = 0;
 		virtual void				setWindowCaption( const std::string& text )  = 0;
-		virtual void				setWindowCaption( const std::wstring& text ) = 0;
 
 		virtual bool				isWindowMaximized() const                    = 0;
 		virtual bool				isWindowMinimized() const                    = 0;

@@ -12,26 +12,31 @@ namespace platform
 	class CPlatformMacOSX : public CPlatform
 	{
 	public:
-						CPlatformMacOSX( const PlatformParam& param );
-		virtual			~CPlatformMacOSX();
-
-		virtual void	minimizeWindow();
-		virtual void	maximizeWindow();
-		virtual void	restoreWindow();
-		virtual void	setFullScreen( bool value = false );
-		virtual void	setWindowCaption( const wchar_t* text );
-
-		virtual bool	isWindowMaximized() const;
-		virtual bool	isWindowMinimized() const;
-		virtual bool	isWindowActive()    const;
-		virtual bool	isWindowFocused()   const;
+        
+        CPlatformMacOSX( const PlatformParam& param );
+		virtual						~CPlatformMacOSX();
+		
+		virtual void				minimizeWindow  ();
+		virtual void				maximizeWindow  ();
+		virtual void				restoreWindow   ();
+		virtual void				setFullScreen   ( bool value = true );
+		virtual void				setResizeble    ( bool value = true );
+		virtual void				setWindowCaption( const std::string& text );
+        
+		virtual bool				isWindowMaximized() const;
+		virtual bool				isWindowMinimized() const;
+		virtual bool				isWindowActive()    const;
+		virtual bool				isWindowFocused()   const;
+		const core::Dimension2D&	getWindowsSize()    const;
+		EPlatformType				getPlatformType()   const;
+        
+		virtual bool				begin();
+		virtual bool				end();
 
 	protected:
 
-		virtual void	mainLoop();
-
-		virtual void	createWindows();
-		virtual void	closeWindow();
+		void                        createWindows();
+		void                        closeWindow();
 
 	};
 
