@@ -4,18 +4,29 @@ set(SOLUTION_NAME Valera3D)
 set(ENGINE_NAME ValeraEngine)
 set(GLEW_PLOJECT glew_static)
 set(TEST_PROJECT CreateWindow)
+set(TEST_PROJECT_1 Test_1)
 
-if(PLATFORM_WIN32)
-	message("-- Configuring Win32")
+if(COMPILER_MSVC)
+	message("-- Configuring MSVC Compiler")
+elseif(COMPILER_GCC)
+	message("-- Configuring GCC Compiler")
+elseif(COMPILER_CLANG)
+	message("-- Configuring Clang Compiler")
+else()
+	message(FATAL_ERROR "Unknown compiler. Only COMPILER_MSVC|COMPILER_GCC|COMPILER_CLANG supported")
+endif()
+
+if(WIN32)
+	message("-- Platrorm Win32")
 	add_definitions(-D_WIN32 -D_CONSOLE -DUNICODE -D_UNICODE)
-elseif(PLATFORM_LINUX)
-	message("-- Configuring Linux")
+elseif(UNIX)
+	message("-- Platrorm Linux")
 	add_definitions(-D_LINUX)
-elseif(PLATFORM_MACOSX)
-	message("-- Configuring MacOSX")
+elseif(APPLE)
+	message("-- Platrorm MacOSX")
 	add_definitions(-DMACOSX)
 else()
-	message(FATAL_ERROR "Unknown platform. Only PLATFORM_WIN32|PLATFORM_LINUX|PLATFORM_MACOSX supported")
+	message(FATAL_ERROR "Unknown platform. Only Platrorm Win32|Platrorm Linux|Platrorm MacOSX supported")
 endif()
 
 project(${SOLUTION_NAME})
@@ -23,10 +34,10 @@ project(${SOLUTION_NAME})
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
 set(CMAKE_DEBUG_POSTFIX "_d")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
-if(PLATFORM_WIN32)
+if(WIN32)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc /MP")
 	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /ZI")
-elseif(PLATFORM_LINUX OR PLATFORM_MACOSX)
+elseif(UNIX OR APPLE)
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11" )
 	#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -lX11 -lGL" )
 endif()
@@ -42,7 +53,7 @@ set(MAIN_FILE
 #Filters
 
 #Platform Source
-if(PLATFORM_WIN32) 
+if(WIN32) 
 	set(PLATFORM_HEADERS
 		${SOURCE_DIR}/platform/Platform.h
 		${SOURCE_DIR}/platform/PlatformManager.h
@@ -55,7 +66,7 @@ if(PLATFORM_WIN32)
 		${SOURCE_DIR}/platform/PlatformWin32.cpp
 	)
 
-elseif(PLATFORM_LINUX)
+elseif(UNIX)
 	set(PLATFORM_HEADERS
 		${SOURCE_DIR}/platform/Platform.h
 		${SOURCE_DIR}/platform/PlatformManager.h
@@ -68,7 +79,7 @@ elseif(PLATFORM_LINUX)
 		${SOURCE_DIR}/platform/PlatformLinux.cpp
 	)
 
-elseif(PLATFORM_MACOSX)
+elseif(APPLE)
 	set(PLATFORM_HEADERS
 		${SOURCE_DIR}/platform/Platform.h
 		${SOURCE_DIR}/platform/PlatformManager.h
@@ -144,6 +155,7 @@ target_link_libraries(${ENGINE_NAME} ${GLEW_PLOJECT})
 #Additional Libs
 add_subdirectory(libs/glew)
 add_subdirectory(tests/${TEST_PROJECT})
+add_subdirectory(tests/${TEST_PROJECT_1})
 
 add_dependencies(${ENGINE_NAME} ${GLEW_PLOJECT})
 

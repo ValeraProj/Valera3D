@@ -11,10 +11,12 @@ include_directories( include )
 
 add_definitions("-DGLEW_STATIC")
 
-if(UNIX)
+if(WIN32)
+	file(GLOB GLEW_HEADERS include/GL/glew.h include/GL/wglew.h)
+elseif(UNIX)
 	file(GLOB GLEW_HEADERS include/GL/glew.h include/GL/glxew.h)
 else()
-	file(GLOB GLEW_HEADERS include/GL/*.h)
+	file(GLOB GLEW_HEADERS include/GL/glew.h)
 endif()
 file(GLOB GLEW_SOURCES src/glew.c)
 

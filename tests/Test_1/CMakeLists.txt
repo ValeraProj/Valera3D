@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 2.8.9)
 
-project(${TEST_PROJECT})
+project(${TEST_PROJECT_1})
 
-file(GLOB TEST_HEADERS *.h)
-file(GLOB TEST_SOURCES *.cpp)
+file(GLOB TEST_HEADERS_1 *.h)
+file(GLOB TEST_SOURCES_1 *.cpp)
 
-set(MAIN_FILE CreateWindow.cpp)
+set(MAIN_FILE Test_1.cpp)
 
-source_group(include FILES ${TEST_HEADERS})
-source_group(source  FILES ${TEST_SOURCES})
+source_group(include FILES ${TEST_HEADERS_1})
+source_group(source  FILES ${TEST_SOURCES_1})
 
 include_directories(source)
 
@@ -19,10 +19,9 @@ elseif(UNIX)
 endif()
 
 add_executable(
-	${TEST_PROJECT}
-	${MAIN_FILE}
-	${TEST_HEADERS}
-	${TEST_SOURCES}
+	${TEST_PROJECT_1}
+	${TEST_HEADERS_1}
+	${TEST_SOURCES_1}
 	)
 
 if(WIN32)
@@ -46,9 +45,9 @@ elseif(UNIX)
 endif()
 
 target_link_libraries(
-	${TEST_PROJECT}
+	${TEST_PROJECT_1}
 	${EXTERNAL_LIBS}
 	${ENGINE_NAME}
 	)
 
-add_dependencies(${TEST_PROJECT} ${ENGINE_NAME})
+add_dependencies(${TEST_PROJECT_1} ${ENGINE_NAME})
