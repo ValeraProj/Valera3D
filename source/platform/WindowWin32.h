@@ -1,7 +1,7 @@
 #ifndef _V3D_PLATFORM_WIN32_H_
 #define _V3D_PLATFORM_WIN32_H_
 
-#include "Platform.h"
+#include "Window.h"
 #include <windows.h>
 
 namespace v3d
@@ -10,26 +10,24 @@ namespace platform
 {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	
-	class CPlatformWin32 : public CPlatform
+	class CWindowWin32 : public CWindow
 	{
 	public:
 
-						CPlatformWin32( const PlatformParam& param );
-		virtual			~CPlatformWin32();
+						CWindowWin32(const WindowParam& param);
+		virtual			~CWindowWin32();
 
-		virtual void	minimizeWindow();
-		virtual void	maximizeWindow();
-		virtual void	restoreWindow();
+		virtual void	minimize();
+		virtual void	maximize();
+		virtual void	restore();
 		virtual void	setFullScreen( bool value = false );
 		virtual void	setResizeble ( bool value = true );
-		virtual void	setWindowCaption( const std::string& text );
-		virtual void	setWindowCaption( const std::wstring& text );
+		virtual void	setCaption( const std::string& text );
 
-		virtual bool	isWindowMaximized() const;
-		virtual bool	isWindowMinimized() const;
-		virtual bool	isWindowActive()    const;
-		virtual bool	isWindowFocused()   const;
+		virtual bool	isMaximized() const;
+		virtual bool	isMinimized() const;
+		virtual bool	isActive()    const;
+		virtual bool	isFocused()   const;
 
 		virtual bool	begin();
 		virtual bool	end();
@@ -38,8 +36,8 @@ namespace platform
 
 	protected:
 
-		void			createWindows();
-		void			closeWindow();
+		void			create();
+		void			close();
 
 		HWND			m_window;
 		HDC				m_context;

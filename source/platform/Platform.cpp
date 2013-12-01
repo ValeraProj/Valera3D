@@ -1,11 +1,21 @@
 #include "Platform.h"
 
-using namespace v3d;
-using namespace platform;
+#ifdef _PLATFORM_WIN_
+#	include "platform/WindowWin32.h"
+#endif
 
-CPlatform::CPlatform( const PlatformParam& param )
-	: m_param( param )
-	, m_platformType( EPlatformType::ePlatformNull )
+#ifdef _PLATFORM_MACOSX_
+#	include "platform/PlatformMacOSX.h"
+#endif
+
+#ifdef _PLATFORM_LINUX_
+#	include "platform/PlatformLinux.h"
+#endif
+
+using namespace v3d;
+using namespace v3d::platform;
+
+CPlatform::CPlatform()
 {
 }
 
@@ -13,22 +23,31 @@ CPlatform::~CPlatform()
 {
 }
 
-bool CPlatform::isFullscreen() const
+CWindow* CPlatform::createWindowWithContext(const core::Dimension2D& size, bool isFullscreen, bool isResizeble, EDriverType driverType)
 {
-	return m_param.isFullscreen;
-}
+	CWindow* platform = nullptr;
 
-bool CPlatform::isResizeble() const
-{
-	return m_param.isResizeble;
-}
+	WindowParam param;
+	param.windowSize   = size;
+	param.isFullscreen = isFullscreen;
+	param.isResizeble  = isFullscreen ? false : isResizeble;
+	param.driverType   = driverType;
 
-const core::Dimension2D& CPlatform::getWindowsSize() const
-{
-	return m_param.windowSize;
-}
+#ifdef _PLATFORM_WIN_
+	platform = new CWindowWin32(param);
+#endif
 
-EPlatformType CPlatform::getPlatformType() const
-{
-	return m_platformType;
+#ifdef _PLATFORM_MACOSX_
+	platform = new CPlatformMacOSX(param);
+#endif
+
+#ifdef _PLATFORM_LINUX_
+	platform = new CPlatformLinux(param);
+#endif
+
+	platform->setResizeble(param.isResizeble);
+	platform->setFullScreen(param.isFullscreen);
+
+
+	return platform;
 }

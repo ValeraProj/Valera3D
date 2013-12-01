@@ -2,7 +2,7 @@
 #define _V3D_DRIVER_CONTEXT_H_
 
 #include "common.h"
-#include "platform/Platform.h"
+#include "platform/Window.h"
 
 namespace v3d
 {
@@ -14,7 +14,7 @@ namespace renderer
 	{
 	public:
 
-									CDriverContext( const platform::CPlatform* platform );
+									CDriverContext( const platform::CWindow* window );
 		virtual						~CDriverContext();
 
 		virtual void				driverInfo()                               = 0;
@@ -23,7 +23,7 @@ namespace renderer
 
 	protected:
 
-		const platform::CPlatform*	m_platform;
+		const platform::CWindow*	m_window;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

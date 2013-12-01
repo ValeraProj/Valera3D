@@ -1,5 +1,5 @@
 #include "ValeraEngine.h"
-#include "platform/PlatformManager.h"
+#include "platform/Platform.h"
 
 using namespace v3d;
 using namespace platform;
@@ -12,12 +12,12 @@ CValeraEngine::~CValeraEngine()
 {
 }
 
-CPlatform* CValeraEngine::getPlatform() const
+CWindow* CValeraEngine::getWindow() const
 {
 	return m_platform;
 }
 
-void CValeraEngine::setPlatform( platform::CPlatform* platform )
+void CValeraEngine::setWindow(platform::CWindow* platform)
 {
 	m_platform = platform;
 }

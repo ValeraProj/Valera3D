@@ -1,0 +1,84 @@
+#ifndef _V3D_WINDOW_H_
+#define _V3D_WINDOW_H_
+
+#include "common.h"
+
+namespace v3d
+{
+namespace platform
+{
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	enum class EDriverType
+	{
+		eDriverNull = -1,
+		eDriverOpenGL,
+		eDriverDirect3D
+	};
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	enum class EPlatformType
+	{
+		ePlatformNull = -1,
+		ePlatformWin32,
+		ePlatformLinux,
+		ePlatformMacOSX
+	};
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	struct WindowParam
+	{
+		EDriverType       driverType;
+		core::Dimension2D windowSize;
+		bool              isFullscreen;
+		bool              isResizeble;
+		
+		WindowParam()
+			: driverType(EDriverType::eDriverNull)
+			, windowSize(core::Dimension2D(800U, 600U))
+			, isFullscreen(false)
+			, isResizeble(false)
+		{
+		}
+	};
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	class CWindow
+	{
+	public:
+									CWindow(const WindowParam& param);
+		virtual						~CWindow();
+		
+		virtual void				minimize()                            = 0;
+		virtual void				maximize()                            = 0;
+		virtual void				restore()                             = 0;
+		virtual void				setFullScreen( bool value = true )    = 0;
+		virtual void				setResizeble( bool value = true )     = 0;
+		virtual void				setCaption( const std::string& text ) = 0;
+
+		virtual bool				isMaximized() const                   = 0;
+		virtual bool				isMinimized() const                   = 0;
+		virtual bool				isActive()    const                   = 0;
+		virtual bool				isFocused()   const                   = 0;
+		bool						isFullscreen()      const;
+		bool						isResizeble()       const;
+		const core::Dimension2D&	getSize()    const;
+		const EPlatformType			getPlatformType()   const;
+
+		virtual bool				begin()                               = 0;
+		virtual bool				end()                                 = 0;
+
+	protected:
+
+		WindowParam					m_param;
+		EPlatformType				m_platformType;
+	};
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+}
+
+#endif

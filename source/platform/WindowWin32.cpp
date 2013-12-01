@@ -1,34 +1,33 @@
-#include "PlatformWin32.h"
+#include "WindowWin32.h"
 
 #include "context\DriverContextGL.h"
-
 #include <winuser.h>
 
 using namespace v3d;
-using namespace platform;
+using namespace v3d::platform;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-CPlatformWin32::CPlatformWin32( const PlatformParam& param )
-	: CPlatform( param )
+CWindowWin32::CWindowWin32(const WindowParam& param)
+	: CWindow( param )
 	, m_window( nullptr )
 	, m_context( nullptr )
 {
-	m_platformType = EPlatformType::ePlatformWindows;
+	m_platformType = EPlatformType::ePlatformWin32;
 
-	CPlatformWin32::createWindows();
+	CWindowWin32::create();
 }
 
-CPlatformWin32::~CPlatformWin32()
+CWindowWin32::~CWindowWin32()
 {
 }
 
-HWND CPlatformWin32::getHandleWindow() const
+HWND CWindowWin32::getHandleWindow() const
 {
 	return m_window;
 }
 
-void CPlatformWin32::minimizeWindow()
+void CWindowWin32::minimize()
 {
 	WINDOWPLACEMENT wndpl;
 	wndpl.length = sizeof(WINDOWPLACEMENT);
@@ -37,7 +36,7 @@ void CPlatformWin32::minimizeWindow()
 	SetWindowPlacement(m_window, &wndpl);
 }
 
-void CPlatformWin32::maximizeWindow()
+void CWindowWin32::maximize()
 {
 	WINDOWPLACEMENT wndpl;
 	wndpl.length = sizeof(WINDOWPLACEMENT);
@@ -46,7 +45,7 @@ void CPlatformWin32::maximizeWindow()
 	SetWindowPlacement(m_window, &wndpl);
 }
 
-void CPlatformWin32::restoreWindow()
+void CWindowWin32::restore()
 {
 	WINDOWPLACEMENT wndpl;
 	wndpl.length = sizeof(WINDOWPLACEMENT);
@@ -55,7 +54,7 @@ void CPlatformWin32::restoreWindow()
 	SetWindowPlacement(m_window, &wndpl);
 }
 
-void CPlatformWin32::setResizeble( bool value )
+void CWindowWin32::setResizeble(bool value)
 {
 	if  (m_param.isFullscreen || m_param.isResizeble == value)
 	{
@@ -94,7 +93,7 @@ void CPlatformWin32::setResizeble( bool value )
 
 }
 
-void CPlatformWin32::setFullScreen( bool value )
+void CWindowWin32::setFullScreen(bool value)
 {
 	LONG_PTR style = WS_POPUP;
 	if (!value)
@@ -149,7 +148,7 @@ void CPlatformWin32::setFullScreen( bool value )
 	m_param.isFullscreen = value;
 }
 
-bool CPlatformWin32::isWindowMaximized() const
+bool CWindowWin32::isMaximized() const
 {
 	WINDOWPLACEMENT plc;
 	plc.length = sizeof(WINDOWPLACEMENT);
@@ -163,7 +162,7 @@ bool CPlatformWin32::isWindowMaximized() const
 	return ret;
 }
 
-bool CPlatformWin32::isWindowMinimized() const
+bool CWindowWin32::isMinimized() const
 {
 	WINDOWPLACEMENT plc;
 	plc.length = sizeof(WINDOWPLACEMENT);
@@ -177,29 +176,24 @@ bool CPlatformWin32::isWindowMinimized() const
 	return ret;
 }
 
-bool CPlatformWin32::isWindowActive() const
+bool CWindowWin32::isActive() const
 {
 	bool ret = (GetActiveWindow() == m_window);
 	return ret;
 }
 
-bool CPlatformWin32::isWindowFocused() const
+bool CWindowWin32::isFocused() const
 {
 	bool ret = (GetFocus() == m_window);
 	return ret;
 }
 
-void CPlatformWin32::setWindowCaption( const std::string& text )
+void CWindowWin32::setCaption(const std::string& text)
 {
 	SetWindowTextA(m_window, text.c_str());
 }
 
-void CPlatformWin32::setWindowCaption( const std::wstring& text )
-{
-	SetWindowText(m_window, text.c_str());
-}
-
-bool CPlatformWin32::begin()
+bool CWindowWin32::begin()
 {
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
@@ -218,13 +212,12 @@ bool CPlatformWin32::begin()
 	return true;
 }
 
-bool CPlatformWin32::end()
+bool CWindowWin32::end()
 {
-	//Driver()->run();
 	return SwapBuffers( m_context ) != FALSE;
 }
 
-void CPlatformWin32::createWindows()
+void CWindowWin32::create()
 {
 	HINSTANCE hInstance = GetModuleHandle(NULL);
 	LPCWSTR className = __TEXT("ValeraWin32");
@@ -254,6 +247,9 @@ void CPlatformWin32::createWindows()
 	clientSize.left   = 0;
 	clientSize.right  = m_param.windowSize.width;
 	clientSize.bottom = m_param.windowSize.height;
+
+	/*DWORD dwStyle = WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
+	DWORD dwExStyle = WS_EX_APPWINDOW;*/
 
 	DWORD dwStyle   = WS_POPUP;
 	DWORD dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
@@ -315,7 +311,7 @@ void CPlatformWin32::createWindows()
 	default:
 		{
 			//Wrong Driver Context
-			CPlatformWin32::closeWindow();
+			CWindowWin32::close();
 			system("pause");
 			return;
 		}
@@ -325,7 +321,7 @@ void CPlatformWin32::createWindows()
 	if (!driver->createContext())
 	{
 		//Error crete context
-		CPlatformWin32::closeWindow();
+		CWindowWin32::close();
 		system("pause");
 		return;
 	}
@@ -335,7 +331,7 @@ void CPlatformWin32::createWindows()
 
 }
 
-void CPlatformWin32::closeWindow()
+void CWindowWin32::close()
 {
 	MSG msg;
 	PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE);
@@ -343,7 +339,7 @@ void CPlatformWin32::closeWindow()
 	PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE);
 	
 	DestroyWindow(m_window);
-	HINSTANCE hInstance = GetModuleHandle(0);
+	HINSTANCE hInstance = GetModuleHandle(NULL);
 	UnregisterClass(__TEXT("ValeraWin32"), hInstance);
 }
 

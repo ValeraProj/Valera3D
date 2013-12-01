@@ -14,7 +14,7 @@ namespace renderer
 	{
 	public:
 
-						CDriverContextGL( const platform::CPlatform* platform );
+						CDriverContextGL( const platform::CWindow* window );
 		virtual			~CDriverContextGL();
 
 		virtual void	driverInfo();

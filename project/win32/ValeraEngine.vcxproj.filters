@@ -1,35 +1,121 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="core">
-      <UniqueIdentifier>{79101d6c-101e-4fc7-a91a-d493fec32ef4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="platform">
-      <UniqueIdentifier>{e051c708-3f5c-47f0-a733-c59a11dd336c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="renderer">
-      <UniqueIdentifier>{5c21ba03-a509-4d09-930e-2636dbee6ddc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="renderer\openGL">
-      <UniqueIdentifier>{af3acdd9-818e-455c-8ded-7d83b2f58f94}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="renderer\directX">
-      <UniqueIdentifier>{8651d009-e5a8-4d53-bcf9-4475101c56cc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="scene">
-      <UniqueIdentifier>{9ca4dfc6-cf2b-4740-a178-bc57669327a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="stream">
-      <UniqueIdentifier>{a61f6cc0-5e8e-45a9-b0f3-b6df71066079}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="utils">
-      <UniqueIdentifier>{982f3589-17a6-4764-830a-472033f12968}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="renderer\context">
-      <UniqueIdentifier>{6c5dfa2a-fd9b-4d6c-9f7e-181506defc5c}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="..\..\source\renderer\Geometry.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\Material.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\Mesh.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\Renderer.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\RenderJob.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\RenderPass.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\RenderState.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\RenderTarget.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\RenderTechnique.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\Shader.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\ShaderProgram.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\ShaderUniform.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\renderer\Texture.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\context\DriverContext.cpp">
+      <Filter>context</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\context\DriverContextD3D.cpp">
+      <Filter>context</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\context\DriverContextGL.cpp">
+      <Filter>context</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\stream\FileStream.cpp">
+      <Filter>stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\stream\MemoryStream.cpp">
+      <Filter>stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\stream\NetStream.cpp">
+      <Filter>stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\stream\Resource.cpp">
+      <Filter>stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\stream\StreamMgr.cpp">
+      <Filter>stream</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\Camera.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\Light.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\Model.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\ModelMgr.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\Node.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\ResourceDecoder.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\ScaneMgr.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\ShaderMgr.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\Shape.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\scene\TextureManager.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\utils\Logger.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\utils\Timer.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Object.cpp" />
+    <ClCompile Include="..\..\source\ValeraEngine.cpp" />
+    <ClCompile Include="..\..\source\platform\Window.cpp">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\platform\WindowWin32.cpp">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\platform\Platform.cpp">
+      <Filter>platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\core\Dimension2D.h">
+      <Filter>core</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\source\core\Math.h">
       <Filter>core</Filter>
     </ClInclude>
@@ -50,48 +136,6 @@
     </ClInclude>
     <ClInclude Include="..\..\source\core\Vector4D.h">
       <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\stream\FileStream.h">
-      <Filter>stream</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\stream\IStream.h">
-      <Filter>stream</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\stream\MemoryStream.h">
-      <Filter>stream</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\stream\NetStream.h">
-      <Filter>stream</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\stream\StreamMgr.h">
-      <Filter>stream</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scene\Camera.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scene\Light.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scene\Model.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scene\ModelMgr.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scene\Node.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scene\ResourceDecoder.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scene\ScaneMgr.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scene\ShaderMgr.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scene\Shape.h">
-      <Filter>scene</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\renderer\Geometry.h">
       <Filter>renderer</Filter>
@@ -132,11 +176,62 @@
     <ClInclude Include="..\..\source\renderer\Texture.h">
       <Filter>renderer</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\platform\Platform.h">
-      <Filter>platform</Filter>
+    <ClInclude Include="..\..\source\context\DriverContext.h">
+      <Filter>context</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\platform\PlatformWin32.h">
-      <Filter>platform</Filter>
+    <ClInclude Include="..\..\source\context\DriverContextD3D.h">
+      <Filter>context</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\context\DriverContextGL.h">
+      <Filter>context</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\stream\FileStream.h">
+      <Filter>stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\stream\IStream.h">
+      <Filter>stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\stream\MemoryStream.h">
+      <Filter>stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\stream\NetStream.h">
+      <Filter>stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\stream\Resource.h">
+      <Filter>stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\stream\StreamMgr.h">
+      <Filter>stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\Camera.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\Light.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\Model.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\ModelMgr.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\Node.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\ResourceDecoder.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\ScaneMgr.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\ShaderMgr.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\Shape.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\source\scene\TextureManager.h">
+      <Filter>scene</Filter>
     </ClInclude>
     <ClInclude Include="..\..\source\utils\Logger.h">
       <Filter>utils</Filter>
@@ -148,141 +243,43 @@
     <ClInclude Include="..\..\source\KeyCodes.h" />
     <ClInclude Include="..\..\source\Object.h" />
     <ClInclude Include="..\..\source\Singleton.h" />
+    <ClInclude Include="..\..\source\Valera3D.h" />
     <ClInclude Include="..\..\source\ValeraConfig.h" />
     <ClInclude Include="..\..\source\ValeraEngine.h" />
-    <ClInclude Include="..\..\source\Valera3D.h" />
-    <ClInclude Include="..\..\source\core\Dimension2D.h">
-      <Filter>core</Filter>
+    <ClInclude Include="..\..\source\platform\Window.h">
+      <Filter>platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\context\DriverContext.h">
-      <Filter>renderer\context</Filter>
+    <ClInclude Include="..\..\source\platform\WindowWin32.h">
+      <Filter>platform</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\context\DriverContextD3D.h">
-      <Filter>renderer\context</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\context\DriverContextGL.h">
-      <Filter>renderer\context</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\stream\Resource.h">
-      <Filter>stream</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\scene\TextureManager.h">
-      <Filter>scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\platform\PlatformManager.h">
+    <ClInclude Include="..\..\source\platform\Platform.h">
       <Filter>platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\stream\FileStream.cpp">
-      <Filter>stream</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\stream\MemoryStream.cpp">
-      <Filter>stream</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\stream\NetStream.cpp">
-      <Filter>stream</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\stream\StreamMgr.cpp">
-      <Filter>stream</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scene\Camera.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scene\Light.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scene\Model.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scene\ModelMgr.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scene\Node.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scene\ResourceDecoder.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scene\ScaneMgr.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scene\ShaderMgr.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scene\Shape.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\Geometry.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\Material.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\Mesh.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\Renderer.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\RenderJob.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\RenderPass.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\RenderState.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\RenderTarget.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\RenderTechnique.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\Shader.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\ShaderProgram.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\ShaderUniform.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\renderer\Texture.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\platform\Platform.cpp">
-      <Filter>platform</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\platform\PlatformWin32.cpp">
-      <Filter>platform</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\utils\Logger.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\utils\Timer.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Object.cpp" />
-    <ClCompile Include="..\..\source\ValeraEngine.cpp" />
-    <ClCompile Include="..\..\source\context\DriverContext.cpp">
-      <Filter>renderer\context</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\context\DriverContextD3D.cpp">
-      <Filter>renderer\context</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\context\DriverContextGL.cpp">
-      <Filter>renderer\context</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\stream\Resource.cpp">
-      <Filter>stream</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\scene\TextureManager.cpp">
-      <Filter>scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\platform\PlatformManager.cpp">
-      <Filter>platform</Filter>
-    </ClCompile>
+    <CustomBuild Include="..\..\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="platform">
+      <UniqueIdentifier>{BA93C188-FCFC-41FE-8E36-5089A8301648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{ACBFBECE-6EF4-4DD0-A764-22AFAB774AC9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer">
+      <UniqueIdentifier>{6615A6E2-D586-4DE3-BFCF-C16E57FF3286}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="context">
+      <UniqueIdentifier>{D2797EE6-049D-4F17-9A71-88E1CDC69BD6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stream">
+      <UniqueIdentifier>{E724C8BA-1839-4464-8FA0-C63A7FE9B659}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{A79596C5-230B-47A0-95F8-7E074BB1D5D7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{B6E0A5DE-688F-409B-B4F6-E4CED8D84830}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

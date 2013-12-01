@@ -7,7 +7,7 @@
 #	include <windows.h>
 #	include <winuser.h>
 #	include "GL/wglew.h"
-#	include "platform/PlatformWin32.h"
+#	include "platform/WindowWin32.h"
 #elif defined(_PLATFORM_LINUX_)
 #	include "GL/glxew.h"
 #	include <GL/glx.h>
@@ -18,9 +18,9 @@
 #include <cstring>
 
 using namespace v3d;
-using namespace renderer;
+using namespace v3d::renderer;
 
-CDriverContextGL::CDriverContextGL( const platform::CPlatform* platform )
+CDriverContextGL::CDriverContextGL( const platform::CWindow* platform )
 	: CDriverContext( platform )
 {
 }
@@ -68,11 +68,11 @@ bool CDriverContextGL::createWin32Context()
 	RECT clientSize;
 	clientSize.top    = 0;
 	clientSize.left   = 0;
-	clientSize.right  = m_platform->getWindowsSize().width;
-	clientSize.bottom = m_platform->getWindowsSize().height;
+	clientSize.right  = m_window->getSize().width;
+	clientSize.bottom = m_window->getSize().height;
 
 	DWORD style = WS_POPUP;
-	if (!m_platform->isFullscreen())
+	if (!m_window->isFullscreen())
 	{
 		style = WS_SYSMENU | WS_BORDER | WS_CAPTION | WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
 	}
@@ -215,7 +215,7 @@ bool CDriverContextGL::createWin32Context()
 
 	
 	// Get HWND
-	HWND window = static_cast<const platform::CPlatformWin32*>(m_platform)->getHandleWindow();
+	HWND window = static_cast<const platform::CWindowWin32*>(m_window)->getHandleWindow();
 	
 	hDC = GetDC( window );
 	if (!hDC)
