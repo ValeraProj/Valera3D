@@ -14,7 +14,7 @@ namespace renderer
 	{
 	public:
 
-									CDriverContext( const platform::CWindow* window );
+									CDriverContext( const platform::CWindowPtr& window );
 		virtual						~CDriverContext();
 
 		virtual void				driverInfo()                               = 0;
@@ -23,7 +23,7 @@ namespace renderer
 
 	protected:
 
-		const platform::CWindow*	m_window;
+		const platform::CWindowPtr	m_window;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

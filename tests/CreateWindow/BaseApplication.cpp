@@ -6,7 +6,7 @@ using namespace platform;
 BaseApplication::BaseApplication(int& argc, char** argv)
 {
 	m_engine = CValeraEngine::getInstance();
-	m_engine->setWindow(CPlatform::createWindowWithContext(core::Dimension2D(800, 600), false));
+	m_engine->getPlatform()->createWindowWithContext(core::Dimension2D(800, 600));
 }
 
 BaseApplication::~BaseApplication()
@@ -18,11 +18,11 @@ int BaseApplication::exec()
 {
 	this->init();
 
-	while (m_engine->getWindow()->begin())
+	while (m_engine->begin())
 	{
 		this->run();
 
-		m_engine->getWindow()->end();
+		m_engine->end();
 	}
 
 	return 0;

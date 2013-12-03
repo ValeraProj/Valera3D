@@ -1,6 +1,5 @@
 #include "WindowWin32.h"
 
-#include "context\DriverContextGL.h"
 #include <winuser.h>
 
 using namespace v3d;
@@ -14,8 +13,6 @@ CWindowWin32::CWindowWin32(const WindowParam& param)
 	, m_context( nullptr )
 {
 	m_platformType = EPlatformType::ePlatformWin32;
-
-	CWindowWin32::create();
 }
 
 CWindowWin32::~CWindowWin32()
@@ -54,7 +51,7 @@ void CWindowWin32::restore()
 	SetWindowPlacement(m_window, &wndpl);
 }
 
-void CWindowWin32::setResizeble(bool value)
+void CWindowWin32::setResizeble( bool value )
 {
 	if  (m_param.isFullscreen || m_param.isResizeble == value)
 	{
@@ -75,8 +72,8 @@ void CWindowWin32::setResizeble(bool value)
 	RECT clientSize;
 	clientSize.top    = 0;
 	clientSize.left   = 0;
-	clientSize.right  = m_param.windowSize.width;
-	clientSize.bottom = m_param.windowSize.height;
+	clientSize.right  = m_param.size.width;
+	clientSize.bottom = m_param.size.height;
 
 	AdjustWindowRect(&clientSize, style, FALSE);
 
@@ -93,7 +90,7 @@ void CWindowWin32::setResizeble(bool value)
 
 }
 
-void CWindowWin32::setFullScreen(bool value)
+void CWindowWin32::setFullScreen( bool value )
 {
 	LONG_PTR style = WS_POPUP;
 	if (!value)
@@ -105,8 +102,8 @@ void CWindowWin32::setFullScreen(bool value)
 	RECT clientSize;
 	clientSize.top    = 0;
 	clientSize.left   = 0;
-	clientSize.right  = m_param.windowSize.width;
-	clientSize.bottom = m_param.windowSize.height;
+	clientSize.right  = m_param.size.width;
+	clientSize.bottom = m_param.size.height;
 
 	AdjustWindowRect(&clientSize, style, FALSE);
 
@@ -124,8 +121,8 @@ void CWindowWin32::setFullScreen(bool value)
 		EnumDisplaySettings(NULL, ENUM_CURRENT_SETTINGS, &dmScreenSettings);
 		memset(&dmScreenSettings, 0, sizeof(dmScreenSettings));
 		dmScreenSettings.dmSize = sizeof(dmScreenSettings);
-		dmScreenSettings.dmPelsWidth  = m_param.windowSize.width;
-		dmScreenSettings.dmPelsHeight = m_param.windowSize.height;
+		dmScreenSettings.dmPelsWidth  = m_param.size.width;
+		dmScreenSettings.dmPelsHeight = m_param.size.height;
 		dmScreenSettings.dmBitsPerPel = 32;
 		dmScreenSettings.dmFields= DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT | DM_DISPLAYFREQUENCY;
 	
@@ -193,6 +190,21 @@ void CWindowWin32::setCaption(const std::string& text)
 	SetWindowTextA(m_window, text.c_str());
 }
 
+void CWindowWin32::setPosition(const core::Dimension2D& pos)
+{
+	if (m_param.isFullscreen)
+	{
+		return;
+	}
+
+	/*RECT rect = { xpos, ypos, xpos, ypos };
+	AdjustWindowRectEx(&rect, window->win32.dwStyle,FALSE, window->win32.dwExStyle);*/
+	SetWindowPos(m_window, NULL, pos.width, pos.height, 0, 0,
+		SWP_NOACTIVATE | SWP_NOZORDER | SWP_NOSIZE);
+
+	m_param.position = pos;
+}
+
 bool CWindowWin32::begin()
 {
 	MSG msg;
@@ -245,8 +257,8 @@ void CWindowWin32::create()
 	RECT clientSize;
 	clientSize.top    = 0;
 	clientSize.left   = 0;
-	clientSize.right  = m_param.windowSize.width;
-	clientSize.bottom = m_param.windowSize.height;
+	clientSize.right  = m_param.size.width;
+	clientSize.bottom = m_param.size.height;
 
 	/*DWORD dwStyle = WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
 	DWORD dwExStyle = WS_EX_APPWINDOW;*/
@@ -264,7 +276,7 @@ void CWindowWin32::create()
 
 	AdjustWindowRectEx(&clientSize, dwStyle, FALSE, dwExStyle);
 
-	const s32 realWidth = clientSize.right - clientSize.left;
+	const s32 realWidth  = clientSize.right - clientSize.left;
 	const s32 realHeight = clientSize.bottom - clientSize.top;
 	s32 windowLeft = (GetSystemMetrics(SM_CXSCREEN) - realWidth) / 2;
 	s32 windowTop  = (GetSystemMetrics(SM_CYSCREEN) - realHeight) / 2;
@@ -293,39 +305,6 @@ void CWindowWin32::create()
 	
 	m_window = HWnd;
 	
-	renderer::CDriverContext* driver = nullptr;
-	switch (m_param.driverType)
-	{
-	case EDriverType::eDriverOpenGL:
-		{
-			driver = new renderer::CDriverContextGL(this);
-		}
-		break;
-
-	case EDriverType::eDriverDirect3D:
-		{
-			//driver = new renderer::CDriverContextD3D(this);
-		}
-		break;
-
-	default:
-		{
-			//Wrong Driver Context
-			CWindowWin32::close();
-			system("pause");
-			return;
-		}
-		break;
-	}
-
-	if (!driver->createContext())
-	{
-		//Error crete context
-		CWindowWin32::close();
-		system("pause");
-		return;
-	}
-
 	HDC hDc = GetDC( m_window );
 	m_context = hDc;
 

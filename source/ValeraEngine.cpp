@@ -5,19 +5,33 @@ using namespace v3d;
 using namespace platform;
 
 CValeraEngine::CValeraEngine()
+: m_platform( nullptr )
 {
+	CValeraEngine::init();
 }
 
 CValeraEngine::~CValeraEngine()
 {
+	
+	m_platform = nullptr;
 }
 
-CWindow* CValeraEngine::getWindow() const
+void CValeraEngine::init()
+{
+	m_platform = std::make_shared<CPlatform>(CPlatform());
+}
+
+CPlatformPtr CValeraEngine::getPlatform() const
 {
 	return m_platform;
 }
 
-void CValeraEngine::setWindow(platform::CWindow* platform)
+bool CValeraEngine::begin()
 {
-	m_platform = platform;
+	return m_platform->begin();
+}
+
+bool CValeraEngine::end()
+{
+	return m_platform->end();
 }

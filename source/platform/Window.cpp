@@ -3,7 +3,7 @@
 using namespace v3d;
 using namespace v3d::platform;
 
-CWindow::CWindow(const WindowParam& param)
+CWindow::CWindow( const WindowParam& param )
 	: m_param( param )
 	, m_platformType( EPlatformType::ePlatformNull )
 {
@@ -25,7 +25,12 @@ bool CWindow::isResizeble() const
 
 const core::Dimension2D& CWindow::getSize() const
 {
-	return m_param.windowSize;
+	return m_param.size;
+}
+
+const core::Dimension2D& CWindow::getPosition() const
+{
+	return m_param.position;
 }
 
 const EPlatformType CWindow::getPlatformType() const

@@ -20,7 +20,7 @@
 using namespace v3d;
 using namespace v3d::renderer;
 
-CDriverContextGL::CDriverContextGL( const platform::CWindow* platform )
+CDriverContextGL::CDriverContextGL(const platform::CWindowPtr& platform)
 	: CDriverContext( platform )
 {
 }
@@ -215,7 +215,7 @@ bool CDriverContextGL::createWin32Context()
 
 	
 	// Get HWND
-	HWND window = static_cast<const platform::CWindowWin32*>(m_window)->getHandleWindow();
+	HWND window = std::static_pointer_cast<const platform::CWindowWin32>(m_window)->getHandleWindow();
 	
 	hDC = GetDC( window );
 	if (!hDC)

@@ -31,13 +31,15 @@ namespace platform
 	struct WindowParam
 	{
 		EDriverType       driverType;
-		core::Dimension2D windowSize;
+		core::Dimension2D size;
+		core::Dimension2D position;
 		bool              isFullscreen;
 		bool              isResizeble;
 		
-		WindowParam()
+		WindowParam() 
 			: driverType(EDriverType::eDriverNull)
-			, windowSize(core::Dimension2D(800U, 600U))
+			, size(core::Dimension2D(800U, 600U))
+			, position(core::Dimension2D(0U, 0U))
 			, isFullscreen(false)
 			, isResizeble(false)
 		{
@@ -46,36 +48,49 @@ namespace platform
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	class CPlatform;
+
 	class CWindow
 	{
 	public:
-									CWindow(const WindowParam& param);
+									CWindow( const WindowParam& param );
 		virtual						~CWindow();
 		
-		virtual void				minimize()                            = 0;
-		virtual void				maximize()                            = 0;
-		virtual void				restore()                             = 0;
-		virtual void				setFullScreen( bool value = true )    = 0;
-		virtual void				setResizeble( bool value = true )     = 0;
-		virtual void				setCaption( const std::string& text ) = 0;
+		virtual void				minimize()                                = 0;
+		virtual void				maximize()                                = 0;
+		virtual void				restore()                                 = 0;
+		virtual void				setFullScreen( bool value = true )        = 0;
+		virtual void				setResizeble( bool value = true )         = 0;
+		virtual void				setCaption( const std::string& text )     = 0;
+		virtual void				setPosition(const core::Dimension2D& pos) = 0;
 
-		virtual bool				isMaximized() const                   = 0;
-		virtual bool				isMinimized() const                   = 0;
-		virtual bool				isActive()    const                   = 0;
-		virtual bool				isFocused()   const                   = 0;
-		bool						isFullscreen()      const;
-		bool						isResizeble()       const;
-		const core::Dimension2D&	getSize()    const;
-		const EPlatformType			getPlatformType()   const;
+		virtual bool				isMaximized()     const                   = 0;
+		virtual bool				isMinimized()     const                   = 0;
+		virtual bool				isActive()        const                   = 0;
+		virtual bool				isFocused()       const                   = 0;
+		bool						isFullscreen()    const;
+		bool						isResizeble()     const;
+		const core::Dimension2D&	getSize()         const;
+		const core::Dimension2D&	getPosition()     const;
+		const EPlatformType			getPlatformType() const;
 
-		virtual bool				begin()                               = 0;
-		virtual bool				end()                                 = 0;
+		virtual bool				begin()                                  = 0;
+		virtual bool				end()                                    = 0;
 
 	protected:
+
+		friend						CPlatform;
+
+		virtual void				create()                                 = 0;
+		virtual void				close()                                  = 0;
 
 		WindowParam					m_param;
 		EPlatformType				m_platformType;
 	};
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	typedef std::shared_ptr<CWindow>	CWindowPtr;
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 }

@@ -12,6 +12,11 @@
 #	include "platform/PlatformLinux.h"
 #endif
 
+#ifdef _OPENGL_DRIVER_
+#	include "context/DriverContextGL.h"
+#endif
+
+
 using namespace v3d;
 using namespace v3d::platform;
 
@@ -23,31 +28,96 @@ CPlatform::~CPlatform()
 {
 }
 
-CWindow* CPlatform::createWindowWithContext(const core::Dimension2D& size, bool isFullscreen, bool isResizeble, EDriverType driverType)
+CWindowPtr CPlatform::createWindowWithContext(const core::Dimension2D& size, const core::Dimension2D& pos,
+	bool isFullscreen, bool isResizeble, EDriverType driverType )
 {
-	CWindow* platform = nullptr;
+	CWindowPtr window = nullptr;
 
 	WindowParam param;
-	param.windowSize   = size;
+	param.size = size;
+	param.position = pos;
 	param.isFullscreen = isFullscreen;
 	param.isResizeble  = isFullscreen ? false : isResizeble;
 	param.driverType   = driverType;
 
 #ifdef _PLATFORM_WIN_
-	platform = new CWindowWin32(param);
+	window = std::make_shared<CWindowWin32>(CWindowWin32(param));
 #endif
 
 #ifdef _PLATFORM_MACOSX_
-	platform = new CPlatformMacOSX(param);
+	window = new CPlatformMacOSX(param);
 #endif
 
 #ifdef _PLATFORM_LINUX_
-	platform = new CPlatformLinux(param);
+	window = new CPlatformLinux(param);
 #endif
 
-	platform->setResizeble(param.isResizeble);
-	platform->setFullScreen(param.isFullscreen);
+	window->create();
 
+	window->setResizeble(param.isResizeble);
+	window->setFullScreen(param.isFullscreen);
 
-	return platform;
+	renderer::CDriverContext* driver = nullptr;
+	
+	switch (param.driverType)
+	{
+		case EDriverType::eDriverOpenGL:
+		{
+			driver = new renderer::CDriverContextGL(window);
+		}
+		break;
+
+		case EDriverType::eDriverDirect3D:
+		{
+			//driver = new renderer::CDriverContextD3D(this);
+		}
+		break;
+
+		default:
+		{
+			//Wrong Driver Context
+			window->close();
+			system("pause");
+
+			return nullptr;
+		}
+		break;
+	}
+
+	if (!driver->createContext())
+	{
+		//Error crete context
+		window->close();
+		system("pause");
+
+		return nullptr;
+	}
+
+	m_windowsList.push_back(window);
+
+	return window;
+}
+
+bool CPlatform::begin()
+{
+	//WARN: Temporary
+	//Need manager?
+	bool value = false;
+
+	for (auto window : m_windowsList)
+	{
+		value = window->begin();
+	}
+
+	return value;
+}
+
+bool CPlatform::end()
+{
+	for (auto window : m_windowsList)
+	{
+		window->end();
+	}
+
+	return true;
 }

@@ -3,7 +3,7 @@
 
 #include "ValeraConfig.h"
 #include "Singleton.h"
-#include "platform/Window.h"
+#include "platform/Platform.h"
 
 namespace v3d
 {
@@ -15,12 +15,16 @@ namespace v3d
 		CValeraEngine();
 		~CValeraEngine();
 		
-		platform::CWindow*		getWindow() const;
-		void					setWindow(platform::CWindow* window); //Temporary
+		platform::CPlatformPtr	getPlatform() const;
+
+		bool					begin();
+		bool					end();
 
 	private:
 
-		platform::CWindow*		m_platform;
+		void					init();
+
+		platform::CPlatformPtr	m_platform;
 
 	};
 
