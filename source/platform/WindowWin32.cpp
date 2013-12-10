@@ -1,5 +1,6 @@
 #include "WindowWin32.h"
 
+#include "InputReceiver.h"
 #include <winuser.h>
 
 using namespace v3d;
@@ -334,27 +335,24 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		}
 
-		case WM_SHOWWINDOW:
-		{
-			break;
-		}
-
-		case WM_ACTIVATE:
-		{
-			return 0;
-		}
-
 		case WM_SYSKEYDOWN:
 		case WM_KEYDOWN:
 		{
-			break;
+			const int scancode = (lParam >> 16) & 0xff;
+			//const int key = translateKey(wParam, lParam);
+		
+			//v3d::SKeyEvent event;
+
+
+			//InputReceiver::getInstance()
+			return 0;
 		}
 
 		case WM_SYSKEYUP:
 		case WM_KEYUP:
 		{
 			//
-			break;
+			return 0;
 		}
 		
 		case WM_LBUTTONDOWN:
@@ -375,6 +373,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				//
 				return 0;
 			}
+
+		case WM_SHOWWINDOW:
+		{
+							  break;
+		}
+
+		case WM_ACTIVATE:
+		{
+			BOOL focused = LOWORD(wParam) != WA_INACTIVE;
+			BOOL iconified = HIWORD(wParam) ? TRUE : FALSE;
+
+			if (focused && iconified)
+			{
+				// This is a workaround for window iconification using the
+				// taskbar leading to windows being told they're focused and
+				// iconified and then never told they're defocused
+				focused = FALSE;
+			}
+
+			return 0;
+		}
 		
 		case WM_DESTROY:
 			{
@@ -386,3 +405,4 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
+

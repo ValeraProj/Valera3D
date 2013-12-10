@@ -42,6 +42,8 @@ namespace platform
 
 		HWND	m_window;
 		HDC		m_context;
+
+		//static LRESULT CALLBACK wndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

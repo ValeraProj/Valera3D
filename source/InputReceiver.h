@@ -2,6 +2,7 @@
 #define _V3D_INPUT_RECEIVER_H_
 
 #include "common.h"
+#include "Singleton.h"
 
 namespace v3d
 {
@@ -111,7 +112,7 @@ namespace v3d
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	class InputReceiver
+	class InputReceiver : public Singleton<InputReceiver>
 	{
 
 	public:
