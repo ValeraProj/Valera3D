@@ -62,7 +62,7 @@ bool InputReceiver::OnEvent(const SEvent& event)
 			}
 			
 
-			switch (mouseEvent.event)
+			/*switch (mouseEvent.event)
 			{
 
 				case	eLeftMousePressedDown:
@@ -75,12 +75,8 @@ bool InputReceiver::OnEvent(const SEvent& event)
 				case	eMiddleMousePressedUp:
 				case	eMiddleMouseDoubleClick:
 				case	eMouseMoved:
-				{
-					m_mousePosition.width = mouseEvent.x;
-					m_mousePosition.height = mouseEvent.y;
-				}
 				case	eMouseWheel:
-			}
+			};*/
 
 			return false;
 		};

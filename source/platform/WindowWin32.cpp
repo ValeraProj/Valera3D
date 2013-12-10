@@ -326,45 +326,63 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
-	case WM_SYSKEYDOWN:
-	case WM_SYSKEYUP:
-	case WM_KEYDOWN:
-	case WM_KEYUP:
+		case WM_CREATE:
+		{
+			CREATESTRUCT* cs = (CREATESTRUCT*)lParam;
+			SetWindowLongPtr(hWnd, 0, (LONG_PTR)cs->lpCreateParams);
+
+			break;
+		}
+
+		case WM_SHOWWINDOW:
+		{
+			break;
+		}
+
+		case WM_ACTIVATE:
+		{
+			return 0;
+		}
+
+		case WM_SYSKEYDOWN:
+		case WM_KEYDOWN:
+		{
+			break;
+		}
+
+		case WM_SYSKEYUP:
+		case WM_KEYUP:
 		{
 			//
-			return 0;
+			break;
 		}
 		
-	case WM_LBUTTONDOWN:
-	case WM_LBUTTONUP:
-	case WM_RBUTTONDOWN:
-	case WM_RBUTTONUP:
-	case WM_MBUTTONDOWN:
-	case WM_MBUTTONUP:
-	case WM_MOUSEMOVE:
-	case WM_MOUSEWHEEL:
-		{
-			//
-			return 0;
-		}
+		case WM_LBUTTONDOWN:
+		case WM_LBUTTONUP:
+		case WM_RBUTTONDOWN:
+		case WM_RBUTTONUP:
+		case WM_MBUTTONDOWN:
+		case WM_MBUTTONUP:
+		case WM_MOUSEMOVE:
+		case WM_MOUSEWHEEL:
+			{
+				//
+				return 0;
+			}
 		
-	case WM_SIZE:
-		{
-			//
-			return 0;
-		}
+		case WM_SIZE:
+			{
+				//
+				return 0;
+			}
 		
-	case WM_DESTROY:
-		{
-			PostQuitMessage(0);
-			return 0;
-		}
-		
-	case WM_ACTIVATE:
-		{
-			//
-			return 0;
-		}
+		case WM_DESTROY:
+			{
+				PostQuitMessage(0);
+				return 0;
+			}
+
 	}
+
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }

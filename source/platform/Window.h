@@ -35,6 +35,7 @@ namespace platform
 		core::Dimension2D position;
 		bool              isFullscreen;
 		bool              isResizeble;
+		bool              isVisible;
 		
 		WindowParam() 
 			: driverType(EDriverType::eDriverNull)
@@ -42,6 +43,7 @@ namespace platform
 			, position(core::Dimension2D(0U, 0U))
 			, isFullscreen(false)
 			, isResizeble(false)
+			, isVisible(true)
 		{
 		}
 	};

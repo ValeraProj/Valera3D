@@ -56,14 +56,14 @@ set(MAIN_FILE
 if(WIN32) 
 	set(PLATFORM_HEADERS
 		${SOURCE_DIR}/platform/Platform.h
-		${SOURCE_DIR}/platform/PlatformManager.h
-		${SOURCE_DIR}/platform/PlatformWin32.h
+		${SOURCE_DIR}/platform/Window.h
+		${SOURCE_DIR}/platform/WindowWin32.h
 	)
 	
 	set(PLATFORM_SOURCES
 		${SOURCE_DIR}/platform/Platform.cpp
-		${SOURCE_DIR}/platform/PlatformManager.cpp
-		${SOURCE_DIR}/platform/PlatformWin32.cpp
+		${SOURCE_DIR}/platform/Window.cpp
+		${SOURCE_DIR}/platform/WindowWin32.cpp
 	)
 
 elseif(UNIX)
