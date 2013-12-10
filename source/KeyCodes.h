@@ -5,6 +5,7 @@ namespace v3d
 {
 	enum EKeyCode
 	{
+		eKey_Uknown           = 0x00,  // Default
 		eKey_LButton          = 0x01,  // Left mouse button
 		eKey_RButton          = 0x02,  // Right mouse button
 		eKey_Cancel           = 0x03,  // Control-break processing

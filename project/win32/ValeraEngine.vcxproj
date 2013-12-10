@@ -259,6 +259,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\InputReceiver.h" />
     <ClInclude Include="..\..\source\platform\Window.h" />
     <ClInclude Include="..\..\source\platform\Platform.h" />
     <ClInclude Include="..\..\source\platform\WindowWin32.h" />
@@ -311,6 +312,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="..\..\source\Valera3D.h" />
     <ClInclude Include="..\..\source\ValeraConfig.h" />
     <ClInclude Include="..\..\source\ValeraEngine.h" />
+    <ClCompile Include="..\..\source\InputReceiver.cpp" />
     <ClCompile Include="..\..\source\platform\Window.cpp" />
     <ClCompile Include="..\..\source\platform\Platform.cpp" />
     <ClCompile Include="..\..\source\platform\WindowWin32.cpp" />
