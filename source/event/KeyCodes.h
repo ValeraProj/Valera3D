@@ -3,6 +3,14 @@
 
 namespace v3d
 {
+	enum EModifierCode 
+	{
+		Modifier_Uknown = 0x00,
+		Modifier_Ctrl   = 0x01,
+		Modifier_Alt    = 0x02,
+		Modifier_Shift  = 0x04
+	};
+
 	enum EKeyCode
 	{
 		eKey_Uknown           = 0x00,  // Default

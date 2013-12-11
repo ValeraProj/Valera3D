@@ -1,10 +1,9 @@
-#include "InputReceiver.h"
-
-#include "KeyCodes.h"
+#include "InputEventManager.h"
 
 using namespace v3d;
+using namespace v3d::event;
 
-InputReceiver::InputReceiver()
+CInputEventManager::CInputEventManager()
 {
 	for (u32 key = 0; key < eKey_Key_Codes_Count; ++key)
 	{
@@ -13,31 +12,29 @@ InputReceiver::InputReceiver()
 	}
 }
 
-InputReceiver::~InputReceiver()
+CInputEventManager::~CInputEventManager()
 {
 }
 
-bool InputReceiver::OnEvent(const SEvent& event)
+bool CInputEventManager::onEvent(const CEvent& event)
 {
 	switch (event.getType())
 	{
-		case eKeyInputEvent:
+		case eKeyboardInputEvent:
 		{
-			const SKeyEvent keyEvent = (SKeyEvent&)event;
+			const SKeyboardEvent keyEvent = (SKeyboardEvent&)event;
 
 			switch (keyEvent.event)
 			{
-				case eKeyPressedDown:
+				case eKeyboardPressedDown:
 				{
 					m_keysDown[keyEvent.key] = true;
-					m_keysUp[keyEvent.key] = false;
 
 					return true;
 				}
 
-				case eKeyPressedUp:
+				case eKeyboardPressedUp:
 				{
-					m_keysUp[keyEvent.key] = true;
 					m_keysDown[keyEvent.key] = false;
 
 					return true;
@@ -61,10 +58,8 @@ bool InputReceiver::OnEvent(const SEvent& event)
 				m_mouseStates[state] = state == mouseEvent.event;
 			}
 			
-
-			/*switch (mouseEvent.event)
+			switch (mouseEvent.event)
 			{
-
 				case	eLeftMousePressedDown:
 				case	eLeftMousePressedUp:
 				case	eLeftMouseDoubleClick:
@@ -74,9 +69,7 @@ bool InputReceiver::OnEvent(const SEvent& event)
 				case	eMiddleMousePressedDown:
 				case	eMiddleMousePressedUp:
 				case	eMiddleMouseDoubleClick:
-				case	eMouseMoved:
-				case	eMouseWheel:
-			};*/
+			}
 
 			return false;
 		};
@@ -94,58 +87,43 @@ bool InputReceiver::OnEvent(const SEvent& event)
 	}
 }
 
-bool InputReceiver::isKeyDown(const EKeyCode& code) const
+bool CInputEventManager::isKeyDown(const EKeyCode& code) const
 {
 	return m_keysDown[code];
 }
 
-bool InputReceiver::isKeyUp(const EKeyCode& code) const
+bool CInputEventManager::isKeyUp(const EKeyCode& code) const
 {
 	return m_keysUp[code];
 }
 
-bool InputReceiver::isLeftMousePressed() const
+bool CInputEventManager::isLeftMouseDown() const
 {
 	return true;
 }
 
-bool InputReceiver::isLeftMouseDown() const
-{
-	return true;
-}
-bool InputReceiver::isLeftMouseReleased() const
+bool CInputEventManager::isLeftMouseUp() const
 {
 	return true;
 }
 
-bool InputReceiver::isLeftMouseUp() const
+
+bool CInputEventManager::isRightMouseDown() const
 {
 	return true;
 }
 
-bool InputReceiver::isRightMousePressed() const
-{
-	return true;
-}
-bool InputReceiver::isRightMouseDown() const
-{
-	return true;
-}
-bool InputReceiver::isRightMouseReleased() const
-{
-	return true;
-}
-bool InputReceiver::isRightMouseUp() const
+bool CInputEventManager::isRightMouseUp() const
 {
 	return true;
 }
 
-const core::Dimension2D& InputReceiver::mouseCursor() const
+const core::Dimension2D& CInputEventManager::mouseCursor() const
 {
 	return core::Dimension2D(0, 0);
 }
 
-float InputReceiver::mouseWheel() const
+float CInputEventManager::mouseWheel() const
 {
 	return 0;
 }

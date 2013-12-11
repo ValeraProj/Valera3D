@@ -117,6 +117,10 @@ file(GLOB STREAM_SOURCES ${SOURCE_DIR}/stream/*.cpp)
 file(GLOB UTILS_HEADERS ${SOURCE_DIR}/utils/*.h)
 file(GLOB UTILS_SOURCES ${SOURCE_DIR}/utils/*.cpp)
 
+#Event Source
+file(GLOB EVENT_HEADERS ${SOURCE_DIR}/event/*.h)
+file(GLOB EVENT_SOURCES ${SOURCE_DIR}/event/*.cpp)
+
 #Main Source
 file(GLOB MAIN_HEADERS ${SOURCE_DIR}/*.h)
 file(GLOB MAIN_SOURCES ${SOURCE_DIR}/*.cpp)
@@ -128,6 +132,7 @@ source_group(context          FILES ${CONTEXT_HEADERS}  ${CONTEXT_SOURCES})
 source_group(stream           FILES ${STREAM_HEADERS}   ${STREAM_SOURCES})
 source_group(scene            FILES ${SCENE_HEADERS}    ${SCENE_SOURCES})
 source_group(utils            FILES ${UTILS_HEADERS}    ${UTILS_SOURCES})
+source_group(event            FILES ${EVENT_HEADERS}    ${EVENT_SOURCES})
 source_group(""               FILES ${MAIN_HEADERS}     ${MAIN_SOURCES})
 
 set (ENGINE_PROJECT_DIR ${PROJECT_SOURCE_DIR})
@@ -147,6 +152,7 @@ add_library(
 	${STREAM_HEADERS}   ${STREAM_SOURCES}
 	${SCENE_HEADERS}    ${SCENE_SOURCES}
 	${UTILS_HEADERS}    ${UTILS_SOURCES}
+	${EVENT_HEADERS}    ${EVENT_SOURCES}
 	${MAIN_HEADERS}     ${MAIN_SOURCES}
 	) 
 

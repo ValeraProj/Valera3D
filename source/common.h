@@ -23,6 +23,7 @@ namespace v3d
 #include <list>
 #include <set>
 #include <map>
+#include <queue>
 #include <algorithm>
 #include <memory>
 #include <fstream>

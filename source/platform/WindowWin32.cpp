@@ -356,17 +356,32 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		
 		case WM_LBUTTONDOWN:
-		case WM_LBUTTONUP:
 		case WM_RBUTTONDOWN:
-		case WM_RBUTTONUP:
 		case WM_MBUTTONDOWN:
+		{
+			//
+			return 0;
+		}
+
+		case WM_LBUTTONUP:
+		case WM_RBUTTONUP:
 		case WM_MBUTTONUP:
+		{
+			//
+			return 0;
+		}
+
 		case WM_MOUSEMOVE:
+		{
+			//
+			return 0;
+		}
+
 		case WM_MOUSEWHEEL:
-			{
-				//
-				return 0;
-			}
+		{
+			//
+			return 0;
+		}
 		
 		case WM_SIZE:
 			{
