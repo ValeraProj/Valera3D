@@ -158,7 +158,7 @@ namespace v3d
 		eKey_PA1              = 0xFD,  // PA1 key
 		eKey_Oem_Clear        = 0xFE,  // Clear key
 		
-		eKey_Key_Codes_Count  = 0xFF   // Count
+		eKey_Codes_Count      = 0xFF   // Count
 	};
 }
 

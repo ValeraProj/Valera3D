@@ -1,5 +1,5 @@
-#ifndef _V3D_INPUT_EVENT_MANAGER_H_
-#define _V3D_INPUT_EVENT_MANAGER_H_
+#ifndef _V3D_INPUT_EVENT_HANDLER_H_
+#define _V3D_INPUT_EVENT_HANDLER_H_
 
 #include "common.h"
 #include "Singleton.h"
@@ -13,18 +13,21 @@ namespace event
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	class CInputEventManager : public Singleton<CInputEventManager>, public CEventManager
+	class CInputEventHandler : public Singleton<CInputEventHandler>, public CEventManager
 	{
 
 	public:
 
-		CInputEventManager();
-		~CInputEventManager();
+		CInputEventHandler();
+		~CInputEventHandler();
 
-		void						update()	override;
+		void						update()                           override;
 
+		bool						isKeyPressed(const EKeyCode& code)  const;
 		bool						isKeyDown(const EKeyCode& code)     const;
 		bool						isKeyUp(const EKeyCode& code)       const;
+
+		void						resetKeyPressed();
 
 		bool						isLeftMouseDown()                   const;
 		bool						isLeftMouseUp()                     const;
@@ -37,11 +40,11 @@ namespace event
 
 	private:
 
-		bool						onEvent( const CEvent& event ) override;
+		bool						onEvent( const CEvent& event )      override;
 
-		bool						m_keysDown[256];
-		bool						m_keysUp[256];
+		bool						m_keysPressed[eKey_Codes_Count];
 		bool						m_mouseStates[eMouseCount];
+
 		core::Dimension2D			m_mousePosition; //WARN: need Point class
 	};
 

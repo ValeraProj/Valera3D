@@ -28,3 +28,8 @@ v3d::u64 CEvent::getTimeStamp() const
 {
 	return m_timeStamp;
 }
+
+bool CEvent::operator<(const CEvent& event)
+{
+	return m_priority < event.m_priority;
+}

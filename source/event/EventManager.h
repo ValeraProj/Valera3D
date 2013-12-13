@@ -9,9 +9,6 @@ namespace event
 {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-	//handler
 	class CEvent;
 
 	class CEventManager
@@ -21,8 +18,9 @@ namespace event
 						CEventManager();
 		virtual			~CEventManager();
 
-		virtual void	update() = 0;
-		void			push(const CEvent& event);
+		virtual void	update();
+
+		void			pushEvent(const CEvent& event);
 
 	private:
 

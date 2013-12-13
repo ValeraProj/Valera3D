@@ -40,6 +40,8 @@ namespace event
 		EPriority	getPriority() const;
 		v3d::u64	getTimeStamp() const;
 
+		bool		operator<(const CEvent& event);
+
 	protected:
 
 		EEventType	m_eventType;

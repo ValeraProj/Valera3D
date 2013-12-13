@@ -42,9 +42,13 @@ namespace event
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	class CInputEventHandler;
+
 	class CKeyboardInputEvent : public CEvent
 	{
 	public:
+
+		friend CInputEventHandler;
 
 		CKeyboardInputEvent();
 		~CKeyboardInputEvent();
@@ -62,6 +66,8 @@ namespace event
 	struct CMouseInputEvent : public CEvent
 	{
 	public:
+
+		friend CInputEventHandler;
 
 		CMouseInputEvent(); 
 		~CMouseInputEvent();
