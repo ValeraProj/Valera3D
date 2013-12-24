@@ -14,8 +14,9 @@ namespace event
 		eUnknownInputEvent = 0,
 		eMouseInputEvent,
 		eKeyboardInputEvent,
-		eGamepadInputevent,
-		eJoystickInputEvent
+		eGamepadInputEvent,
+		eJoystickInputEvent,
+		eTouchInputEvent
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

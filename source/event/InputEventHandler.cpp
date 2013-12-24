@@ -4,6 +4,10 @@ using namespace v3d;
 using namespace v3d::event;
 
 CInputEventHandler::CInputEventHandler()
+: m_mouseSignature(nullptr)
+, m_keyboardSignature(nullptr)
+, m_mousePosition(0,0)
+, m_mouseWheel(0.0f)
 {
 	resetKeyPressed();
 }
@@ -26,22 +30,20 @@ bool CInputEventHandler::onEvent(const CEvent& event)
 	{
 		case eKeyboardInputEvent:
 		{
-			const CKeyboardInputEvent keyEvent = (CKeyboardInputEvent&)event;
+			const CKeyboardInputEvent keyEvent = static_cast<const CKeyboardInputEvent&>(event);
 
 			switch (keyEvent.m_event)
 			{
 				case eKeyboardPressedDown:
 				{
 					m_keysPressed[keyEvent.m_key] = true;
-
-					return true;
+					break;
 				}
 
 				case eKeyboardPressedUp:
 				{
 					m_keysPressed[keyEvent.m_key] = false;
-
-					return true;
+					break;
 				}
 
 				default:
@@ -50,12 +52,16 @@ bool CInputEventHandler::onEvent(const CEvent& event)
 				}
 			}
 
-			return false;
+			if (m_keyboardSignature)
+			{
+				m_keyboardSignature(keyEvent);
+			}
+			return true;
 		}
 
 		case eMouseInputEvent:
 		{
-			const CMouseInputEvent mouseEvent = (CMouseInputEvent&)event;
+			const CMouseInputEvent mouseEvent = static_cast<const CMouseInputEvent&>(event);
 			
 			for (u32 state = 0; state < eMouseCount; ++state)
 			{
@@ -64,6 +70,7 @@ bool CInputEventHandler::onEvent(const CEvent& event)
 			
 			switch (mouseEvent.m_event)
 			{
+				case	eMouseMoved:
 				case	eLeftMousePressedDown:
 				case	eLeftMousePressedUp:
 				case	eLeftMouseDoubleClick:
@@ -73,21 +80,46 @@ bool CInputEventHandler::onEvent(const CEvent& event)
 				case	eMiddleMousePressedDown:
 				case	eMiddleMousePressedUp:
 				case	eMiddleMouseDoubleClick:
+				{
+					break;
+				}
+
+				default:
+				{
+					 return false;
+				}
 			}
 
-			return false;
-		};
+			m_mousePosition = mouseEvent.m_position;
+			m_mouseWheel = mouseEvent.m_wheel;
 
-		case eJoystickInputEvent:
-		{
-			return false;
+			if (m_mouseSignature)
+			{
+				m_mouseSignature(mouseEvent);
+			}
+			return true;
 		};
 
 		default:
 		{
 			return false;
-		};
+		}
+	}
+}
 
+void CInputEventHandler::connectKeyboardEvent(std::function<void(const CKeyboardInputEvent&)> signature)
+{
+	if (signature)
+	{
+		m_keyboardSignature = signature;
+	}
+}
+
+void CInputEventHandler::connectMouseEvent(std::function<void(const CMouseInputEvent&)> signature)
+{
+	if (signature)
+	{
+		m_mouseSignature = signature;
 	}
 }
 
@@ -96,43 +128,28 @@ bool CInputEventHandler::isKeyPressed(const EKeyCode& code)  const
 	return m_keysPressed[code];
 }
 
-bool CInputEventHandler::isKeyDown(const EKeyCode& code) const
+bool CInputEventHandler::isLeftMousePressed() const
 {
-	return m_keysDown[code];
+	return m_mouseStates[eLeftMousePressedDown];
 }
 
-bool CInputEventHandler::isKeyUp(const EKeyCode& code) const
+bool CInputEventHandler::isRightMousePressed() const
 {
-	return false;//m_keysDown[code];
-}
-
-bool CInputEventHandler::isLeftMouseDown() const
-{
-	return true;
-}
-
-bool CInputEventHandler::isLeftMouseUp() const
-{
-	return true;
+	return m_mouseStates[eRightMousePressedDown];
 }
 
 
-bool CInputEventHandler::isRightMouseDown() const
+bool CInputEventHandler::isMiddleMousePressed() const
 {
-	return true;
+	return m_mouseStates[eMiddleMousePressedDown];
 }
 
-bool CInputEventHandler::isRightMouseUp() const
+const core::Dimension2D& CInputEventHandler::getCursorPosition() const
 {
-	return true;
+	return m_mousePosition;
 }
 
-const core::Dimension2D& CInputEventHandler::mouseCursor() const
+float CInputEventHandler::getMouseWheel() const
 {
-	return core::Dimension2D(0, 0);
-}
-
-float CInputEventHandler::mouseWheel() const
-{
-	return 0;
+	return m_mouseWheel;
 }

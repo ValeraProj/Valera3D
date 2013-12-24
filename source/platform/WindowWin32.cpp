@@ -1,6 +1,5 @@
 #include "WindowWin32.h"
 
-#include "InputReceiver.h"
 #include <winuser.h>
 
 using namespace v3d;

@@ -21,31 +21,33 @@ namespace event
 		CInputEventHandler();
 		~CInputEventHandler();
 
-		void						update()                           override;
+		void						connectKeyboardEvent(std::function<void(const CKeyboardInputEvent&)>);
+		void						connectMouseEvent(std::function<void(const CMouseInputEvent&)>);
 
-		bool						isKeyPressed(const EKeyCode& code)  const;
-		bool						isKeyDown(const EKeyCode& code)     const;
-		bool						isKeyUp(const EKeyCode& code)       const;
+		void						update()                               override;
 
-		void						resetKeyPressed();
+		bool						isKeyPressed(const EKeyCode& code)     const;
 
-		bool						isLeftMouseDown()                   const;
-		bool						isLeftMouseUp()                     const;
+		bool						isLeftMousePressed()                   const;
+		bool						isRightMousePressed()                  const;
+		bool						isMiddleMousePressed()                 const;
 
-		bool						isRightMouseDown()                  const;
-		bool						isRightMouseUp()                    const;
-
-		const core::Dimension2D&	mouseCursor()                       const;
-		float						mouseWheel()                        const;
+		const core::Dimension2D&	getCursorPosition()                    const;
+		float						getMouseWheel()                           const;
 
 	private:
 
-		bool						onEvent( const CEvent& event )      override;
+		bool						onEvent(const CEvent& event)         override;
+		void						resetKeyPressed();
 
 		bool						m_keysPressed[eKey_Codes_Count];
 		bool						m_mouseStates[eMouseCount];
 
 		core::Dimension2D			m_mousePosition; //WARN: need Point class
+		float						m_mouseWheel;
+
+		std::function<void(const CKeyboardInputEvent&)>	m_keyboardSignature;
+		std::function<void(const CMouseInputEvent&)>	m_mouseSignature;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

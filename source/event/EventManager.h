@@ -2,14 +2,13 @@
 #define _V3D_EVENT_MANAGER_H_
 
 #include "common.h"
+#include "event/Event.h"
 
 namespace v3d
 {
 namespace event
 {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	class CEvent;
 
 	class CEventManager
 	{
