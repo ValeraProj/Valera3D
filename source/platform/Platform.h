@@ -27,7 +27,7 @@ namespace platform
 
 	private:
 
-		std::vector<CWindowPtr>		m_windowsList;
+		CWindowPtr					m_window;
 		
 	};
 

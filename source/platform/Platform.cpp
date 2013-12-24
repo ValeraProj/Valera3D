@@ -93,31 +93,17 @@ CWindowPtr CPlatform::createWindowWithContext(const core::Dimension2D& size, con
 		return nullptr;
 	}
 
-	m_windowsList.push_back(window);
+	m_window = window;
 
 	return window;
 }
 
 bool CPlatform::begin()
 {
-	//WARN: Temporary
-	//Need manager?
-	bool value = false;
-
-	for (auto window : m_windowsList)
-	{
-		value = window->begin();
-	}
-
-	return value;
+	return m_window->begin();
 }
 
 bool CPlatform::end()
 {
-	for (auto window : m_windowsList)
-	{
-		window->end();
-	}
-
-	return true;
+	return m_window->end();;
 }
