@@ -15,7 +15,7 @@ void CEventManager::update()
 {
 	while (!m_events.empty())
 	{
-		CEvent& event = m_events.front();
+		SInputEvent& event = m_events.front();
 		
 		if (onEvent(event))
 		{
@@ -27,7 +27,7 @@ void CEventManager::update()
 	}
 }
 
-void CEventManager::pushEvent(const CEvent& event)
+void CEventManager::pushEvent(const SInputEvent& event)
 {
 	m_events.push(event);
 }

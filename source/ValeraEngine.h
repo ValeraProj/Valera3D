@@ -4,6 +4,7 @@
 #include "ValeraConfig.h"
 #include "Singleton.h"
 #include "platform/Platform.h"
+#include "event/InputEventHandler.h"
 
 namespace v3d
 {
@@ -15,16 +16,18 @@ namespace v3d
 		CValeraEngine();
 		~CValeraEngine();
 		
-		platform::CPlatformPtr	getPlatform() const;
+		platform::CPlatformPtr			getPlatform() const;
+		event::CInputEventHandlerPtr	getInputEventHandler() const;
 
-		bool					begin();
-		bool					end();
+		bool							begin();
+		bool							end();
 
 	private:
 
-		void					init();
+		void							init();
 
-		platform::CPlatformPtr	m_platform;
+		platform::CPlatformPtr			m_platform;
+		event::CInputEventHandlerPtr	m_inputEventHandler;
 
 	};
 

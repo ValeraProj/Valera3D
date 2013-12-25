@@ -3,21 +3,37 @@
 using namespace v3d;
 using namespace v3d::event;
 
-CKeyboardInputEvent::CKeyboardInputEvent()
+SInputEvent::SInputEvent()
+: m_eventType(eUnknownInputEvent)
+, m_priority(eNormal)
+, m_timeStamp(0) //TODO: get current time, need CTimer
+{
+}
+
+SInputEvent::~SInputEvent()
+{
+}
+
+bool SInputEvent::operator<(const SInputEvent& event)
+{
+	return m_priority < event.m_priority;
+}
+
+SKeyboardInputEvent::SKeyboardInputEvent()
 : m_character(0)
-, m_key(eKey_Uknown)
+, m_key(eKeyUknown)
 , m_event(eKeyboardUnknown)
 , m_modifers(0)
 {
 	m_eventType = eKeyboardInputEvent;
 }
 
-CKeyboardInputEvent::~CKeyboardInputEvent()
+SKeyboardInputEvent::~SKeyboardInputEvent()
 {
 }
 
 
-CMouseInputEvent::CMouseInputEvent()
+SMouseInputEvent::SMouseInputEvent()
 : m_position(0,0)
 , m_wheel(0.0f)
 , m_event(eMouseUnknown)
@@ -26,6 +42,6 @@ CMouseInputEvent::CMouseInputEvent()
 	m_eventType = eMouseInputEvent;
 }
 
-CMouseInputEvent::~CMouseInputEvent()
+SMouseInputEvent::~SMouseInputEvent()
 {
 }

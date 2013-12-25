@@ -1,5 +1,6 @@
 #include "MyApplication.h"
 #include <iostream>
+#include <functional>
 
 #include "GL/glew.h"
 #if defined (_PLATFORM_WIN_)
@@ -17,6 +18,7 @@ MyApplication::~MyApplication()
 
 void MyApplication::init()
 {
+	m_engine->getInputEventHandler()->connectKeyboardEvent(std::bind(&MyApplication::onKeyboard, this, std::placeholders::_1));
 	glViewport( 0, 0, 800, 600 );
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
@@ -29,4 +31,9 @@ void MyApplication::run()
 
 	int a = 0;
 	glFlush();
+}
+
+void MyApplication::onKeyboard(const v3d::event::SKeyboardInputEvent& event)
+{
+	int a = 0;
 }

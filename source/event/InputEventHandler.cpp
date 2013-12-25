@@ -24,23 +24,28 @@ void CInputEventHandler::resetKeyPressed()
 	}
 }
 
-bool CInputEventHandler::onEvent(const CEvent& event)
+void CInputEventHandler::update()
 {
-	switch (event.getType())
+	CEventManager::update();
+}
+
+bool CInputEventHandler::onEvent(const SInputEvent& event)
+{
+	switch (event.m_eventType)
 	{
 		case eKeyboardInputEvent:
 		{
-			const CKeyboardInputEvent keyEvent = static_cast<const CKeyboardInputEvent&>(event);
+			const SKeyboardInputEvent keyEvent = static_cast<const SKeyboardInputEvent&>(event);
 
 			switch (keyEvent.m_event)
 			{
-				case eKeyboardPressedDown:
+				case eKeyboardPressDown:
 				{
 					m_keysPressed[keyEvent.m_key] = true;
 					break;
 				}
 
-				case eKeyboardPressedUp:
+				case eKeyboardPressUp:
 				{
 					m_keysPressed[keyEvent.m_key] = false;
 					break;
@@ -61,7 +66,7 @@ bool CInputEventHandler::onEvent(const CEvent& event)
 
 		case eMouseInputEvent:
 		{
-			const CMouseInputEvent mouseEvent = static_cast<const CMouseInputEvent&>(event);
+			const SMouseInputEvent mouseEvent = static_cast<const SMouseInputEvent&>(event);
 			
 			for (u32 state = 0; state < eMouseCount; ++state)
 			{
@@ -107,7 +112,7 @@ bool CInputEventHandler::onEvent(const CEvent& event)
 	}
 }
 
-void CInputEventHandler::connectKeyboardEvent(std::function<void(const CKeyboardInputEvent&)> signature)
+void CInputEventHandler::connectKeyboardEvent(std::function<void(const SKeyboardInputEvent&)> signature)
 {
 	if (signature)
 	{
@@ -115,7 +120,7 @@ void CInputEventHandler::connectKeyboardEvent(std::function<void(const CKeyboard
 	}
 }
 
-void CInputEventHandler::connectMouseEvent(std::function<void(const CMouseInputEvent&)> signature)
+void CInputEventHandler::connectMouseEvent(std::function<void(const SMouseInputEvent&)> signature)
 {
 	if (signature)
 	{

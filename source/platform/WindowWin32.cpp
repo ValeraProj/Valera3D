@@ -1,6 +1,7 @@
 #include "WindowWin32.h"
 
 #include <winuser.h>
+#include "ValeraEngine.h"
 
 using namespace v3d;
 using namespace v3d::platform;
@@ -340,17 +341,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			const int scancode = (lParam >> 16) & 0xff;
 			//const int key = translateKey(wParam, lParam);
 		
-			//v3d::SKeyEvent event;
+			v3d::event::SKeyboardInputEvent event;
+			event.m_event = v3d::event::eKeyboardPressDown;
 
+			v3d::CValeraEngine::getInstance()->getInputEventHandler()->pushEvent(event);
 
-			//InputReceiver::getInstance()
 			return 0;
 		}
 
 		case WM_SYSKEYUP:
 		case WM_KEYUP:
 		{
-			//
+			v3d::event::SKeyboardInputEvent event;
+			event.m_event = v3d::event::eKeyboardPressUp;
+
+			v3d::CValeraEngine::getInstance()->getInputEventHandler()->pushEvent(event);
+
 			return 0;
 		}
 		
@@ -358,7 +364,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case WM_RBUTTONDOWN:
 		case WM_MBUTTONDOWN:
 		{
-			//
+			v3d::event::SMouseInputEvent event;
+			event.m_event = v3d::event::eLeftMousePressedDown;
+
+			v3d::CValeraEngine::getInstance()->getInputEventHandler()->pushEvent(event);
+
 			return 0;
 		}
 
@@ -366,7 +376,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case WM_RBUTTONUP:
 		case WM_MBUTTONUP:
 		{
-			//
+			v3d::event::SMouseInputEvent event;
+			event.m_event = v3d::event::eLeftMousePressedUp;
+
+			v3d::CValeraEngine::getInstance()->getInputEventHandler()->pushEvent(event);
+
 			return 0;
 		}
 

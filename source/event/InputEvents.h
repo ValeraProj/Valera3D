@@ -1,7 +1,7 @@
 #ifndef _V3D_INPUT_EVENTS_H_
 #define _V3D_INPUT_EVENTS_H_
 
-#include "Event.h"
+#include "common.h"
 #include "KeyCodes.h"
 
 namespace v3d
@@ -10,11 +10,32 @@ namespace event
 {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	enum EInputEventType
+	{
+		eUnknownInputEvent = 0,
+		eMouseInputEvent,
+		eKeyboardInputEvent,
+		eGamepadInputEvent,
+		eJoystickInputEvent,
+		eTouchInputEvent
+	};
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	enum EPriority
+	{
+		eLow = 10,
+		eNormal = 20,
+		eHigh = 30
+	};
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	enum EKeyboardInputEvent
 	{
 		eKeyboardUnknown = 0,
-		eKeyboardPressedDown,
-		eKeyboardPressedUp,
+		eKeyboardPressDown,
+		eKeyboardPressUp,
 
 		eKeyboardCount
 	};
@@ -42,18 +63,24 @@ namespace event
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	class CInputEventHandler;
-
-	class CKeyboardInputEvent : public CEvent
+	struct SInputEvent
 	{
-	public:
+		SInputEvent();
+		~SInputEvent();
 
-		friend CInputEventHandler;
+		bool			operator<(const SInputEvent& event);
 
-		CKeyboardInputEvent();
-		~CKeyboardInputEvent();
+		EInputEventType	m_eventType;
+		EPriority		m_priority;
+		v3d::u64		m_timeStamp;
+	};
 
-	private:
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	struct SKeyboardInputEvent : public SInputEvent
+	{
+		SKeyboardInputEvent();
+		~SKeyboardInputEvent();
 
 		v3d::c8              m_character;
 		EKeyCode             m_key;
@@ -63,16 +90,10 @@ namespace event
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	struct CMouseInputEvent : public CEvent
+	struct SMouseInputEvent : public SInputEvent
 	{
-	public:
-
-		friend CInputEventHandler;
-
-		CMouseInputEvent(); 
-		~CMouseInputEvent();
-
-	private:
+		SMouseInputEvent();
+		~SMouseInputEvent();
 
 		core::Dimension2D m_position; //WARN: need class Point
 		v3d::f32          m_wheel;

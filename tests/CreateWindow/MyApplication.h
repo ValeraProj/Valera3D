@@ -9,8 +9,10 @@ public:
 	MyApplication(int& argc, char** argv);
 	virtual ~MyApplication();
 
-	virtual void init();
-	virtual void run();
+	void init() override;
+	void run() override;
+
+	void onKeyboard(const v3d::event::SKeyboardInputEvent& event);
 };
 
 #endif

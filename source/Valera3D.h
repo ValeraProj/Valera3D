@@ -8,6 +8,7 @@
 #include "Object.h"
 #include "scene/Node.h"
 #include "platform/Platform.h"
+#include "event/InputEventHandler.h"
 
 #include "ValeraEngine.h"
 
