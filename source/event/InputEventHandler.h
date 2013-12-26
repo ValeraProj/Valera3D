@@ -2,7 +2,7 @@
 #define _V3D_INPUT_EVENT_HANDLER_H_
 
 #include "common.h"
-#include "event/EventManager.h"
+#include "event/EventHandler.h"
 #include "event/InputEvents.h"
 
 namespace v3d
@@ -12,7 +12,7 @@ namespace event
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	class CInputEventHandler : public CEventManager
+	class CInputEventHandler : public CEventHandler
 	{
 
 	public:
@@ -20,8 +20,8 @@ namespace event
 		CInputEventHandler();
 		~CInputEventHandler();
 
-		void						connectKeyboardEvent(std::function<void(const SKeyboardInputEvent&)>);
-		void						connectMouseEvent(std::function<void(const SMouseInputEvent&)>);
+		void						connectKeyboardEvent(std::function<void(const SKeyboardInputEventPtr&)>);
+		void						connectMouseEvent(std::function<void(const SMouseInputEventPtr&)>);
 
 		void						update()                               override;
 
@@ -36,7 +36,7 @@ namespace event
 
 	private:
 
-		bool						onEvent(const SInputEvent& event)      override;
+		bool						onEvent(const SInputEventPtr event)      override;
 		void						resetKeyPressed();
 
 		bool						m_keysPressed[eKey_Codes_Count];
@@ -45,8 +45,8 @@ namespace event
 		core::Dimension2D			m_mousePosition; //WARN: need Point class
 		float						m_mouseWheel;
 
-		std::function<void(const SKeyboardInputEvent&)>	m_keyboardSignature;
-		std::function<void(const SMouseInputEvent&)>	m_mouseSignature;
+		std::function<void(const SKeyboardInputEventPtr&)>	m_keyboardSignature;
+		std::function<void(const SMouseInputEventPtr&)>	m_mouseSignature;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

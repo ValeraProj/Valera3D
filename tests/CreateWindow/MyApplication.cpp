@@ -33,7 +33,7 @@ void MyApplication::run()
 	glFlush();
 }
 
-void MyApplication::onKeyboard(const v3d::event::SKeyboardInputEvent& event)
+void MyApplication::onKeyboard(const v3d::event::SKeyboardInputEventPtr& event)
 {
 	int a = 0;
 }

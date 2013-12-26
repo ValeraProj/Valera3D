@@ -1,5 +1,5 @@
-#ifndef _V3D_EVENT_MANAGER_H_
-#define _V3D_EVENT_MANAGER_H_
+#ifndef _V3D_EVENT_HANDLER_H_
+#define _V3D_EVENT_HANDLER_H_
 
 #include "common.h"
 #include "event/InputEvents.h"
@@ -10,20 +10,20 @@ namespace event
 {
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	class CEventManager
+	class CEventHandler
 	{
 	public:
-								CEventManager();
-		virtual					~CEventManager();
+		CEventHandler();
+		virtual					~CEventHandler();
 
 		virtual void			update();
-		void					pushEvent(const SInputEvent& event);
+		void					pushEvent(const SInputEventPtr event);
 
 	private:
 
-		virtual bool			onEvent(const SInputEvent& event) = 0;
+		virtual bool			onEvent(const SInputEventPtr event) = 0;
 
-		std::queue<const SInputEvent> m_events;
+		std::queue<const SInputEventPtr> m_events;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

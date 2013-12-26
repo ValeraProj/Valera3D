@@ -26,28 +26,28 @@ void CInputEventHandler::resetKeyPressed()
 
 void CInputEventHandler::update()
 {
-	CEventManager::update();
+	CEventHandler::update();
 }
 
-bool CInputEventHandler::onEvent(const SInputEvent& event)
+bool CInputEventHandler::onEvent(const SInputEventPtr event)
 {
-	switch (event.m_eventType)
+	switch (event->m_eventType)
 	{
 		case eKeyboardInputEvent:
 		{
-			const SKeyboardInputEvent keyEvent = static_cast<const SKeyboardInputEvent&>(event);
+			const SKeyboardInputEventPtr keyEvent = std::static_pointer_cast<SKeyboardInputEvent>(event);
 
-			switch (keyEvent.m_event)
+			switch (keyEvent->m_event)
 			{
 				case eKeyboardPressDown:
 				{
-					m_keysPressed[keyEvent.m_key] = true;
+					m_keysPressed[keyEvent->m_key] = true;
 					break;
 				}
 
 				case eKeyboardPressUp:
 				{
-					m_keysPressed[keyEvent.m_key] = false;
+					m_keysPressed[keyEvent->m_key] = false;
 					break;
 				}
 
@@ -66,14 +66,14 @@ bool CInputEventHandler::onEvent(const SInputEvent& event)
 
 		case eMouseInputEvent:
 		{
-			const SMouseInputEvent mouseEvent = static_cast<const SMouseInputEvent&>(event);
+			const SMouseInputEventPtr mouseEvent = std::static_pointer_cast<SMouseInputEvent>(event);
 			
 			for (u32 state = 0; state < eMouseCount; ++state)
 			{
-				m_mouseStates[state] = state == mouseEvent.m_event;
+				m_mouseStates[state] = state == mouseEvent->m_event;
 			}
 			
-			switch (mouseEvent.m_event)
+			switch (mouseEvent->m_event)
 			{
 				case	eMouseMoved:
 				case	eLeftMousePressedDown:
@@ -95,8 +95,8 @@ bool CInputEventHandler::onEvent(const SInputEvent& event)
 				}
 			}
 
-			m_mousePosition = mouseEvent.m_position;
-			m_mouseWheel = mouseEvent.m_wheel;
+			m_mousePosition = mouseEvent->m_position;
+			m_mouseWheel = mouseEvent->m_wheel;
 
 			if (m_mouseSignature)
 			{
@@ -112,7 +112,7 @@ bool CInputEventHandler::onEvent(const SInputEvent& event)
 	}
 }
 
-void CInputEventHandler::connectKeyboardEvent(std::function<void(const SKeyboardInputEvent&)> signature)
+void CInputEventHandler::connectKeyboardEvent(std::function<void(const SKeyboardInputEventPtr&)> signature)
 {
 	if (signature)
 	{
@@ -120,7 +120,7 @@ void CInputEventHandler::connectKeyboardEvent(std::function<void(const SKeyboard
 	}
 }
 
-void CInputEventHandler::connectMouseEvent(std::function<void(const SMouseInputEvent&)> signature)
+void CInputEventHandler::connectMouseEvent(std::function<void(const SMouseInputEventPtr&)> signature)
 {
 	if (signature)
 	{

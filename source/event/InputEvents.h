@@ -66,7 +66,7 @@ namespace event
 	struct SInputEvent
 	{
 		SInputEvent();
-		~SInputEvent();
+		virtual ~SInputEvent();
 
 		bool			operator<(const SInputEvent& event);
 
@@ -77,10 +77,14 @@ namespace event
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	typedef std::shared_ptr<SInputEvent> SInputEventPtr;
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	struct SKeyboardInputEvent : public SInputEvent
 	{
 		SKeyboardInputEvent();
-		~SKeyboardInputEvent();
+		virtual ~SKeyboardInputEvent();
 
 		v3d::c8              m_character;
 		EKeyCode             m_key;
@@ -90,10 +94,14 @@ namespace event
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	typedef std::shared_ptr<SKeyboardInputEvent> SKeyboardInputEventPtr;
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	struct SMouseInputEvent : public SInputEvent
 	{
 		SMouseInputEvent();
-		~SMouseInputEvent();
+		virtual ~SMouseInputEvent();
 
 		core::Dimension2D m_position; //WARN: need class Point
 		v3d::f32          m_wheel;
@@ -101,6 +109,10 @@ namespace event
 		v3d::u16          m_modifers;
 
 	};
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	typedef std::shared_ptr<SMouseInputEvent> SMouseInputEventPtr;
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 }

@@ -32,7 +32,6 @@ SKeyboardInputEvent::~SKeyboardInputEvent()
 {
 }
 
-
 SMouseInputEvent::SMouseInputEvent()
 : m_position(0,0)
 , m_wheel(0.0f)
