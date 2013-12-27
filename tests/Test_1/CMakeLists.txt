@@ -24,6 +24,8 @@ add_executable(
 	${TEST_SOURCES_1}
 	)
 
+set_target_properties(${TEST_PROJECT_1} PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME ${TEST_PROJECT_1})
+
 if(WIN32)
 	set(EXTERNAL_LIBS 
 		OpenGL32.lib

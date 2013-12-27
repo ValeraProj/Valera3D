@@ -20,10 +20,14 @@ endif()
 
 add_executable(
 	${TEST_PROJECT}
+    WIN32 MACOSX_BUNDLE
 	${MAIN_FILE}
 	${TEST_HEADERS}
 	${TEST_SOURCES}
 	)
+
+set_target_properties(${TEST_PROJECT} PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "CreateWindow")
+
 
 if(WIN32)
 	set(EXTERNAL_LIBS 
@@ -43,6 +47,8 @@ elseif(UNIX AND NOT APPLE)
 		libGLU.so
 	)
 	#find_library(X11 NAMES X11 x11 PATHS /usr/X11/include/X11/ /usr/X11/lib)
+elseif(APPLE)
+    find_library(COCOA_FRAMEWORK Cocoa)
 endif()
 
 target_link_libraries(
