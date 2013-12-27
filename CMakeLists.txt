@@ -19,7 +19,7 @@ endif()
 if(WIN32)
 	message("-- Platrorm Win32")
 	add_definitions(-D_WIN32 -D_CONSOLE -DUNICODE -D_UNICODE)
-elseif(UNIX)
+elseif(UNIX AND NOT APPLE)
 	message("-- Platrorm Linux")
 	add_definitions(-D_LINUX)
 elseif(APPLE)
@@ -66,7 +66,7 @@ if(WIN32)
 		${SOURCE_DIR}/platform/WindowWin32.cpp
 	)
 
-elseif(UNIX)
+elseif(UNIX AND NOT APPLE)
 	set(PLATFORM_HEADERS
 		${SOURCE_DIR}/platform/Platform.h
 		${SOURCE_DIR}/platform/PlatformManager.h
@@ -82,14 +82,14 @@ elseif(UNIX)
 elseif(APPLE)
 	set(PLATFORM_HEADERS
 		${SOURCE_DIR}/platform/Platform.h
-		${SOURCE_DIR}/platform/PlatformManager.h
-		${SOURCE_DIR}/platform/PlatformMacOSX.h
+		${SOURCE_DIR}/platform/Window.h
+		${SOURCE_DIR}/platform/WindowMacOSX.h
 	)
 	
 	set(PLATFORM_SOURCES
 		${SOURCE_DIR}/platform/Platform.cpp
-		${SOURCE_DIR}/platform/PlatformManager.cpp
-		${SOURCE_DIR}/platform/PlatformMacOSX.mm
+		${SOURCE_DIR}/platform/Window.cpp
+		${SOURCE_DIR}/platform/WindowMacOSX.mm
 	)
 endif()
 

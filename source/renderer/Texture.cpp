@@ -26,7 +26,7 @@ namespace renderer
 	{
 		if (m_data.data != NULL)
 		{
-			delete m_data.data;
+			free(m_data.data);
 			m_data.data = NULL;
 		}
 	}

@@ -18,7 +18,7 @@ namespace renderer
 	{
 		if (m_data != nullptr)
 		{
-			delete m_data;
+			free(m_data);
 			m_data = nullptr;
 		}
 	}

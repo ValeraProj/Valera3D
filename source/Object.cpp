@@ -1,40 +1,39 @@
 #include "Object.h"
 
-namespace v3d
+using namespace v3d;
+
+CObject::CObject()
+    : m_id(-1)
+    , m_name("")
+    , m_type(EObjectType::eTypeUnknown)
 {
-	CObject::CObject()
-		: m_name( "" )
-		, m_id( -1 )
-		, m_type( EObjectType::eTypeUnknown )
-		{
-		}
+}
 
-	CObject::~CObject()
-	{
-	}
+CObject::~CObject()
+{
+}
 
-	const std::string CObject::getName() const
-	{
-		return m_name;
-	}
+const std::string CObject::getName() const
+{
+	return m_name;
+}
 
-	void CObject::setName( const std::string& name )
-	{
-		m_name = name;
-	}
+void CObject::setName( const std::string& name )
+{
+	m_name = name;
+}
 
-	const EObjectType CObject::getObjectType() const
-	{
-		return m_type;
-	}
+const EObjectType CObject::getObjectType() const
+{
+	return m_type;
+}
 
-	const s32 CObject::getID() const
-	{
-		return m_id;
-	}
+const s32 CObject::getID() const
+{
+	return m_id;
+}
 
-	void CObject::setID( const s32 id )
-	{
-		m_id = id;
-	}
+void CObject::setID( const s32 id )
+{
+	m_id = id;
 }

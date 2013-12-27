@@ -5,7 +5,7 @@
 #endif
 
 #ifdef _PLATFORM_MACOSX_
-#	include "platform/PlatformMacOSX.h"
+#	include "platform/WindowMacOSX.h"
 #endif
 
 #ifdef _PLATFORM_LINUX_
@@ -45,7 +45,7 @@ CWindowPtr CPlatform::createWindowWithContext(const core::Dimension2D& size, con
 #endif
 
 #ifdef _PLATFORM_MACOSX_
-	window = new CPlatformMacOSX(param);
+	window = std::make_shared<CWindowMacOSX>(CWindowMacOSX(param));
 #endif
 
 #ifdef _PLATFORM_LINUX_

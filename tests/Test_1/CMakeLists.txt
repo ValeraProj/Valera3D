@@ -14,7 +14,7 @@ include_directories(source)
 
 if(WIN32)
 	link_directories(${ENGINE_PROJECT_DIR}/project/win32/)
-elseif(UNIX)
+elseif(UNIX AND NOT APPLE)
 	link_directories(${ENGINE_PROJECT_DIR}/project/linux-qt/)
 endif()
 
@@ -34,7 +34,7 @@ if(WIN32)
 		#optimized ${ENGINE_NAME}.lib
 		#optimized ${GLEW_PLOJECT}.lib
 	)
-elseif(UNIX)
+elseif(UNIX AND NOT APPLE)
 	find_package(X11)
 	set(EXTERNAL_LIBS
 		libX11.so

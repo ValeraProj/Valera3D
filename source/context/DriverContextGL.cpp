@@ -38,6 +38,7 @@ bool CDriverContextGL::createContext()
 	return createLinuxContext();
 
 #endif
+    return false;
 }
 
 #if defined(_PLATFORM_WIN_)
@@ -328,13 +329,13 @@ bool CDriverContextGL::createLinuxContext()
 void CDriverContextGL::driverInfo()
 {
 	// print renderer information
-	const GLubyte* renderer = glGetString(GL_RENDERER);
-	const GLubyte* vendor = glGetString(GL_VENDOR);
-	const GLubyte* GLSL = glGetString(GL_SHADING_LANGUAGE_VERSION);
-	const GLubyte* version = glGetString(GL_VERSION);
+	const GLubyte* renderer = 0;//glGetString(GL_RENDERER);
+	const GLubyte* vendor = 0;//glGetString(GL_VENDOR);
+	const GLubyte* GLSL = 0;//glGetString(GL_SHADING_LANGUAGE_VERSION);
+	const GLubyte* version = 0;//glGetString(GL_VERSION);
 	
 	GLint maxTextureUnits;
-	glGetIntegerv( GL_MAX_TEXTURE_UNITS, &maxTextureUnits );
+	//glGetIntegerv( GL_MAX_TEXTURE_UNITS, &maxTextureUnits );
 	//TODO: driver info
 	std::cout << renderer << std::endl;
 	std::cout << vendor << std::endl;
@@ -352,7 +353,7 @@ void CDriverContextGL::driverInfo()
 void CDriverContextGL::checkForErrors( const std::string& error )
 {
 #ifdef _DEBUG
-		GLenum glError = glGetError();
+    GLenum glError = 0;//glGetError();
 		if ( glError != GL_NO_ERROR )
 		{
 			//( error << glewGetErrorString(glError));
